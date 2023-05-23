@@ -1,0 +1,25 @@
+.user_info__container {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+
+  .input_field {
+    border: none;
+    box-shadow: none;
+    font-size: 1.3rem;
+    color: rgb(78, 75, 75);
+    font-weight: 600;
+    border-radius: 0px;
+    margin-bottom: 15px;
+  }
+
+  .info_field {
+    padding: 10px 0;
+    font-size: 1.3rem;
+    color: rgb(78, 75, 75);
+    .info_label {
+      color: rgb(110, 110, 110);
+      margin-right: 15px;
+    }
+  }
+}

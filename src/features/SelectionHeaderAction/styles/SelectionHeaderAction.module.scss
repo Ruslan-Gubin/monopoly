@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
+  flex: 3;
+  @media (max-width: 1300px) {
+    flex: 4;
+  }
+
+}

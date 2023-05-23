@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+  padding: 15px 0;
+  column-gap: 20px;
+
+  .avatar_container {
+    position: relative;
+    width: 40%;
+    height: 400px;
+    flex: 4;
+    .update_svg {
+      display: none;
+    }
+
+    &:hover {
+      .update_svg {
+        display: block;
+        opacity: 0.4;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        &:hover {
+          opacity: 0.6;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+}

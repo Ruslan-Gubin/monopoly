@@ -1,0 +1,81 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+.inputrg-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgb(141, 135, 135);
+  position: relative;
+}
+
+.inputrg-input {
+  border: 1px solid rgba(0, 0, 0, 0.121);
+  margin: 5px 0;
+  border-radius: 4px;
+  display: inline-block;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.033);
+  overflow: visible;
+  outline: 0;
+  outline-offset: 0;
+  color: rgb(73, 68, 68);
+  letter-spacing: 1px;
+}
+
+.inputrg-input:focus {
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.09);
+}
+
+.inputrg-icon__container {
+  position: absolute;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputrg-input::placeholder {
+  color: #212529;
+  opacity: 0.5;
+}
+
+.inputrg-error {
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: rgb(253, 63, 63);
+  height: 17px;
+  margin: 0;
+}
+
+.inputrg-error__input {
+  border: 1px solid rgb(249, 118, 118);
+}
+
+.inputrg-size__sm {
+  padding: 5px 55px 5px 10px;
+  font-size: 1.1rem;
+}
+
+.inputrg-size__md {
+  padding: 12px 55px 12px 15px;
+  font-size: 1.3rem;
+}
+
+.inputrg-size__lg {
+  padding: 20px 55px 20px 20px;
+  font-size: 1.5rem;
+}
+
+

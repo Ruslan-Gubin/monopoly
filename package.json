@@ -9,14 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.0.0",
     "@types/react": "18.2.5",
     "@types/react-dom": "18.2.3",
+    "compose-function": "^3.0.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.0",
     "next": "13.4.0",
-    "react": "18.2.0",
+    "next-persist": "^1.2.4",
+    "next-redux-wrapper": "^8.1.0",
+    "react": "^18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-deep-persist": "^1.0.7",
+    "redux-persist": "^6.0.0",
+    "reduxjs-toolkit-persist": "^7.2.1",
+    "sass": "^1.62.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/compose-function": "^0.0.30"
   }
 }

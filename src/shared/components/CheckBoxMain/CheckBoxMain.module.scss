@@ -1,0 +1,39 @@
+.root {
+  flex: 1;
+  display: flex;
+ justify-content: center; 
+  .checkbox {
+    border: 1px solid rgba(0, 0, 0, 0.266);
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
+    width: 20px;
+    height: 20px;
+    position: relative;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.174);
+
+  }
+ 
+}
+
+.active {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 2px;
+    width: 7px;
+    height: 2px;
+    background-color: rgb(37, 128, 28);
+    rotate: (45deg);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    width: 12px;
+    height: 2px;
+    background-color: rgb(37, 128, 28);
+    rotate: (-45deg);
+  }
+}
