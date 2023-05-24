@@ -24,7 +24,8 @@ declare global {
 
 export const config = {
   API_ENDPOINT: 'http://localhost:4444/api',
-  API_WS_SELECTION: 'ws://localhost:4444/api',
+  BASE_WS_URL:  'ws://localhost:4444/api',
+  SELECTION_URL: 'ws-session',
   // API_DELAY: Number(import.meta.env.VITE_API_DELAY) || 100,
   // API_USER_EMAIL: import.meta.env.VITE_API_USER_EMAIL,
   // API_USER_PASSWORD: import.meta.env.VITE_API_USER_PASSWORD,

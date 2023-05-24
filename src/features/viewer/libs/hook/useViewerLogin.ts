@@ -1,5 +1,4 @@
 import  { ChangeEvent, FormEvent,  useCallback, useState } from 'react';
-import { useAppDispatch } from '@/shared';
 import { IUserLoginValue, useViewerFeaturesAction } from '../../model';
 import { checkInputBeforFetch } from '../helpers';
 
@@ -12,7 +11,6 @@ const useViewerLogin = () => {
   });
   const [viewsPassworld, setViewsPassworld] = useState<boolean>(false);
   const { fetchRegistration, fetchLogin } = useViewerFeaturesAction()
-  const dispatch = useAppDispatch();
 
 
   const handleChangeEaeViews = useCallback(() => {

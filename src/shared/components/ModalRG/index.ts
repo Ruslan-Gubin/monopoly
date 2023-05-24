@@ -1,1 +1,0 @@
-export { ModalRG } from "./ModalRG";

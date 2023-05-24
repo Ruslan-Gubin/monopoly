@@ -1,5 +1,5 @@
 import { useViewer } from "@/entities";
-import { ModalRG, useRouters } from "@/shared";
+import { ModalRG, useRouterNext } from "@/shared";
 import {  useViewerFeatures, useViewerFeaturesAction } from "../../model";
 
 
@@ -7,7 +7,7 @@ const ProfileModal = () => {
   const { modalActive, newName, buttonTextModal, activeFoto, titleModal } = useViewerFeatures()
   const { toggle, closeModal, fetchDeleteViewer, fetchUpdateViewer } = useViewerFeaturesAction()
   const { viewer, authId } = useViewer()
-  const { routerPushPage } = useRouters()
+  const { routerPushPage } = useRouterNext()
 
   const modalSubmit = async () => {
     if (!viewer || !authId) return;

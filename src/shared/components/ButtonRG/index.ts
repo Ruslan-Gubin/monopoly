@@ -1,1 +1,0 @@
-export { ButtonRG } from './ButtonRG'

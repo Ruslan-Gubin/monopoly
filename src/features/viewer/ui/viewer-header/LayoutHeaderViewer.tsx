@@ -1,11 +1,11 @@
 import { useViewer, useViewerAction, ViewerAvatar } from "@/entities";
-import { useRouters } from "@/shared";
+import { useRouterNext } from "@/shared";
 
 import styles from './LayoutHeaderViewer.module.scss';
 
 const LayoutHeaderViewer = () => {
   const { viewer, autorization } = useViewer();
-  const { routerPushPage, pathname } = useRouters();
+  const { routerPushPage, pathname } = useRouterNext();
   const { clearViewer } = useViewerAction()
 
   

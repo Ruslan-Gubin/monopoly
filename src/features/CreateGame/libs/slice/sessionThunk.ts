@@ -1,4 +1,4 @@
-import { SelectionSocket } from "@/app/api/SelectionSocket";
+import { SelectionSocket } from "@/shared";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 

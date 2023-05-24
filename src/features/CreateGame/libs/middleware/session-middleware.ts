@@ -1,4 +1,4 @@
-import { Socket } from "@/app";
+import { Socket } from "@/shared";
 import { Middleware } from "redux";
 import { sessionConstant } from "../../constants/sessionConstant";
 import { sessionAction } from "../slice/sessionsSlice";
@@ -7,9 +7,9 @@ import { connectResponse, selectionApi } from "../slice/sessionThunk";
 
 const sessionMiddleware: Middleware = (store) => {
   const { dispatch } = store;
-  const socket = new Socket();
-  socket.patch = sessionConstant.SESSION_URL;
-  socket.wsName = 'sessionMiddleware';
+  // const socket = new Socket();
+  // socket.patch = sessionConstant.SESSION_URL;
+  // socket.wsName = 'sessionMiddleware';
 
   return (next) => (action) => {
     // const { owner, authId, joinSession } = store.getState().sessionSlice

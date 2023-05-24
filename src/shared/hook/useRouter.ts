@@ -1,7 +1,6 @@
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 
-
-const useRouters = () => {
+export const useRouterNext = () => {
   const router = useRouter()
   const pathname = router.pathname
 
@@ -11,5 +10,3 @@ const useRouters = () => {
 
   return { routerPushPage, pathname }
 }
-
-export {useRouters}

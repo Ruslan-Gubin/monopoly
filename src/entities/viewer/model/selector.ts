@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/shared/model";
+import { useAppDispatch, useAppSelector } from "@/shared";
 import { viewerSlice } from "./slice";
 
 export const selectViewer = (state: RootState) => state.viewer;
@@ -8,7 +8,7 @@ export const viewerAction = viewerSlice.actions;
 export const viewerReducer = viewerSlice.reducer;
 
 export const useViewer = () => {
-  return useAppSelector(selectViewer);
+  return useAppSelector(selectViewer); 
 };
 
 export const useViewerAction = () => {

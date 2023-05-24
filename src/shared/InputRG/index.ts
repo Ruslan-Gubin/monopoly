@@ -1,1 +1,0 @@
-export { InputRG } from "./InputRG";

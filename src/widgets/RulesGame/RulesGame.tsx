@@ -1,17 +1,14 @@
-import  { FC } from 'react';
-import { IRules } from '@/app/types/RulesInterface';
+import { rulesGame } from './lib/rules-monopoli';
+
 import styles from './RulesGame.module.scss';
 
-interface RulesGameProps {
-  rules: IRules[]
-}
 
-const RulesGame: FC<RulesGameProps> = ({rules}) => {
+const RulesGame = () => {
 
   return (
     <>
     <ul className={styles.wrapper}>
-      {rules.map((item, index) => 
+      {rulesGame.map((item, index) => 
       <li key={index}>
         {item.title && <h2 className={styles.title}>{item.title}</h2>}
         {item.src && 

@@ -1,8 +1,7 @@
-import { useAppDispatch, useAppSelector } from "@/app/hooks/useAppSelector";
-import { useRouters } from "@/app/hooks/useRouter";
+import { useEffect, useMemo } from "react";
 import { ISessions } from "@/app/types/ISessions";
 import {  useViewer } from "@/entities/viewer";
-import { useEffect, useMemo } from "react";
+import { useAppDispatch, useAppSelector, useRouterNext } from "@/shared";
 import { sessionConstant } from "../../constants/sessionConstant";
 import { selectSession, sessionAction } from "../slice/sessionsSlice";
 import { connectSelection } from "../slice/sessionThunk";
@@ -12,7 +11,7 @@ const useSessionsUpdated = () => {
   const { viewer } = useViewer()
   const { owner, sessions, playersCount, joinSession, isConnected } =
     useAppSelector(selectSession);
-  const { routerPushPage } = useRouters();
+  const { routerPushPage } = useRouterNext();
   const dispatch = useAppDispatch();
   
 

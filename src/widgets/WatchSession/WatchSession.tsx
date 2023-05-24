@@ -1,11 +1,11 @@
 import { SessionGameCard } from '@/entities';
-import { useRouters } from '@/app/hooks/useRouter';
+import { useRouterNext } from '@/shared';
 
 import styles from './WatchSession.module.scss';
 
 
 const WatchSession = () => {
-  const { routerPushPage } = useRouters();
+  const { routerPushPage } = useRouterNext();
 
   const handleClickAvatar = (id: string) => {
     routerPushPage(`/profile/${id}`)

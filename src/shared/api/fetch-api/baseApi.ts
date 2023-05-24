@@ -1,4 +1,5 @@
-import { config, getCookie } from "@/shared/lib";
+import { config } from "@/shared/lib";
+import { CookieService } from "@/shared/service";
 
 export type configApiType = { idInstance: number, token: string, method: string }
 
@@ -12,7 +13,7 @@ interface BaseFetchProps {
 export const baseFetch = <T>({ body, params, url, method='GET' }:BaseFetchProps ): Promise<T> => {
   
   const urlEndpoint = config.API_ENDPOINT
-  const token = getCookie('token')
+  const token = CookieService.get('token')
   
   return new Promise((resolve, reject) => {
       try{

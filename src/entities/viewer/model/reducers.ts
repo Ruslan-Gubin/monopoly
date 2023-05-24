@@ -1,4 +1,4 @@
-import { deleteCookie, TokenService } from '@/shared'
+import { CookieService, TokenService } from '@/shared'
 import { ViewerInitState } from './types'
 
 export const reducers = {
@@ -7,7 +7,7 @@ export const reducers = {
     state.authId = null
     state.autorization = false
     state.viewer = null
-    deleteCookie('token')
+    CookieService.remove('token')
     TokenService.remove()
   },
 

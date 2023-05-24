@@ -1,14 +1,14 @@
 import {  useEffect } from "react";
 import { useViewer } from "@/entities";
 import { submitButtonText, useViewerFeatures, useViewerFeaturesAction, useViewerLogin, VIEWER_ICONS } from "@/features";
-import { ButtonRG, InputRG, useAddImage, useRouters } from "@/shared";
+import { ButtonRG, InputRG, useAddImage, useRouterNext } from "@/shared";
 
 import styles from './ViewerLogin.module.scss';
 
 const ViewerLogin = () => {
   const { loginStatus } = useViewerFeatures()
   const { autorization } = useViewer()
-  const { routerPushPage } = useRouters();
+  const { routerPushPage } = useRouterNext();
   const { loginStatusToggle } = useViewerFeaturesAction()
   const { handleChangeEaeViews, handleChangeInput, userValue, validInputs, viewsPassworld } = useViewerLogin()
   const { cancelImage, changeFile, fileRef, imag } = useAddImage();

@@ -1,13 +1,13 @@
-import { useRouters } from '@/app/hooks/useRouter';
 import {  useViewer } from '@/entities/viewer';
 import * as features from '@/features';
+import { useRouterNext } from '@/shared';
 
 
 import styles from './SessionGame.module.scss';
 
 const SelectionGame = () => {
   const { autorization } = useViewer()
-  const { routerPushPage } = useRouters()
+  const { routerPushPage } = useRouterNext()
 
 
 

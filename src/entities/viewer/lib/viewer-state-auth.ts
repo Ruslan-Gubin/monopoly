@@ -1,4 +1,4 @@
-import { deleteCookie, setCookie, TokenService } from "@/shared"
+import { CookieService,  TokenService } from "@/shared"
 import { ResAuth, ViewerInitState } from "../model"
 
 export const viewerPending = (state: ViewerInitState) => {
@@ -18,7 +18,7 @@ export const viewerRejected = (state: ViewerInitState, action: { payload: string
 	state.authId = null
 	state.viewer = null
 
-	deleteCookie('token')
+	CookieService.remove('token')
 	TokenService.remove()
 }
 
@@ -27,7 +27,7 @@ export const viewerFulfiled = (state: ViewerInitState, action: {payload: ResAuth
 			state.loading = false
 			state.error = null
 
-			setCookie('token', token)
+			CookieService.set(token)
 			TokenService.set(token)
 
 			state.autorization = true
@@ -43,6 +43,6 @@ export const removeViewerfulfiled = (state: ViewerInitState) => {
 			state.error = null
 			state.authId = null
 			state.viewer = null
-			deleteCookie('token')
+			CookieService.remove('token')
 	    TokenService.remove()
 }

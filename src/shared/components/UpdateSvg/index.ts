@@ -1,1 +1,0 @@
-export { UpdateSvg } from "./UpdateSvg";
