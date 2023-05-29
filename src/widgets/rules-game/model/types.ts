@@ -1,4 +1,4 @@
-interface IRules {
+export interface IRules {
   title?: string;
   description: string;
   list?: string[];
@@ -6,5 +6,3 @@ interface IRules {
   hotel?: string;
   src?: string;
 }
-
-export type { IRules };

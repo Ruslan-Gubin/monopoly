@@ -1,69 +1,25 @@
-import { selectionConstant, SelectionModel, useSelect, useSelectAction, useViewer } from '@/entities';
-import { CardPlayers, useRouterNext } from '@/shared';
-import { useMemo } from 'react';
+import { useMemo } from "react";
+import {
+  SelectionCard,
+  SelectionModel,
+  useSelect,
+} from "@/entities";
+import { SelectionAvatar } from "../selection-avatar/SelectionAvatar";
 
-import styles from './SelectionGameList.module.scss';
+import styles from "./SelectionGameList.module.scss";
+import { addPlayersImage } from "../../libs/helpers/addPlayersImage";
 
 const SelectionGameList = () => {
-  const { selectioGames, joinSession, owner } = useSelect()
-  const { viewer } = useViewer()
-  const { selectionSendMessage } = useSelectAction()
-  const { routerPushPage } = useRouterNext()
-
-  const handleClickAvatar = (
-    playerId: string,
-    sessionId: string,
-    fullName: string
-  ) => {
-    if (!viewer) return;
-
-    if (playerId === viewer.viewerId && sessionId === joinSession) {
-      selectionSendMessage({ method: "outSession", body: { sessionId, playerId, } });
-    }
-
-    if (fullName === "Join") {
-      selectionSendMessage({ 
-        method: "joinSession",
-          body: {
-            sessionId: sessionId,
-            id: viewer.viewerId,
-            fullName: viewer.fullName,
-            img: viewer.image.url,
-          },
-        });
-    }
-
-    if (
-      playerId !== viewer.viewerId &&
-      !owner &&
-      !joinSession &&
-      fullName !== "Join"
-    ) {
-      routerPushPage(`/profile/${playerId}`);
-    }
-  };
+  const { selectioGames, joinSession, owner } = useSelect(); 
 
   const sessionsMapUpdate = useMemo((): SelectionModel[] => {
     if (owner || joinSession) {
       return selectioGames;
     }
 
-    const result: SelectionModel[] = [];
+    return addPlayersImage(selectioGames);
 
-    selectioGames.forEach((session: SelectionModel) => {
-      if (session.players.length < 5) {
-        result.push({
-          ...session,
-          players: [...session.players, selectionConstant.addPlayerObj],
-        });
-      } else {
-        result.push(session);
-      }
-    });
-    return result;
   }, [selectioGames, joinSession, owner]);
-
-
 
   const handleCheckActiveGame = useMemo(
     () =>
@@ -75,21 +31,17 @@ const SelectionGameList = () => {
 
   return (
     <ul className={styles.root}>
-      <ul>
-        {sessionsMapUpdate.map((session) => 
-          <CardPlayers 
-          key={session._id}
-          sessionActive={handleCheckActiveGame(session._id)}
-          players={session.players} 
-          clickAvatar={handleClickAvatar}
-          sessionId={session._id}
-          />
-        )}
-      </ul>
+      {sessionsMapUpdate.map((session) => (
+        <SelectionCard key={session._id} cardActive={handleCheckActiveGame(session._id)} >
+            {session.players.map(player => 
+        <SelectionAvatar key={player.id} fullName={player.fullName} img={player.img} prayerId={player.id} sessionId={session._id} />
+               )}
+        </SelectionCard>
+      ))}
     </ul>
   );
 };
 
-SelectionGameList.displayName = 'SelectionGameList'
+SelectionGameList.displayName = "SelectionGameList";
 
-export  { SelectionGameList };
+export { SelectionGameList };

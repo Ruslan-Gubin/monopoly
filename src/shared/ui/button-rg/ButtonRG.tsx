@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import "./ButtonRG.css";
 import { ButtonRGProps } from "./types";
 
-const ButtonRG: FC<ButtonRGProps> = ({
+const ButtonRG: FC<ButtonRGProps> = memo(({
   disabled,
   size = "normal",
   id,
@@ -39,6 +39,6 @@ const ButtonRG: FC<ButtonRGProps> = ({
       {children}
     </button>
   );
-};
+});
 
 export { ButtonRG };

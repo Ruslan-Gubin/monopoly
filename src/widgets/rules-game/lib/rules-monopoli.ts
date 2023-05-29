@@ -1,4 +1,5 @@
-import { IRules } from "./types";
+import { IRules } from "../model";
+
 
 export const rulesGame: IRules[] = [
   {
