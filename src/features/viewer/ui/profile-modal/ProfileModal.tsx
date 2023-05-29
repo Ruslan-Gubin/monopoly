@@ -1,11 +1,13 @@
-import { useViewer } from "@/entities";
+import { useViewer, useViewerAction } from "@/entities";
 import { ModalRG, useRouterNext } from "@/shared";
 import {  useViewerFeatures, useViewerFeaturesAction } from "../../model";
 
 
 const ProfileModal = () => {
   const { modalActive, newName, buttonTextModal, activeFoto, titleModal } = useViewerFeatures()
-  const { toggle, closeModal, fetchDeleteViewer, fetchUpdateViewer } = useViewerFeaturesAction()
+  const { toggle, closeModal } = useViewerFeaturesAction()
+  const {  fetchDeleteViewer, fetchUpdateViewer } = useViewerAction()
+
   const { viewer, authId } = useViewer()
   const { routerPushPage } = useRouterNext()
 

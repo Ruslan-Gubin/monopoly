@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 7;
+  @media (max-width: 1300px) {
+    flex: 6;
+  }
+  .notification {
+    font-size: 1.2rem;
+
+  }
+}

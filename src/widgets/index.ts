@@ -1,4 +1,4 @@
-export * from "./RulesGame/RulesGame";
 export * from "./Layout";
-export * from "./WatchSession/WatchSession";
-export * from "./SelectionGame";
+export * from './selection-games/SelectionGame';
+export * from "./RulesGame/RulesGame";
+export * from "./games-list/GamesList";

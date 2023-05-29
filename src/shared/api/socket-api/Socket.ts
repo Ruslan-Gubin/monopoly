@@ -1,48 +1,44 @@
 
-
-class Socket  {
-  socket: WebSocket | null
-  patch: string | null
-  mainPatch: string
-  wsName: string | null
+class Socket {
+  socket: WebSocket | null;
+  private mainPatch: string;
 
   constructor() {
-    this.socket = null
-    this.patch = null
-    this.mainPatch = 'ws://localhost:4444/api'
-    this.wsName = null
+    this.socket = null;
+    this.mainPatch = "ws://localhost:4444/api";
   }
 
-  connect() {
+  connect(patch: string) {
     if (!this.socket) {
-      const newUrl = new URL(`${this.mainPatch}/${this.patch}`)
-      this.socket = new WebSocket(newUrl)
+      const newUrl = new URL(`${this.mainPatch}/${patch}`);
+      this.socket = new WebSocket(newUrl);
     }
   }
-  
+
   disconnect() {
     if (this.socket) {
-      this.socket.close()
-      this.socket = null
+      this.socket.close();
+      this.socket = null;
     }
   }
 
   send(message: object) {
-    if (this.socket ) {
-      this.socket.send(JSON.stringify(message))
+    if (this.socket) {
+      this.socket.send(JSON.stringify(message));
     }
   }
 
-  on(eventName: string, callback: (e: MessageEvent | any) => void) {
-    if (this.socket ) {
-      this.socket.addEventListener(eventName, callback)
+  onEvent(eventName: string, callback: (e: MessageEvent | any) => void) {
+    if (this.socket) {
+      this.socket.addEventListener(eventName, callback);
     }
   }
 
-  getLogName() {
-    return console.log('this ws name :', this.wsName)
+  offEvent(eventName: string, callback: (e: MessageEvent | any) => void) {
+    if (this.socket) {
+      this.socket.removeEventListener(eventName, callback);
+    }
   }
-
 }
 
-export { Socket }
+export { Socket };

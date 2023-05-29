@@ -1,5 +1,6 @@
 import  { ChangeEvent, FormEvent,  useCallback, useState } from 'react';
-import { IUserLoginValue, useViewerFeaturesAction } from '../../model';
+import { useViewerAction } from '@/entities';
+import { IUserLoginValue } from '../../model';
 import { checkInputBeforFetch } from '../helpers';
 
 
@@ -10,7 +11,7 @@ const useViewerLogin = () => {
     name: { text: "Ruslan", error: false },
   });
   const [viewsPassworld, setViewsPassworld] = useState<boolean>(false);
-  const { fetchRegistration, fetchLogin } = useViewerFeaturesAction()
+  const { fetchRegistration, fetchLogin } = useViewerAction()
 
 
   const handleChangeEaeViews = useCallback(() => {

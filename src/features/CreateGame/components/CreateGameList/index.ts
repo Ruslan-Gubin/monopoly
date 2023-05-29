@@ -1,1 +1,0 @@
-export { CreateGameList } from "./CreateGameList";

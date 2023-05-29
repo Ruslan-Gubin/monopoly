@@ -1,14 +1,13 @@
-import { useViewer, ViewerAvatar } from "@/entities";
+import {  ViewerAvatar } from "@/entities";
 import { useViewerFeatures } from "../../model";
 
 
 const ProfileAvatar = () => {
-  const { viewer } = useViewer();
   const { activeFoto } = useViewerFeatures();
 
   return (
       <ViewerAvatar
-      image={activeFoto ? activeFoto : viewer ? viewer.image.url : ''}
+      image={activeFoto ? activeFoto : ''}
       size="lg"
       />
   );

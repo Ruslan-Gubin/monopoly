@@ -1,1 +1,0 @@
-export { SessionGameCard } from './WaitingGameCard'

@@ -27,7 +27,6 @@ const LayoutHeaderViewer = () => {
       {viewer  ? (
         <ViewerAvatar
           title="Личный кабинет"
-          image={viewer.image.url ? viewer.image.url : ''}
           size="sm"
           onClick={handleRoute}
         />

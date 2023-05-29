@@ -1,13 +1,14 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import * as reducers from "@/features";
 import { baseApi } from "@/shared/api";
-import { viewerReducer } from '@/entities/viewer'
-import { viewerFeatureReducer } from '@/features';
+import { viewerReducer, selectionReducer } from '@/entities'
+import { viewerFeatureReducer, selectionNotificationReducer } from '@/features';
+
 
 export const rootReducer = combineReducers({
   viewer: viewerReducer,
   viewerFeature: viewerFeatureReducer,
+  selection: selectionReducer,
+  selectionNotification: selectionNotificationReducer,
 
-  sessionSlice: reducers.sessionReducer,
   [baseApi.reducerPath]: baseApi.reducer,
 })

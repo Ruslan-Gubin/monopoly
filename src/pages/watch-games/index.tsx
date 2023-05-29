@@ -1,9 +1,9 @@
-import { Layout, WatchSession } from '@/widgets';
+import { Layout, GamesList } from '@/widgets';
 
 const WatchGames = () => {
   return (
     <Layout title='Home' keywords='Home page'>
-      <WatchSession />
+      <GamesList />
     </Layout>
   );
 };
