@@ -1,0 +1,29 @@
+.textarea {
+  background: #ffffff;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #ededed;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  padding: 8px 15px;
+  resize: none;
+  transition: border-color 150ms ease;
+  width: 100%;
+  color: rgb(89, 84, 84);
+  border-radius: 10px;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &:hover {
+    border-color: #c6c6c6;
+  }
+  &:focus {
+    outline: none;
+    border-color: #c6c6c6;
+  }
+  &::placeholder {
+    color: #908c8c;
+  }
+}

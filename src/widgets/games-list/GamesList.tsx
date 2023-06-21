@@ -1,4 +1,4 @@
-import { CardPlayers, useRouterNext } from '@/shared';
+import { useRouterNext } from '@/shared';
 
 import styles from './GamesList.module.scss';
 

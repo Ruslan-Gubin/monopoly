@@ -31,9 +31,11 @@ const CreateSelection = () => {
   };
 
   return (
+    <div className={styles.create_btn}>
     <ButtonRG color="success" handleClick={handleCreateSelection}>
       Создать игру
     </ButtonRG>
+    </div>
   );
 };
 

@@ -1,6 +1,8 @@
 import { useSelect } from '@/entities';
 import { ButtonRG } from '@/shared';
 
+import styles from './SelectionStartGame.module.scss';
+
 
 const SelectionStartGame = () => {
   const {  owner, playersCount } = useSelect();
@@ -12,9 +14,11 @@ const SelectionStartGame = () => {
   }
 
   return (
+    <div className={styles.start_btn}>
     <ButtonRG color="success" handleClick={() => {}}>
           Начать игру
         </ButtonRG>
+    </div>
   );
 };
 

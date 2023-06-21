@@ -1,4 +1,4 @@
-import {  selectionNotificationAction } from '@/features'
+import {  selectionMessageAction, selectionNotificationAction } from '@/features'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { SelectionSocket } from '../api'
 import { selectionAction } from './selector'
@@ -16,13 +16,14 @@ export const connectSelection = createAsyncThunk<{ type: string, viewerId: strin
     selectionApi.send({
       method: viewer.method,
       body: {
-      fullName: viewer.body.fullName,
-      id: viewer.body.id,
-      joinSession: joinSession ? joinSession : '',
-      owner: owner ? owner : '',
+        fullName: viewer.body.fullName,
+        id: viewer.body.id,
+        joinSession: joinSession ? joinSession : '',
+        owner: owner ? owner : '',
       }
     })
     selectionApi.disconectSelection()
+    dispatch(selectionMessageAction.clearMessages())
     return { type: 'disconect', viewerId: '' }
   }
 
@@ -52,7 +53,7 @@ export const selectionSockedSend = createAsyncThunk<unknown, object>('sessionSli
 export const selectionSocketMessage = createAsyncThunk<any, MessageEvent>('sessionSlice/selectionSocketMessage', async(e:MessageEvent, { dispatch }) => {
   const messageEvent = JSON.parse(e.data);
 
-
+  // console.log(messageEvent)
 
   switch (messageEvent.method) {
     case "connectData":
@@ -60,6 +61,7 @@ export const selectionSocketMessage = createAsyncThunk<any, MessageEvent>('sessi
       break;
       case "connectedUser":
         dispatch(selectionNotificationAction.setNotification(messageEvent.title))
+        dispatch(selectionMessageAction.setMessages(messageEvent.messages))
       break;
     case "disconectUser":
       dispatch(selectionAction.disconectUpdate(messageEvent))
@@ -84,6 +86,9 @@ export const selectionSocketMessage = createAsyncThunk<any, MessageEvent>('sessi
         sessionId: messageEvent.sessionId, 
         sessionUpdate: messageEvent.data 
       }));
+      break;
+    case 'createMessage':
+      dispatch(selectionMessageAction.addNewMessage(messageEvent.newMessage))
       break;
   }
 

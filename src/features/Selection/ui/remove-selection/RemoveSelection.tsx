@@ -18,9 +18,11 @@ const RemoveSelection = () => {
   };
 
   return (
+    <div className={styles.remove_btn}>
     <ButtonRG color="danger" handleClick={handleRemoveSelection}>
       Удалить игру
     </ButtonRG>
+    </div>
   );
 };
 
