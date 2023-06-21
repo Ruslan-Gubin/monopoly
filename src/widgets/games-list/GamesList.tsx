@@ -1,22 +1,22 @@
-import { useRouterNext } from '@/shared';
+import { useRouterNavigation } from '@/shared';
 
 import styles from './GamesList.module.scss';
 
 
 const GamesList = () => {
-  const { routerPushPage } = useRouterNext();
+  const { navigate } = useRouterNavigation();
 
   const handleClickAvatar = (id: string) => {
-    routerPushPage(`/profile/${id}`)
+    navigate('push', `/profile/${id}`)
   }
 
   const handleWatchGameRouter = (id: string) => {
-    routerPushPage(`/game/${id}`)
+    navigate('push', `/game/${id}`)
   }
 
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-testid='games-list-testid'>
       <div className={styles.title_container}> 
       
       <h1 className={styles.title}>

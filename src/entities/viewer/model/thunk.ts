@@ -1,10 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAppThunk } from '@/shared';
 import { ViewerApi } from '../api'
 import { ReqAuthLogin, ReqUpdateBody, ReqUserRegistration, ResAuth } from './types';
 
 
-
-export const fetchLogin = createAsyncThunk<ResAuth, ReqAuthLogin, { rejectValue: string, getState: RootState }>('viewer/fetchLogin', async(login, {rejectWithValue, getState}) => {
+export const fetchLogin = createAppThunk('viewer/fetchLogin', async(login: ReqAuthLogin, { rejectWithValue })  => {
   const { email, password } = login
 
   const response = await ViewerApi.login<ResAuth>({ email, password })
@@ -15,8 +14,8 @@ export const fetchLogin = createAsyncThunk<ResAuth, ReqAuthLogin, { rejectValue:
 
   return response
 })
- 
-export const fetchRegistration = createAsyncThunk<ResAuth, ReqUserRegistration, { rejectValue: string, getState: RootState }>('viewer/fetchRegistration', async(userData, { rejectWithValue }) => {
+
+export const fetchRegistration = createAppThunk('viewer/fetchRegistration', async(userData: ReqUserRegistration, { rejectWithValue }) => {
   const response = await ViewerApi.registration<ResAuth>(userData)
  
   if (response.text) {
@@ -26,7 +25,7 @@ export const fetchRegistration = createAsyncThunk<ResAuth, ReqUserRegistration, 
   return response
 })
 
-export const fetchGetMy = createAsyncThunk<ResAuth,  string , { rejectValue: string, getState: RootState }>('viewer/fetchGetMy', async(id, { rejectWithValue }) => {
+export const fetchGetMy = createAppThunk('viewer/fetchGetMy', async(id: string, { rejectWithValue }) => {
   const response = await ViewerApi.getMy<ResAuth>(id)
 
   if (response.text) {
@@ -36,7 +35,8 @@ export const fetchGetMy = createAsyncThunk<ResAuth,  string , { rejectValue: str
   return response
 })
  
-export const fetchDeleteViewer = createAsyncThunk<{ success: boolean, message: string},  string , { rejectValue: string, getState: RootState }>('viewer/fetchDelete', async(id, { rejectWithValue }) => {
+
+export const fetchDeleteViewer = createAppThunk('viewer/fetchDelete', async(id: string, { rejectWithValue }) => {
   const response = await ViewerApi.deleteViewer<{ success: boolean, message: string, text?: string}>(id)
   
   if (response.text) {
@@ -46,7 +46,7 @@ export const fetchDeleteViewer = createAsyncThunk<{ success: boolean, message: s
   return response
 })
 
-export const fetchUpdateViewer = createAsyncThunk<ResAuth,  ReqUpdateBody , { rejectValue: string, getState: RootState }>('viewer/fetchUpdateViewer', async(body, { rejectWithValue }) => {
+export const fetchUpdateViewer = createAppThunk('viewer/fetchUpdateViewer', async(body: ReqUpdateBody, { rejectWithValue }) => {
   const response = await ViewerApi.updateViewer<ResAuth>(body)
 
   if (response.text) {

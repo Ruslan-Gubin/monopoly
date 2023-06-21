@@ -11,9 +11,10 @@ export const extraReducers = (builder: ActionReducerMapBuilder<ViewerInitState>)
 			viewerPending(state)
 		})
 		.addCase(fetchLogin.rejected, (state, action) => {
-				viewerRejected(state, action)  
+			 viewerRejected(state, action)
 		})
 		.addCase(fetchLogin.fulfilled, (state, action) => {
+			console.log(action.payload.image)
 			viewerFulfiled(state, action)
 		})
 

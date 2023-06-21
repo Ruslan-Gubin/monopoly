@@ -41,4 +41,6 @@ const ButtonRG: FC<ButtonRGProps> = memo(({
   );
 });
 
+ButtonRG.displayName = "ButtonRG";
+
 export { ButtonRG };

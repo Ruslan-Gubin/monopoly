@@ -1,5 +1,5 @@
 import { useViewer, useViewerAction } from "@/entities";
-import { ModalRG, useRouterNext } from "@/shared";
+import { ModalRG, useRouterNavigation } from "@/shared";
 import {  useViewerFeatures, useViewerFeaturesAction } from "../../model";
 
 
@@ -9,7 +9,7 @@ const ProfileModal = () => {
   const {  fetchDeleteViewer, fetchUpdateViewer } = useViewerAction()
 
   const { viewer, authId } = useViewer()
-  const { routerPushPage } = useRouterNext()
+  const {  navigate } = useRouterNavigation()
 
   const modalSubmit = async () => {
     if (!viewer || !authId) return;
@@ -17,7 +17,7 @@ const ProfileModal = () => {
 
     if (buttonTextModal === 'Delete') {
       fetchDeleteViewer(authId)
-      routerPushPage("/") 
+      navigate('push', "/")
     } else {
 
       fetchUpdateViewer({

@@ -1,5 +1,5 @@
 import { useSelect, useSelectAction, useViewer } from "@/entities";
-import { UserAvatar, useRouterNext } from "@/shared";
+import { UserAvatar, useRouterNavigation } from "@/shared";
 import {  useCallback } from "react";
 
 interface SelectionAvatarProps {
@@ -18,7 +18,7 @@ const SelectionAvatar = ({
   const { joinSession, owner } = useSelect();
   const { viewer } = useViewer();
   const { selectionSendMessage } = useSelectAction();
-  const { routerPushPage } = useRouterNext();
+  const { navigate } = useRouterNavigation();
 
   const handleClickAvatar = useCallback((
     playerId: string,
@@ -52,7 +52,7 @@ const SelectionAvatar = ({
       !joinSession &&
       fullName !== "Join"
     ) {
-      routerPushPage(`/profile/${playerId}`);
+      navigate('push', `/profile/${playerId}`)
     }
   },[]);
 

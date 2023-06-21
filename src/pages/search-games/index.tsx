@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelectAction, useViewer } from "@/entities";
-import { useRouterNext } from "@/shared";
+import { useRouterNavigation } from "@/shared";
 import {
   Layout,
   SelectionChatList,
@@ -14,11 +14,11 @@ import styles from "../../app/styles/pages/SearchGame.module.scss";
 
 const SearchGame = () => {
   const { autorization, viewer } = useViewer();
-  const { routerPushPage } = useRouterNext();
+  const {  navigate } = useRouterNavigation();
   const { connectSelection } = useSelectAction();
 
   if (!autorization) {
-    routerPushPage("/login");
+    navigate('push', '/login')
   }
 
   useEffect(() => {

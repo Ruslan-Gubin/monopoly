@@ -1,23 +1,23 @@
 import { useViewer, useViewerAction, ViewerAvatar } from "@/entities";
-import { useRouterNext } from "@/shared";
+import { useRouterNavigation } from "@/shared";
 
 import styles from './LayoutHeaderViewer.module.scss';
 
 const LayoutHeaderViewer = () => {
   const { viewer, autorization } = useViewer();
-  const { routerPushPage, pathname } = useRouterNext();
+  const {  pathname, navigate } = useRouterNavigation();
   const { clearViewer } = useViewerAction()
 
   
   const handleRoute = () => {
     const patch = autorization ? "/lk" : "/login";
     if (pathname === patch) return;
-    routerPushPage(patch);
+    navigate('push', patch)
   };
 
   const handleOutUser = () => {
     clearViewer()
-    routerPushPage('/')
+    navigate('push', '/')
   }
 
 

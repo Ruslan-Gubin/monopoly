@@ -7,14 +7,14 @@ import {
   useViewerLogin,
   VIEWER_ICONS,
 } from "@/features";
-import { ButtonRG, InputRG, useAddImage, useRouterNext } from "@/shared";
+import { ButtonRG, InputRG, useAddImage, useRouterNavigation } from "@/shared";
 
 import styles from "./ViewerLogin.module.scss";
 
 const ViewerLogin = () => {
   const { loginStatus } = useViewerFeatures();
   const { autorization } = useViewer();
-  const { routerPushPage } = useRouterNext();
+  const { navigate } = useRouterNavigation();
   const { loginStatusToggle } = useViewerFeaturesAction();
   const {
     handleChangeEaeViews,
@@ -27,9 +27,9 @@ const ViewerLogin = () => {
 
   useEffect(() => {
     if (autorization) {
-      routerPushPage("/");
+      navigate('push', '/')
     }
-  }, [autorization, routerPushPage]);
+  }, [autorization, navigate]);
 
   return (
     <div className={styles.root}>

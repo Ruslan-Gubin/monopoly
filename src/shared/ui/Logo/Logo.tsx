@@ -9,7 +9,7 @@ const Logo: FC<LogoProps> = memo(({ onClick }) => {
 
   return (
     <div onClick={() => onClick('/')} className={styles.root}>
-    <h1 className={styles.logo_text}>Monopoly</h1>
+    <h1 role="link" className={styles.logo_text}>Monopoly</h1>
   </div>
   );
 });

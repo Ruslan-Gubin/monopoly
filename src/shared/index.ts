@@ -5,3 +5,4 @@ export * from './model';
 export * from './server';
 export * from './service';
 export * from './lib';
+export * from './utils';

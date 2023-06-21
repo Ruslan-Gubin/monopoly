@@ -1,4 +1,3 @@
-
 import { SelectionMessage } from '@/entities';
 import { useSelectionMessage } from '@/features';
 import styles from './SelectionChatList.module.scss';
