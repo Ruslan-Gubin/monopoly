@@ -8,6 +8,7 @@ import { SelectionAvatar } from "../selection-avatar/SelectionAvatar";
 
 import styles from "./SelectionGameList.module.scss";
 import { addPlayersImage } from "../../libs/helpers/addPlayersImage";
+import { NoContent } from "@/shared";
 
 const SelectionGameList = () => {
   const { selectioGames, joinSession, owner } = useSelect(); 
@@ -31,6 +32,7 @@ const SelectionGameList = () => {
 
   return (
     <ul className={styles.root}>
+      {sessionsMapUpdate.length === 0 && <NoContent title='Игры не найдены' hint='Можете создать игру' />}
       {sessionsMapUpdate.map((session) => (
         <SelectionCard key={session._id} cardActive={handleCheckActiveGame(session._id)} >
             {session.players.map(player => 

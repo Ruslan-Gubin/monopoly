@@ -1,18 +1,10 @@
 .root {
   padding: 10px 45px;
-  // flex: 1 0 auto;
-  height: 700px;
+  max-height: 765px;
+  flex: 1 0 auto;
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
-
-  // flex: 7;
-  @media (max-width: 1300px) {
-    // flex: auto;
-    // width: 400px;
-  }
-  
-
   &::-webkit-scrollbar {
     width: 0;
     height: 0;

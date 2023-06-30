@@ -1,4 +1,4 @@
-import { ViewerInitState, ViewerModel } from "./types";
+import { ViewerInitState } from "./types";
 
 
 const initialState: ViewerInitState = {

@@ -29,12 +29,26 @@
   display: flex;
   flex-direction: column;
   position: relative;
+
+  .author {
+    display: flex;
+    align-items: center;
+    
+    &_name {
+      color: rgb(90, 88, 88);
+      padding-left: 10px;
+    }
+  }
   
   .message {
-         box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.124);
+        box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.124);
         align-self: flex-start;
         background-color: rgb(242, 242, 242);
         @extend %textItem;
+        .text {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
        .mymessage {
         align-self: flex-end;

@@ -13,6 +13,7 @@ export const persistedReducer = persistReducer(
     blacklist: [
       'viewerFeature',
       'selectionMessage',
+      'gameConfirmation',
     ],
   },
   rootReducer

@@ -58,7 +58,7 @@ const SelectionAvatar = ({
 
   return (
     <UserAvatar
-      size="md"
+      size="sm"
       image={img}
       onClick={() => handleClickAvatar(prayerId, sessionId, fullName)}
       title={fullName}

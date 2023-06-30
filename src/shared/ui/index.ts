@@ -10,3 +10,6 @@ export * from "./loader/Loader";
 export * from "./modal-rg/ModalRG";
 export * from "./icon-update/UpdateSvg";
 export * from "./user-avatar/UserAvatar";
+export * from "./no-content/NoContent";
+export * from "./send-message/SendMessageSVG";
+export * from "./timer-decreasing/TimerDecreasing";

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { ButtonRG } from "../button-rg/ButtonRG";
 import { CloseIcon } from "../icon-close/CloseIcon";
 import "./ModalRG.css";
@@ -17,7 +17,7 @@ const ModalRG: React.FC<ModalRGProps> = React.memo((props) => {
     rootClasses.container.push("modalrg-container__active");
   }
 
-  const handleCloseModal = useCallback((e: any) => {
+  const handleCloseModal = React.useCallback((e: any) => {
     if (!rootRef.current) return;
     if (e.target.contains(rootRef.current)) {
       props.handleClose();

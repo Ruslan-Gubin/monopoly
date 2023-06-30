@@ -5,7 +5,9 @@ import styles from './SelectionGames.module.scss';
 const SelectionGames = () => {
  
   return (
+    <div className={styles.root}>
     <SelectionGameList />
+    </div>
   );
 };
 

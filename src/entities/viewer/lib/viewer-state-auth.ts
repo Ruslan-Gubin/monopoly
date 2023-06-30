@@ -17,7 +17,7 @@ export const viewerRejected = (state: ViewerInitState, action: { payload: string
 	state.accessToken = null
 	state.authId = null
 	state.viewer = null
-
+	
 	CookieService.remove('token')
 	TokenService.remove()
 }

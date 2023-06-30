@@ -1,14 +1,13 @@
-import {  selectionMessageAction, selectionNotificationAction } from '@/features'
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import {  gameConfirmationAction, selectionMessageAction, selectionNotificationAction } from '@/features'
 import { SelectionSocket } from '../api'
 import { selectionAction } from './selector'
 import { IConnectSelection } from './types'
-
+import { createAppThunk } from '@/shared';
 
 const selectionApi = new SelectionSocket()
 
 
-export const connectSelection = createAsyncThunk<{ type: string, viewerId: string }, IConnectSelection, { rejectValue: string,  state: RootState } >('sessionSlice/connectSelection', async(viewer, { rejectWithValue, dispatch, getState }) => {
+export const connectSelection = createAppThunk('sessionSlice/connectSelection', async(viewer: IConnectSelection, { rejectWithValue, dispatch, getState }) => {
   
   if (viewer.method === 'disconect') {
     const owner = getState().selection.owner;
@@ -45,15 +44,14 @@ export const connectSelection = createAsyncThunk<{ type: string, viewerId: strin
   return { type: 'connect', viewerId: viewer.body.id }
 })
 
-export const selectionSockedSend = createAsyncThunk<unknown, object>('sessionSlice/selectionSockedSend', async(event) => {
+export const selectionSockedSend = createAppThunk('sessionSlice/selectionSockedSend', async(event: object) => {
   selectionApi.send(event)
 })
 
 
-export const selectionSocketMessage = createAsyncThunk<any, MessageEvent>('sessionSlice/selectionSocketMessage', async(e:MessageEvent, { dispatch }) => {
+export const selectionSocketMessage = createAppThunk('sessionSlice/selectionSocketMessage', async(e:MessageEvent, { dispatch, getState }) => {
   const messageEvent = JSON.parse(e.data);
-
-  // console.log(messageEvent)
+  const authId = getState().viewer.authId
 
   switch (messageEvent.method) {
     case "connectData":
@@ -89,6 +87,14 @@ export const selectionSocketMessage = createAsyncThunk<any, MessageEvent>('sessi
       break;
     case 'createMessage':
       dispatch(selectionMessageAction.addNewMessage(messageEvent.newMessage))
+      break;
+    case 'sessionStartConfirmation':
+      if (!authId) return;
+      dispatch(gameConfirmationAction.setStartConfirmation({ players: messageEvent.players, authId, sessionId: messageEvent.sessionId }))
+      break;
+
+    case 'confirmParticipationGame':
+      dispatch(gameConfirmationAction.setConfinmPlayer({ player: messageEvent.player, sessionId: messageEvent.sessionId }))
       break;
   }
 

@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { SendMessage, TexareaMessage } from '@/features';
+
 import styles from './SelectionSendMessage.module.scss';
 
 const SelectionSendMessage = () => {
@@ -16,7 +17,9 @@ const SelectionSendMessage = () => {
   return (
     <div className={styles.root}>
     <TexareaMessage value={value} onChange={handleChangeValue} />
-    <SendMessage text={value} cancelValue={cancelValue} />
+    {value.length > 2 && 
+    <SendMessage  value={value} cancelValue={cancelValue}  />
+    }
     </div>
   );
 };

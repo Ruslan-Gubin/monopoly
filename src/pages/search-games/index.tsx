@@ -4,6 +4,7 @@ import { useRouterNavigation } from "@/shared";
 import {
   Layout,
   SelectionChatList,
+  SelectionGameConfirmation,
   SelectionGames,
   SelectionHeaderAction,
   SelectionHeaderNotification,
@@ -43,24 +44,20 @@ const SearchGame = () => {
   }, []);
 
   return (
-    <Layout title="Home" keywords="Home page">
+    <Layout title="Поиск игры" keywords="Search Game">
+      <SelectionGameConfirmation />
       <section className={styles.root}>
-        <section className={styles.header}>
-          <SelectionHeaderAction />
-          <SelectionHeaderNotification />
-        </section>
-        <section className={styles.body}>
           <div className={styles.aside}>
-            {/* <features.ChatUserList /> */}
+          <SelectionHeaderAction />
             <SelectionGames />
           </div>
+        <div className={styles.body}>
+          <SelectionHeaderNotification />
           <div className={styles.content}>
             <SelectionChatList />
             <SelectionSendMessage />
-            {/* <features.ChatContent />
-          <features.ChatSendMessage /> */}
           </div>
-        </section>
+        </div>
       </section>
     </Layout>
   );

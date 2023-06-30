@@ -5,7 +5,7 @@ import styles from './UserAvatar.module.scss';
 
 interface UserAvatarProps {
   image: string;
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'vsm'
   onClick?: () => void
   title?: string
 }

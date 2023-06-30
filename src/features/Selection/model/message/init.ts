@@ -2,7 +2,7 @@ import { SelectMessageInitState } from "./types";
 
 
 const initialState: SelectMessageInitState = {
-  messages: []
+  messages: [],
 }
 
 export { initialState }

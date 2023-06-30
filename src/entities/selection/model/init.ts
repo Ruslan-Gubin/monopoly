@@ -10,7 +10,6 @@ const initialState: SelectInitState = {
   joinSession: null,
   playersCount: 0,
   authId: null,
-  notification: []
 }
 
 export { initialState }

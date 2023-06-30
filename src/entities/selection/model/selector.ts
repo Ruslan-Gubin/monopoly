@@ -18,7 +18,7 @@ export const useSelectAction = () => {
 
  return {
   connectSelection: (viewer: IConnectSelection) => dispatch(connectSelection(viewer)),
-  selectionSendMessage: <T extends object>(data: T) => dispatch(selectionSockedSend(data)), 
+  selectionSendMessage: <T extends object>(data: T) => dispatch(selectionSockedSend(data)),  
  }
 
 }

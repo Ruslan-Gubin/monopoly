@@ -19,7 +19,6 @@ export interface SelectInitState {
   joinSession: string | null;
   playersCount: number;
   authId: string | null;
-  notification: string[]
 }
 
 export interface IConnectSelection {
