@@ -14,6 +14,7 @@ export const persistedReducer = persistReducer(
       'viewerFeature',
       'selectionMessage',
       'gameConfirmation',
+      'selection',
     ],
   },
   rootReducer

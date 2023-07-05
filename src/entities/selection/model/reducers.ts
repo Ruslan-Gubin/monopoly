@@ -6,17 +6,16 @@ export const reducers = {
   
   connectData(state: SelectInitState, action: PayloadAction<{ sessions: SelectionModel[] }>) {
     state.selectioGames = action.payload.sessions;
-
     const checkEmpty = selectionEmptyArray(action.payload.sessions, state)
-    if (checkEmpty)  return
+    
+    if (checkEmpty)  return;
     
     selectionFindViewer(action.payload.sessions, state)
   },
   
   disconectUpdate(state: SelectInitState, action: PayloadAction<DisconectUpdateRes>) {
-    
    const outSelection = action.payload.outSession
-   const removeSelection = action.payload.removeSessionId
+   const removeSelection = action.payload.removeSessionId      
 
    if (outSelection) {
     const prevSelection = state.selectioGames.find(selection => selection._id === outSelection._id)
@@ -92,6 +91,15 @@ export const reducers = {
 
   setSelections(state: SelectInitState, action: PayloadAction<{ sessions: SelectionModel[] }>) {
     state.selectioGames = action.payload.sessions;
+  },
+
+  clear(state: SelectInitState) {
+    state.selectioGames = [];
+    state.isConnected = false
+    state.isEstablishingConnection = false
+    state.joinSession = null
+    state.owner = null
+    state.playersCount = 0
   },
 
 }
