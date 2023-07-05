@@ -1,5 +1,6 @@
 import { useSelect, useSelectAction } from '@/entities';
 import { ButtonRG } from '@/shared';
+import { useMemo } from 'react';
 import { useGameConfirmation } from '../../model';
 
 import styles from './ModalSuccess.module.scss';
@@ -7,11 +8,21 @@ import styles from './ModalSuccess.module.scss';
 const ModalSuccess = () => {
   const { selectionSendMessage } = useSelectAction()
   const { authId } = useSelect()
-  const { sessionId } = useGameConfirmation()
+  const { sessionId, players } = useGameConfirmation()
+
+  const myConfirmation = useMemo(() => {
+    const findMyConfirmation = players.find(player => player.id === authId)
+
+    if (!findMyConfirmation || findMyConfirmation.confirmation) {
+      return false;
+    } else {
+      return true
+    }
+  }, [players])
 
   const handleSubmit = () => {
-    if (!authId || !sessionId) return;
-
+    if (!authId || !sessionId || !myConfirmation) return;
+   
     selectionSendMessage<{
       method: string,
       body: {
@@ -28,7 +39,13 @@ const ModalSuccess = () => {
   }
 
   return (
+    <>
+    {myConfirmation ? 
     <ButtonRG className={styles.submit_btn} handleClick={handleSubmit} children={'Готов'} size='md' color="success"/>
+    :
+    <h2 className={styles.success_text}>Готов !</h2>  
+  }
+    </>
   );
 };
 

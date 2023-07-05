@@ -66,9 +66,11 @@ export const selectionSocketMessage = createAppThunk('sessionSlice/selectionSock
       dispatch(selectionNotificationAction.setNotification(messageEvent.title))
       break;
     case 'createSession':
+      dispatch(selectionNotificationAction.setNotification(`${messageEvent.data.players[0].fullName} создает игру`))
       dispatch(selectionAction.addNewSessions( messageEvent.data ))
       break;
       case 'removeSession':
+        dispatch(selectionNotificationAction.setNotification(`${messageEvent.fullName} удаляет игру`))
         dispatch(selectionAction.removeSessionsUpdate( messageEvent ))
       break;
       case 'joinSession': 
@@ -90,11 +92,17 @@ export const selectionSocketMessage = createAppThunk('sessionSlice/selectionSock
       break;
     case 'sessionStartConfirmation':
       if (!authId) return;
+      dispatch(selectionAction.setSelections({ sessions: messageEvent.sessions }))
       dispatch(gameConfirmationAction.setStartConfirmation({ players: messageEvent.players, authId, sessionId: messageEvent.sessionId }))
       break;
-
-    case 'confirmParticipationGame':
-      dispatch(gameConfirmationAction.setConfinmPlayer({ player: messageEvent.player, sessionId: messageEvent.sessionId }))
+      
+      case 'confirmParticipationGame':
+        dispatch(gameConfirmationAction.setConfinmPlayer({ player: messageEvent.player, sessionId: messageEvent.sessionId }))
+        break;
+      case 'cancelParticipationGame':
+      dispatch(selectionAction.setSelections({ sessions: messageEvent.sessions }))
+      dispatch(selectionNotificationAction.setNotification(`${messageEvent.authName} отменяет игру`))
+      dispatch(gameConfirmationAction.cancelConfinmPlayer({ sessionId: messageEvent.sessionId }))
       break;
   }
 

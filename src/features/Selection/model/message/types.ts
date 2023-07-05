@@ -11,4 +11,5 @@ export interface MessageModel {
 
 export interface SelectMessageInitState {
   messages: MessageModel[];
+  error: string | null;
 }

@@ -19,6 +19,7 @@ const SelectionAvatar = ({
   const { viewer } = useViewer();
   const { selectionSendMessage } = useSelectAction();
   const { navigate } = useRouterNavigation();
+  
 
   const handleClickAvatar = useCallback((
     playerId: string,

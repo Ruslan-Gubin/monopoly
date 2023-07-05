@@ -17,7 +17,7 @@ const SelectionGameList = () => {
     if (owner || joinSession) {
       return selectioGames;
     }
-
+    
     return addPlayersImage(selectioGames);
 
   }, [selectioGames, joinSession, owner]);

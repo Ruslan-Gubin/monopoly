@@ -13,7 +13,7 @@ export const useGameConfirmationAction = () => {
   const dispatch = useAppDispatch()
 
   return {
-   
+    cancelConfinmPlayer: ({ sessionId }: { sessionId: string }) => dispatch(gameConfirmationAction.cancelConfinmPlayer({ sessionId }))
   }
 }
 

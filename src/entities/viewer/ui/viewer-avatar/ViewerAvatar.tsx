@@ -15,7 +15,7 @@ const ViewerAvatar: FC<ViewerAvatarProps> = ({size='sm', image, onClick, title})
 
   return (
     <UserAvatar 
-    image={image ? image : viewer ? viewer.image.url : ''}
+    image={image ? image : viewer ? viewer.image?.url : ''}
     size={size}
     onClick={onClick}
     title={title}

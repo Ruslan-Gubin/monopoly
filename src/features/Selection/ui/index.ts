@@ -6,5 +6,4 @@ export * from "./expectation-game/ExpectationGame";
 export * from "./selection-avatar/SelectionAvatar";
 export * from "./send-message/SendMessage";
 export * from "./texarea-message/TexareaMessage";
-export * from "./modal-cancel/ModalCancel";
 export * from "./modal-success/ModalSuccess";

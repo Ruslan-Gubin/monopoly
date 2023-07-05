@@ -6,7 +6,7 @@ import { NoContent, TimeServices, useRouterNavigation } from '@/shared';
 import styles from './SelectionChatList.module.scss';
 
 const SelectionChatList = () => {
-  const { messages } = useSelectionMessage()
+  const { messages, error } = useSelectionMessage()
   const { navigate } = useRouterNavigation()
   const { authId } = useViewer()
 
@@ -22,13 +22,18 @@ const SelectionChatList = () => {
     navigate('push', `/profile/${id}`)
   }, [])
 
+  if (error) {
+    return <NoContent title='Ошибка на сервере' hint={error} />;
+  }
+
   if (messages.length === 0) {
     return <NoContent title='На данный момент сообщений нет' hint='Можете добавить сообщение ниже' />;
   }
 
+
   return (
     <ul className={styles.root}>
-    {messages && messages.map(message => 
+    {messages.length > 0 && messages.map(message => 
     <SelectionMessage
     timeMessage={timeMessage}
     checkMyMessage={checkMyMessage}

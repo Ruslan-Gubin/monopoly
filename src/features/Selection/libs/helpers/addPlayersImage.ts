@@ -5,8 +5,10 @@ export const addPlayersImage = (
 ): SelectionModel[] => {
   const result: SelectionModel[] = [];
 
+
   selectioGames.forEach((session: SelectionModel) => {
-    if (session.players.length < 5) {
+
+    if (session.players.length < 5 && !session.isConfirm) {
       result.push({
         ...session,
         players: [...session.players, selectionConstant.addPlayerObj],
@@ -14,6 +16,8 @@ export const addPlayersImage = (
     } else {
       result.push(session);
     }
+    
+    
   });
   return result;
 };

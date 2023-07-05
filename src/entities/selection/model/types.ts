@@ -8,6 +8,7 @@ export interface SelectionModel {
   __v: 0;
   _id: string;
   id?: string;
+  isConfirm: boolean;
 }
 
 export interface SelectInitState {

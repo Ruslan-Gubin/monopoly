@@ -31,5 +31,17 @@ export const reducers = {
       }
     })
   },
+
+  cancelConfinmPlayer(state: gameConfirmationInit, action: PayloadAction<{ sessionId: string }>) {
+    const sessionId = action.payload.sessionId
+
+    if (sessionId !== state.sessionId) {
+      return;
+    }
+    
+    state.players = []
+    state.isModalActive = false
+    state.sessionId = null
+  },
  
 }

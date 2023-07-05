@@ -3,7 +3,7 @@ import { DisconectUpdateRes, JoinSelectionRes, OutSelectionRes, SelectInitState,
 import { selectionEmptyArray, selectionFindViewer, updateCountPlayers, updateSessions } from '../libs/helpers';
 
 export const reducers = { 
-
+  
   connectData(state: SelectInitState, action: PayloadAction<{ sessions: SelectionModel[] }>) {
     state.selectioGames = action.payload.sessions;
 
@@ -88,6 +88,10 @@ export const reducers = {
     })
 
     state.selectioGames = updateSessions(state.selectioGames, action.payload.sessionId, action.payload.sessionUpdate)
+  },
+
+  setSelections(state: SelectInitState, action: PayloadAction<{ sessions: SelectionModel[] }>) {
+    state.selectioGames = action.payload.sessions;
   },
 
 }
