@@ -1,7 +1,8 @@
-import { getByText, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { useViewer } from "@/entities/viewer";
 import { MessageModel } from "@/features";
 import { SelectionMessage } from "./SelectionMessage";
+
 
 jest.mock("@/entities/viewer");
 
@@ -21,7 +22,13 @@ describe("SelectionMessage component", () => {
     (useViewer as jest.Mock).mockReturnValue({ authId: "123" });
 
     const { getByText } = render(
-      <SelectionMessage message={message} /> 
+      <SelectionMessage message={message} clickAvatar={function (value: string): void {
+        throw new Error("Function not implemented.");
+      } } timeMessage={function (value: string): string {
+        throw new Error("Function not implemented.");
+      } } checkMyMessage={function (id: string): boolean {
+        throw new Error("Function not implemented.");
+      } } /> 
     );
     const text = message.text
     const messageElement = getByText(text);
