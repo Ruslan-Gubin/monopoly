@@ -4,7 +4,7 @@ import styles from "./CreateSelection.module.scss";
 
 const CreateSelection = () => {
   const { selectionSendMessage } = useSelectAction();
-  const { joinSession, owner } = useSelect();
+  const { joinSession, owner } = useSelect(); 
   const { viewer } = useViewer();
 
   const checkActive = !owner && !joinSession;

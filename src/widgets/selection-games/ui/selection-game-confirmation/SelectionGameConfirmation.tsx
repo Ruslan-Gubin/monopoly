@@ -6,20 +6,20 @@ import { ModalRG, TimerDecreasing, UserAvatar, useRouterNavigation } from "@/sha
 import styles from './SelectionGameConfirmation.module.scss';
 
 const SelectionGameConfirmation = () => {
-  const { isModalActive, players, sessionId } = useGameConfirmation()
+  const { isModalActive, players, sessionId } = useGameConfirmation() 
   const { cancelParticipationGame } = useCancelConfirmation()
   const { navigate } = useRouterNavigation()
   const { cancelConfinmPlayer } = useGameConfirmationAction()
   const { viewer } = useViewer()
 
-  if (!isModalActive) {
+  if (!isModalActive) { 
     return null;
   }
 
   const handleCancelTimeParticipation = async() => {
     if (!sessionId) return;
 
-    const checkConfirmations = players.find(player => !player.confirmation)
+    const checkConfirmations = players.find(player => !player.confirmation)  
 
     if (checkConfirmations) {
       cancelParticipationGame({name: checkConfirmations.fullName})
