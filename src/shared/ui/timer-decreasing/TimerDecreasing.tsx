@@ -44,7 +44,7 @@ const TimerDecreasing: FC<TimerDecreasingProps> = ({ duration, endCallback }) =>
     return () => {
       cancelAnimationFrame(Number(animate));
     }    
-  }, [])
+  }, [frame, initDuration])
 
   if (endTime) {
     endCallback()

@@ -55,7 +55,7 @@ const SelectionAvatar = ({
     ) {
       navigate('push', `/profile/${playerId}`)
     }
-  },[]);
+  },[joinSession, owner, selectionSendMessage, viewer]);
 
   return (
     <UserAvatar

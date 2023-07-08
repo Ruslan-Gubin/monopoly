@@ -28,4 +28,6 @@ const SelectionMessage = memo(({ message, clickAvatar, checkMyMessage, timeMessa
   );
 });
 
+SelectionMessage.displayName = 'SelectionMessage';
+
 export { SelectionMessage };

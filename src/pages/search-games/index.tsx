@@ -41,7 +41,7 @@ const SearchGame = () => {
         },
       });
     };
-  }, []);
+  }, [connectSelection, viewer]);
 
   return (
     <Layout title="Поиск игры" keywords="Search Game">
