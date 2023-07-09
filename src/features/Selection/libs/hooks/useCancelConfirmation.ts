@@ -1,5 +1,5 @@
-import { useSelect, useSelectAction } from "@/entities"
-import { useGameConfirmation } from "../../model"
+import { useSelect, useSelectAction } from "../../../../entities";
+import { useGameConfirmation } from "../../model";
 
 
 export const useCancelConfirmation = () => {

@@ -1,6 +1,6 @@
 import { useViewer } from "../../../../entities";
 import { ModalSuccess, useGameConfirmation, useGameConfirmationAction } from "../../../../features";
-import { useCancelConfirmation } from "../../../../features/selection/libs/hooks";
+import { useCancelConfirmation } from "../../../../features";
 import { ModalRG, TimerDecreasing, UserAvatar, useRouterNavigation } from "../../../../shared";
 
 import styles from './SelectionGameConfirmation.module.scss';
