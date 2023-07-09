@@ -25,7 +25,7 @@ declare global {
 export const config = {
   API_ENDPOINT: 'https://monopoly-back.onrender.com/api',
   // API_ENDPOINT: 'http://localhost:4444/api',
-  BASE_WS_URL:  'ws://monopoly-back.onrender.com/api',
+  BASE_WS_URL:  'wss://monopoly-back.onrender.com/api',
   // BASE_WS_URL:  'ws://localhost:4444/api',
   SELECTION_URL: 'ws-session',
   // API_DELAY: Number(import.meta.env.VITE_API_DELAY) || 100,
