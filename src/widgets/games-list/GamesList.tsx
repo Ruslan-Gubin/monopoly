@@ -1,4 +1,4 @@
-import { useRouterNavigation } from '@/shared';
+import { useRouterNavigation } from '../../shared';
 
 import styles from './GamesList.module.scss';
 
@@ -18,7 +18,6 @@ const GamesList = () => {
   return (
     <div className={styles.root} data-testid='games-list-testid'>
       <div className={styles.title_container}> 
-      
       <h1 className={styles.title}>
         Игры онлайн 
       </h1>

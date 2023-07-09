@@ -3,7 +3,7 @@ import {
   SelectionCard,
   SelectionModel,
   useSelect,
-} from "@/entities";
+} from "../../../../entities";
 import { SelectionAvatar } from "../selection-avatar/SelectionAvatar";
 
 import styles from "./SelectionGameList.module.scss";

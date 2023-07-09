@@ -6,7 +6,7 @@ interface CardProps {
 
 const Card = ({img, title, }:CardProps) => {
   return (
-    <div  >
+    <div>
       Card
     </div>
   );
