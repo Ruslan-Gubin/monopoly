@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { iconConstants } from "@/shared/constants";
+import { iconConstants } from "../../../shared/constants";
 
 import styles from './UserAvatar.module.scss';
 

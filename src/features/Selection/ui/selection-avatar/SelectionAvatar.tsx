@@ -1,6 +1,6 @@
-import { useSelect, useSelectAction, useViewer } from "@/entities";
-import { UserAvatar, useRouterNavigation } from "@/shared";
 import {  useCallback } from "react";
+import { useSelect, useSelectAction, useViewer } from "../../../../entities";
+import { UserAvatar, useRouterNavigation } from "../../../../shared";
 
 interface SelectionAvatarProps {
   sessionId: string;

@@ -1,4 +1,4 @@
-import { fetchPost, fetchGet, fetchDelete, fetchPatch } from "@/shared";
+import { fetchPost, fetchGet, fetchDelete, fetchPatch } from "../../../shared";
 import { ReqAuthLogin, ReqUpdateBody, ReqUserRegistration } from "../model";
 
 const login = <T>(body: ReqAuthLogin): Promise<T> => {

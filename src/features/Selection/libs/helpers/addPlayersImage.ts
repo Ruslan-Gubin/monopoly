@@ -1,4 +1,4 @@
-import { selectionConstant, SelectionModel } from "@/entities";
+import { selectionConstant, SelectionModel } from "../../../../entities";
 
 export const addPlayersImage = (
   selectioGames: SelectionModel[]

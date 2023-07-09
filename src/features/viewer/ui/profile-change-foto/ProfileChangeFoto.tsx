@@ -1,5 +1,5 @@
-import { UpdateSvg } from "@/shared";
 import { useCallback, useRef } from "react";
+import { UpdateSvg } from "../../../../shared";
 import {  useViewerFeaturesAction } from "../../model";
 
 

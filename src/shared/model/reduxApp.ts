@@ -1,4 +1,4 @@
-import { AppDispatch } from "@/app/store/store";
+import { AppDispatch } from "../../app/store/store";
 import {
   useSelector,
   type TypedUseSelectorHook,

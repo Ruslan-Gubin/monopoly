@@ -1,5 +1,5 @@
-import { useViewer, useViewerAction } from "@/entities";
-import { ModalRG, useRouterNavigation } from "@/shared";
+import { useViewer, useViewerAction } from "../../../../entities";
+import { ModalRG, useRouterNavigation } from "../../../../shared";
 import {  useViewerFeatures, useViewerFeaturesAction } from "../../model";
 
 

@@ -2,12 +2,12 @@ import {
   gameConfirmationAction,
   selectionMessageAction,
   selectionNotificationAction,
-} from "@/features";
+} from "../../../features";
 
 import { SelectionSocket } from "../api";
 import { selectionAction } from "./selector";
 import { IConnectSelection } from "./types";
-import { createAppThunk } from "@/shared";
+import { createAppThunk } from "../../../shared";
 import { handleDisconnectSelection } from "../libs/helpers/handleDisconnectSelection";
 
 const selectionApi = new SelectionSocket();

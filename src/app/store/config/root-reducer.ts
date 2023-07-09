@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { viewerReducer, selectionReducer } from "@/entities";
+import { viewerReducer, selectionReducer } from "../../../entities";
 import {
   viewerFeatureReducer,
   selectionNotificationReducer,
   selectionMessageReducer,
   gameConfirmationReducer,
-} from "@/features";
+} from "../../../features";
 
 export const rootReducer = combineReducers({
   viewer: viewerReducer,

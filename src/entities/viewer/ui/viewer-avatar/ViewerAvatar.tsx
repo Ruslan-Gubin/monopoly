@@ -1,5 +1,5 @@
-import { UserAvatar } from "@/shared";
 import { FC } from "react";
+import { UserAvatar } from "../../../../shared";
 import { useViewer } from "../../model";
 
 
