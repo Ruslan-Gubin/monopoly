@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../../../shared";
+import { useAppDispatch, useAppSelector } from "@/shared";
 import { gameConfirmationSlice } from "./slice";
 
 const select = (state: RootState) => state.gameConfirmation;

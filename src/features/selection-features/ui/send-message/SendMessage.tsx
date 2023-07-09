@@ -1,5 +1,5 @@
-import { useSelectAction, useViewer } from "../../../../entities";
-import { SendMessageSVG } from "../../../../shared";
+import { useSelectAction, useViewer } from "@/entities";
+import { SendMessageSVG } from "@/shared";
 
 interface SendMessageProps {
   value: string;

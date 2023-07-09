@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../../shared";
+import { useAppDispatch, useAppSelector } from "@/shared";
 import { viewerSlice } from "./slice";
 import {
   fetchDeleteViewer,

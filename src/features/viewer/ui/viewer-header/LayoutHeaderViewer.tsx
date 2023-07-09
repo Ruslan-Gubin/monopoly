@@ -1,5 +1,5 @@
-import { useViewer, useViewerAction, ViewerAvatar } from "../../../../entities";
-import { useRouterNavigation } from "../../../../shared";
+import { useViewer, useViewerAction, ViewerAvatar } from "@/entities";
+import { useRouterNavigation } from "@/shared";
 
 import styles from './LayoutHeaderViewer.module.scss';
 

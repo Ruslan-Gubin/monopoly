@@ -1,4 +1,4 @@
-import { CookieService,  TokenService } from "../../../shared"
+import { CookieService,  TokenService } from "@/shared"
 import { ResAuth, ViewerInitState } from "../model"
 
 export const viewerPending = (state: ViewerInitState) => {

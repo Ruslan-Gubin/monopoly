@@ -1,4 +1,4 @@
-import {  ViewerAvatar } from "../../../../entities";
+import {  ViewerAvatar } from "@/entities";
 import { useViewerFeatures } from "../../model";
 
 

@@ -1,5 +1,5 @@
-import { useSelect, useSelectAction } from "../../../../entities";
-import { ButtonRG } from "../../../../shared";
+import { useSelect, useSelectAction } from "@/entities";
+import { ButtonRG } from "@/shared";
 import { useMemo } from "react";
 import { useGameConfirmation } from "../../model";
 

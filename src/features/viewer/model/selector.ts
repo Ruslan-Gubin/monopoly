@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../../shared";
+import { useAppDispatch, useAppSelector } from "@/shared";
 import { viewerFeatureSlice } from "./slice";
 
 const select = (state: RootState) => state.viewerFeature;

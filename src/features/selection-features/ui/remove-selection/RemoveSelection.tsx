@@ -1,5 +1,5 @@
-import { useSelect, useSelectAction, useViewer } from "../../../../entities";
-import { ButtonRG } from "../../../../shared";
+import { useSelect, useSelectAction, useViewer } from "@/entities";
+import { ButtonRG } from "@/shared";
 
 import styles from "./RemoveSelection.module.scss";
 

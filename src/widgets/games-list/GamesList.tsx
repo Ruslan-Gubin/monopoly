@@ -1,4 +1,4 @@
-import { useRouterNavigation } from '../../shared';
+import { useRouterNavigation } from '@/shared';
 
 import styles from './GamesList.module.scss';
 

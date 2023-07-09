@@ -1,4 +1,4 @@
-import {  useAppDispatch, useAppSelector } from "../../../../shared";
+import {  useAppDispatch, useAppSelector } from "@/shared";
 import { selectionNotificationSlice } from "./slice";
 
 const select = (state: RootState) => state.selectionNotification;

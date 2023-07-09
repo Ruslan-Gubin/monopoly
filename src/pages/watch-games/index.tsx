@@ -1,4 +1,4 @@
-import { Layout, GamesList } from '../../widgets';
+import { Layout, GamesList } from '@/widgets';
 
 const WatchGames = () => {
   return (

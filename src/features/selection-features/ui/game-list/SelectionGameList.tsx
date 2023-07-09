@@ -3,12 +3,12 @@ import {
   SelectionCard,
   SelectionModel,
   useSelect,
-} from "../../../../entities";
+} from "@/entities";
 import { SelectionAvatar } from "../selection-avatar/SelectionAvatar";
 
 import styles from "./SelectionGameList.module.scss";
 import { addPlayersImage } from "../../libs/helpers/addPlayersImage";
-import { NoContent } from "../../../../shared";
+import { NoContent } from "@/shared";
 
 const SelectionGameList = () => {
   const { selectioGames, joinSession, owner } = useSelect(); 

@@ -1,6 +1,6 @@
 import {  memo } from "react";
-import { MessageModel } from "../../../../features";
-import {  UserAvatar } from "../../../../shared";
+import { MessageModel } from "@/features";
+import {  UserAvatar } from "@/shared";
 
 import styles from './SelectionMessage.module.scss';
 

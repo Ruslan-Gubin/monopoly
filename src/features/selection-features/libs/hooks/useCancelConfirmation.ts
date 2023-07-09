@@ -1,4 +1,4 @@
-import { useSelect, useSelectAction } from "../../../../entities";
+import { useSelect, useSelectAction } from "@/entities";
 import { useGameConfirmation } from "../../model";
 
 

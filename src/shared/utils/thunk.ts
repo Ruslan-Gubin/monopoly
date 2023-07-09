@@ -1,4 +1,4 @@
-import { AppDispatch } from "../../app";
+import { AppDispatch } from "@/app";
 import { AsyncThunkPayloadCreator, createAsyncThunk, AsyncThunkOptions } from "@reduxjs/toolkit";
 
 type AppThunkConfig = {

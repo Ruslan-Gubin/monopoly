@@ -1,5 +1,5 @@
-import { useRouterNavigation } from '../../../shared';
-import { Layout } from '../../../widgets';
+import { useRouterNavigation } from '@/shared';
+import { Layout } from '@/widgets';
 
 const Game = () => {
   const { query } = useRouterNavigation()

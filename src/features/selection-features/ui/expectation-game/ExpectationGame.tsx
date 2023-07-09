@@ -1,4 +1,4 @@
-import { useSelect } from "../../../../entities";
+import { useSelect } from "@/entities";
 import styles from "./ExpectationGame.module.scss";
 
 const ExpectationGame = () => {

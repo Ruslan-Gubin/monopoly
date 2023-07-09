@@ -1,4 +1,4 @@
-import { RulesGame, Layout } from "../widgets";
+import { RulesGame, Layout } from "@/widgets";
 
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import { Layout } from "../../../widgets";
+import { Layout } from "@/widgets";
 
 
 const ProfileId = () => {

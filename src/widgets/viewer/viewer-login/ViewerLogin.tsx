@@ -7,7 +7,7 @@ import {
   useViewerLogin,
   VIEWER_ICONS,
 } from "@/features";
-import { ButtonRG, InputRG, useAddImage, useRouterNavigation } from "../../../shared";
+import { ButtonRG, InputRG, useAddImage, useRouterNavigation } from "@/shared";
 
 import styles from "./ViewerLogin.module.scss";
 

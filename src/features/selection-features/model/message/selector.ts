@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../../../shared";
+import { useAppSelector } from "@/shared";
 import { selectionMessageSlice } from "./slice";
 
 const select = (state: RootState) => state.selectionMessage;

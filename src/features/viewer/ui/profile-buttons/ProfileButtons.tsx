@@ -1,5 +1,5 @@
-import { useViewer } from "../../../../entities";
-import { ButtonRG } from "../../../../shared";
+import { useViewer } from "@/entities";
+import { ButtonRG } from "@/shared";
 import { checkUpdateUser } from "../../libs/helpers/checkViewerFoto";
 import { useViewerFeatures, useViewerFeaturesAction } from "../../model";
 

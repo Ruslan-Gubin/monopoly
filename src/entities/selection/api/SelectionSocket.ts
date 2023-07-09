@@ -1,4 +1,4 @@
-import { Socket } from "../../../shared";
+import { Socket } from "@/shared";
 
 
 interface ISelectionConnectBody {

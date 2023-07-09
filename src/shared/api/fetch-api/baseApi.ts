@@ -1,5 +1,5 @@
-import { config } from "../../../shared/lib";
-import { CookieService } from "../../../shared/service";
+import { config } from "@/shared/lib";
+import { CookieService } from "@/shared/service";
 
 export type configApiType = { idInstance: number, token: string, method: string }
 

@@ -3,7 +3,7 @@ import {
   ExpectationGame,
   RemoveSelection,
   SelectionStartGame,
-} from "../../../../features";
+} from "@/features";
 
 import styles from "./SelectionHeaderAction.module.scss";
 

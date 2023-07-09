@@ -1,4 +1,4 @@
-import { PlayerModel } from "../../../entities/player/model";
+import { PlayerModel } from "@/entities/player/model";
 
 export interface SelectionModel {
   owner: string;

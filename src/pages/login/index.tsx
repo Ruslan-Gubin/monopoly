@@ -1,5 +1,4 @@
-import { Layout } from '../../widgets';
-import { ViewerLogin } from '../../widgets/viewer';
+import { Layout, ViewerLogin } from '@/widgets';
 
 const Login = () => {
 

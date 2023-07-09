@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
-import { useViewer } from "../../../../entities/viewer";
-import { MessageModel } from "../../../../features";
+import { useViewer } from "@/entities/viewer";
+import { MessageModel } from "@/features";
 import { SelectionMessage } from "./SelectionMessage";
 
 
-jest.mock("../../../../entities/viewer");
+jest.mock("@/entities/viewer");
 
 describe("SelectionMessage component", () => {
   const message: MessageModel = {

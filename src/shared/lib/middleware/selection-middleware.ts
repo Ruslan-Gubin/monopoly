@@ -1,4 +1,4 @@
-import { Socket } from "../../../shared";
+import { Socket } from "@/shared";
 import { Middleware } from "redux";
 // import { sessionConstant } from "../../constants/sessionConstant";
 // import { sessionAction } from "../slice/sessionsSlice";
