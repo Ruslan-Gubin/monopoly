@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { useViewer } from "@/entities";
+import { useViewer } from "../../../entities";
 import {
   submitButtonText,
   useViewerFeatures,
   useViewerFeaturesAction,
   useViewerLogin,
   VIEWER_ICONS,
-} from "@/features";
-import { ButtonRG, InputRG, useAddImage, useRouterNavigation } from "@/shared";
+} from "../../../features";
+import { ButtonRG, InputRG, useAddImage, useRouterNavigation } from "../../../shared";
 
 import styles from "./ViewerLogin.module.scss";
 

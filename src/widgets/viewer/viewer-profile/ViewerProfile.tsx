@@ -4,7 +4,7 @@ import {
   ProfileInfo,
   ProfileModal,
   ProfileAvatar,
-} from "@/features";
+} from "../../../features";
 
 import styles from "./ViewerProfile.module.scss";
 

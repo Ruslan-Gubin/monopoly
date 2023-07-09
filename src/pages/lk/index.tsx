@@ -1,5 +1,4 @@
-import { Layout } from '@/widgets';
-import { ViewerProfile } from '@/widgets/viewer';
+import { Layout, ViewerProfile } from '../../widgets';
 
 const Lk = () => {
   return (

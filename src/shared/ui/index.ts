@@ -1,5 +1,5 @@
 export * from "./card";
-export * from "./logo/Logo";
+export { Logo } from "./logo/Logo";
 export * from "./unput-rg/InputRG";
 export * from "./button-main/ButtonMain";
 export * from "./button-rg/ButtonRG";
