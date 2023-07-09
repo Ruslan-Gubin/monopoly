@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import { SelectionMessage, useViewer } from '@/entities';
-import { useSelectionMessage } from '@/features';
-import { NoContent, TimeServices, useRouterNavigation } from '@/shared';
+import { SelectionMessage, useViewer } from '../../../../entities';
+import { useSelectionMessage } from '../../../../features';
+import { NoContent, TimeServices, useRouterNavigation } from '../../../../shared';
 
 import styles from './SelectionChatList.module.scss';
 

@@ -1,4 +1,4 @@
-import { useSelectionNotification } from "@/features";
+import { useSelectionNotification } from "../../../../features";
 import styles from "./SelectionHeaderNotification.module.scss";
 
 const SelectionHeaderNotification = () => {

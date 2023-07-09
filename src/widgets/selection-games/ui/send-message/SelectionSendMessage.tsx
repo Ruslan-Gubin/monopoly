@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { SendMessage, TexareaMessage } from '@/features';
+import { SendMessage, TexareaMessage } from '../../../../features';
 
 import styles from './SelectionSendMessage.module.scss';
 

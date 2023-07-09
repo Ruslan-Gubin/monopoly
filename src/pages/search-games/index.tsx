@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useSelectAction, useViewer } from "@/entities";
-import { useRouterNavigation } from "@/shared";
+import { useSelectAction, useViewer } from "../../entities";
+import { useRouterNavigation } from "../../shared";
 import {
   Layout,
   SelectionChatList,
@@ -9,7 +9,7 @@ import {
   SelectionHeaderAction,
   SelectionHeaderNotification,
   SelectionSendMessage,
-} from "@/widgets";
+} from "../../widgets";
 
 import styles from "../../app/styles/pages/SearchGame.module.scss";
 

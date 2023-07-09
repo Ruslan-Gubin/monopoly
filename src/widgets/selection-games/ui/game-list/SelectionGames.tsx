@@ -1,4 +1,4 @@
-import { SelectionGameList } from '@/features';
+import { SelectionGameList } from '../../../../features';
 
 import styles from './SelectionGames.module.scss';
 
