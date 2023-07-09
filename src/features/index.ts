@@ -1,2 +1,2 @@
 export * from './viewer';
-export * from './selection';
+export * from './selection-features';

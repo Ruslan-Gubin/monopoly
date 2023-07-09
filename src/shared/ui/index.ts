@@ -1,4 +1,4 @@
-export * from "./card";
+export * from "./card-monopoly";
 export * from "./logo-monopoly";
 export * from "./unput-rg/InputRG";
 export * from "./button-main/ButtonMain";
