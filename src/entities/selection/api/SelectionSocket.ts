@@ -1,4 +1,4 @@
-import { Socket } from "@/shared";
+import { config, Socket } from "@/shared";
 
 
 interface ISelectionConnectBody {
@@ -9,7 +9,7 @@ interface ISelectionConnectBody {
 }
 
 class SelectionSocket extends Socket {
-  patch='ws-session'
+  patch=config.SELECTION_URL
   id: string | null
   fullName: string | null
   messageEvent: ((e: MessageEvent) => void) | null

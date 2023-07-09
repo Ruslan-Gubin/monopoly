@@ -1,3 +1,4 @@
+import { config } from "@/shared/lib";
 
 class Socket {
   socket: WebSocket | null;
@@ -5,7 +6,7 @@ class Socket {
 
   constructor() {
     this.socket = null;
-    this.mainPatch = "ws://localhost:4444/api";
+    this.mainPatch = config.BASE_WS_URL;
   }
 
   connect(patch: string) {

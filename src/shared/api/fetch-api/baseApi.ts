@@ -1,7 +1,6 @@
 import { config } from "@/shared/lib";
 import { CookieService } from "@/shared/service";
 
-export type configApiType = { idInstance: number, token: string, method: string }
 
 interface BaseFetchProps {
   params: string | null;
@@ -42,8 +41,9 @@ export const baseFetch = <T>({ body, params, url, method='GET' }:BaseFetchProps 
           .then(response => response.json())
           .then(resolve, reject)
           
-      } catch(e) {
-          reject(e)
+      } catch(error) {
+        console.log('Error in base fetch:', error)
+        reject(error)
       }
   })
 }
