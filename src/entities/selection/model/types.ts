@@ -1,9 +1,14 @@
-import { PlayerModel } from "@/entities/player/model";
+
+interface SelectionPlayers {
+  id: string;
+  fullName: string;
+  img: string;
+}
 
 export interface SelectionModel {
   owner: string;
   createdAt: string;
-  players: PlayerModel[];
+  players: SelectionPlayers[];
   updatedAt: string;
   __v: 0;
   _id: string;

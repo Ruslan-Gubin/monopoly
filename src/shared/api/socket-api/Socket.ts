@@ -2,7 +2,7 @@ import { config } from "@/shared/lib";
 
 class Socket {
   socket: WebSocket | null;
-  private mainPatch: string;
+  private mainPatch: URL;
 
   constructor() {
     this.socket = null;

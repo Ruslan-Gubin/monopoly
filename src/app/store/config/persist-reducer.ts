@@ -15,6 +15,8 @@ export const persistedReducer = persistReducer(
       'selectionMessage',
       'gameConfirmation',
       'selection',
+      'cells',
+      'board',
     ],
   },
   rootReducer

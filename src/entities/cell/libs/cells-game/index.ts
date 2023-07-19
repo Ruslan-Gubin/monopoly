@@ -1,0 +1,1 @@
+export { CellsGame } from "./CellsGame";

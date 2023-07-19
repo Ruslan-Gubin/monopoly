@@ -1,6 +1,7 @@
 import { FC, memo } from "react";
 import Head from "next/head";
 import { HeaderContainer } from "../header-container/HeaderContainer";
+import { useRouterNavigation } from "@/shared";
 
 import styles from "./Layout.module.scss";
 
@@ -11,6 +12,10 @@ interface IShopLayout {
 }
 
 const LayoutF: FC<IShopLayout> = ({ children, title, keywords }) => {
+  const { pathname } = useRouterNavigation()
+
+  const checkGamePage = /\bgame\b/.test(pathname)
+
   return (
     <>
       <Head>
@@ -27,7 +32,7 @@ const LayoutF: FC<IShopLayout> = ({ children, title, keywords }) => {
         <header className={styles.header}>
           <HeaderContainer />
         </header>
-        <main className={styles.main}> {children} </main>
+        <main className={checkGamePage ? `${styles.main} ${styles.game_page}` : styles.main}> {children} </main>
         {/* <footer className={styles.footer}> Footer</footer>  */}
       </div>
     </>

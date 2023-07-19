@@ -29,4 +29,12 @@
       width: 95%;
     }
   }
+  .game_page {
+    @media (max-width: 1100px) {
+      width: 99%;
+    }
+    @media (max-width: 750px) {
+      width: 99%;
+    }
+  }
 }

@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  align-items: center;
+  .input {
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid rgba(92, 89, 89, 0.05);
+    width: 90%;
+    background-image: linear-gradient(to bottom, (rgb(242, 250, 194), rgb(255, 255, 231)));
+    color: rgb(52, 49, 49);
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.407);
+  }
+}

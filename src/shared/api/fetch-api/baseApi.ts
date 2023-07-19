@@ -42,7 +42,7 @@ export const baseFetch = <T>({ body, params, url, method='GET' }:BaseFetchProps 
           .then(resolve, reject)
           
       } catch(error) {
-        console.log('Error in base fetch:', error)
+        console.error('Error in base fetch:', error)
         reject(error)
       }
   })
