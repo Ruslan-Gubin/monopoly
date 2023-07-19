@@ -8,12 +8,13 @@ const BuyProperty = () => {
   }
 
   return (
-    <ButtonRG
-      children="Купить"   
+    <ButtonRG  
       handleClick={handleBuyProperty} 
       color="success" 
       type="button" 
-      />
+      >
+      Купить
+    </ButtonRG>
   );
 };
 

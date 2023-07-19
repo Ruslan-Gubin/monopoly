@@ -13,7 +13,7 @@ const GameCanvas: FC = ({    }) => {
   const { cells, cornerSize, smallSize } = useCells()
   const { size } = useBoard()
 
-
+  console.log('render GameCanvas')
 
   useEffect(() => {
     if (!boardRef.current || !cells || !size) return;

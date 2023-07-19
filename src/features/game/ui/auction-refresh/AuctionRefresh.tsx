@@ -8,12 +8,13 @@ const AuctionRefresh = () => {
   }
 
   return (
-    <ButtonRG
-      children="Объявить аукцион"   
+    <ButtonRG  
       handleClick={handleAuctionRefresh} 
       color="success" 
       type="button" 
-      />
+      >
+      Объявить аукцион
+     </ButtonRG>   
   );
 };
 

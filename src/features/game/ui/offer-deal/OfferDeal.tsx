@@ -8,12 +8,13 @@ const OfferDeal = () => {
   }
 
   return (
-    <ButtonRG
-      children="Предложить сделку"   
+    <ButtonRG 
       handleClick={handleOfferDeal} 
       color="success" 
       type="button" 
-      />
+      >
+      Предложить сделку
+      </ButtonRG>
   );
 };
 

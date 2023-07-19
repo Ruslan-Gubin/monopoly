@@ -16,7 +16,6 @@ export const useBoardAction = () => {
 
   return {
     fetchBoard: (id: string) => dispatch(fetchBoard(id)),
-    clearBoard: () => dispatch(action.clearBoard()),
     initBoard: ({ initSize }: { initSize: RectTypeSize }) => dispatch(action.initBoard({ initSize })),
   };
 };

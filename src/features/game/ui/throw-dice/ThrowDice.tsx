@@ -9,11 +9,12 @@ const ThrowDice = () => {
 
   return (
     <ButtonRG
-      children="Бросить кости"  
       handleClick={handleTrowDice} 
       color="success" 
       type="button" 
-      />
+      >
+      Бросить кости
+    </ButtonRG>
   );
 };
 
