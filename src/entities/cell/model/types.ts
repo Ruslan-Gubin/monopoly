@@ -1,12 +1,11 @@
-import { RectTypeSize } from "@/shared";
+import { IImageOptions, ITextOptions, RectTypeSize } from "@/shared";
+import { IRectOptions } from "@/shared";
 
 interface IPositionCell {
   row_index: number;
   column_index: number;
 }
-
 type CellOwnerColor = "red" | "blue" | "green" | "yellow" | "pink" | "violet";
-
 type CellTypes =
   | "start"
   | "action-lottery"
@@ -61,4 +60,30 @@ export interface ICellsUpdateSizeProps {
   size: RectTypeSize;
   cells: CellModel[];
   cellsSize: { cornerCell: number; smallCell: number };
+}
+
+export interface IPropertyCellOptionsCache {
+  playerColor: IRectOptions;
+  ceilCell: IRectOptions;
+  bandSize: IRectOptions;
+  price: ITextOptions;
+  name: ITextOptions;
+}
+export interface ICornerCellOptionsCache {
+  name: ITextOptions;
+  img: IImageOptions;
+}
+export interface IPortCellOptionsCache {
+  playerColor: IRectOptions;
+  direction: ITextOptions;
+  price: ITextOptions;
+  img: IImageOptions;
+}
+export interface IActionCellOptionsCache extends ICornerCellOptionsCache {
+  ceilCell: IRectOptions;
+  tax: ITextOptions;
+}
+export interface IUtilitesCellOptionsCache extends ICornerCellOptionsCache {
+  playerColor: IRectOptions;
+  price: ITextOptions;
 }

@@ -36,7 +36,7 @@ const Game = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-console.log('render Game')
+
 
   return (
   // <Layout title="Игра" keywords="Game">

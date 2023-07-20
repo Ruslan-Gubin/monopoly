@@ -102,11 +102,9 @@ export class CanvasDraw {
     this.context.fillText(text, x, y, maxWidth);
   }
 
-
   /** Изображение */
- async image(options: IImageOptions) {
-  const { src, imageOptions, sourceOptions } = options  
-  const image = await this.drawService.loadImage(src) as CanvasImageSource
+  image(options: IImageOptions) {
+  const { image, imageOptions, sourceOptions } = options  
   const { width, height } = image
 
   const sourceParams: {[key: string]: number} = {

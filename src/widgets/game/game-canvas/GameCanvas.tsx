@@ -1,5 +1,5 @@
 import { BoardGame, CellsGame, useBoard, useCells } from "@/entities";
-import { CanvasDraw } from "@/shared";
+import { CanvasDraw, GAME_BOARD_SRC } from "@/shared";
 import { debounce } from "@/shared/lib/helpers/debounce";
 import { FC, useEffect, useRef, useState } from "react";
 
@@ -13,7 +13,6 @@ const GameCanvas: FC = ({    }) => {
   const { cells, cornerSize, smallSize } = useCells()
   const { size } = useBoard()
 
-  console.log('render GameCanvas')
 
   useEffect(() => {
     if (!boardRef.current || !cells || !size) return;
@@ -34,11 +33,13 @@ const GameCanvas: FC = ({    }) => {
       boardSize: { x: 0, y: 0, width: size.width, height: size.height },
       drawService,
       cellsSize: {corner: cornerSize, small: smallSize},
+      centerSrc: GAME_BOARD_SRC.center,
     });
     
     const cellsGame = new CellsGame({
       drawService,
       cells,
+      images: GAME_BOARD_SRC.cells,
     });
 
     let count = cornerSize + 13;
@@ -111,7 +112,7 @@ const GameCanvas: FC = ({    }) => {
         <span>Width X: {width}</span>
         <span>Height Y: {height}</span>
       </div>
-      <canvas ref={boardRef}></canvas>
+      <canvas id='boardGame' ref={boardRef}></canvas>
     </div>
   );
 };

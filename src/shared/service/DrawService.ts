@@ -5,14 +5,6 @@ export class DrawService  {
   constructor(context: CanvasRenderingContext2D){
    this.context = context
   }
-    /** Ждем загрузку изображения */
- public  loadImage(src: string) {
-  return new Promise((resolve) => {
-    const image = new Image()
-    image.src = src;
-    image.onload = () => resolve(image)
-  })
-}
 
 /** Превращаем мередиану в градусы если наоборот return (n / Math.PI) * 180 */
 public degreesToRadians(n: number) {

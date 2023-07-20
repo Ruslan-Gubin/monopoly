@@ -4,6 +4,7 @@ interface BoardGameProps {
   cellsSize: { corner: number; small: number };
   boardSize: RectTypeSize;
   drawService: CanvasDraw;
+  centerSrc: string;
 };
 
 export class BoardGame {
@@ -12,12 +13,15 @@ export class BoardGame {
   private smallCell: number;
   private cornerCell: number;
   private drawService: CanvasDraw;
+  private centerImage: HTMLImageElement;
 
-  constructor({ cellsSize, boardSize, drawService }: BoardGameProps) {
+  constructor({ cellsSize, boardSize, drawService, centerSrc }: BoardGameProps) {
     this.boardSize = boardSize;
     this.smallCell = cellsSize.small;
     this.cornerCell = cellsSize.corner;
     this.drawService = drawService;
+    this.centerImage = new Image();
+    this.centerImage.src = centerSrc
   }
 
   private drawCenterBoard() {
@@ -25,12 +29,15 @@ export class BoardGame {
     const y = this.boardSize.y + this.cornerCell;
     const width = this.smallCell * 9;
     const height = width;
-    const color = 'gray';
+
+    this.drawService.image({
+      image: this.centerImage,
+      imageOptions: { x, y, width: this.smallCell * 9, height: width }
+    })
   
     this.drawService.rect({
       size: {height, width},
       start: {x, y},
-      fill: { color },
       border: { width: 2 },
     })
   }

@@ -50,7 +50,7 @@ export interface ITextOptions {
   baseline?: "bottom" | "middle" | "top";
 }
 export interface IImageOptions {
-  src: string;
+  image: HTMLImageElement;
   imageOptions: {
     x: number;
     y: number;
