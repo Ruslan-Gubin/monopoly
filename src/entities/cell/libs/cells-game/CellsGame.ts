@@ -1,29 +1,12 @@
 import { CanvasDraw, COLOR_CELL_VARIANT, COLOR_CELL_PLAYER_COLOR } from "@/shared";
-import { CellModel } from "../../model";
+import { CellModel, ICellsGameProps } from "../../model";
 import { ActionCell } from "./ActionCell";
 import { CornerCell } from "./CornerCell";
 import { PortCell } from "./PortCell";
 import { PropertyCell } from "./PropertyCell";
 import { UtilitiesCell } from "./UtilitiesCell";
 
-interface ICellsGameProps {
-  cells: CellModel[]
-  drawService: CanvasDraw
-  images: { 
-    ship: string; 
-    dice: string;
-    lottery: string;
-    tax: string;
-    water: string;
-    energy: string;
-    start: string;
-    customs: string;
-    theatre: string;
-  }
-}
-
 export class CellsGame {
-  private drawService: CanvasDraw;
   private cells: CellModel[];
   private drawProperty: PropertyCell;
   private drawPort: PortCell;
@@ -32,8 +15,7 @@ export class CellsGame {
   private drawCorner: CornerCell;
   starsColor: string;
 
-   constructor({  cells, drawService, images }: ICellsGameProps) {
-    this.drawService = drawService
+   constructor({  cells, drawService, images }: ICellsGameProps) { 
     this.drawProperty = new PropertyCell({ drawService, playerColor: COLOR_CELL_PLAYER_COLOR  })
     this.drawPort = new PortCell({ drawService , playerColor: COLOR_CELL_PLAYER_COLOR, imageSrc: images.ship })
     this.drawAction = new ActionCell({ drawService , images: { dice: images.dice, lottery: images.lottery, tax: images.tax } })

@@ -1,9 +1,10 @@
 import { Layout } from '@/widgets';
 import { Loader, useRouterNavigation, useScreenSize } from '@/shared';
 import { useEffect } from 'react';
-import { calculateSizeBoard,  getCellsPosition, useBoard, useBoardAction, useCells, useCellsAction } from '@/entities';
+import { calculateSizeBoard,  getCellsPosition, PlayerModel, useBoard, useBoardAction, useCells, useCellsAction, usePlayerAction } from '@/entities';
 import { CenterBoard } from '@/widgets/game/center-board/CenterBoard';
 import { GameCanvas } from '@/widgets/game/game-canvas/GameCanvas';
+
 
 const Game = () => {
   const { query } = useRouterNavigation()
@@ -12,6 +13,7 @@ const Game = () => {
   const { initBoard } = useBoardAction()
   const { size } = useBoard()
   const { cells, loading, error } = useCells()
+
  
   useEffect(() => {
     fetchAllCells('nep');
@@ -26,6 +28,7 @@ const Game = () => {
     
     initBoard({ initSize })
     cellsUpdateSize({size: {...initSize, x: 0, y: 0}, cells, cellsSize: { cornerCell, smallCell }})
+    
   },[width, height, loading])
 
 

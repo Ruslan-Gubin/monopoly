@@ -1,5 +1,6 @@
-import { IImageOptions, ITextOptions, RectTypeSize } from "@/shared";
+import { CanvasDraw, IArbitraryFormsOptions, IImageOptions, ITextOptions, RectTypeSize } from "@/shared";
 import { IRectOptions } from "@/shared";
+import { ICellRace } from "../libs/helpers/getCellRace";
 
 interface IPositionCell {
   row_index: number;
@@ -54,6 +55,7 @@ export interface CellInitState {
   error: string | null;
   smallSize: number;
   cornerSize: number;
+  cellRace: ICellRace | null,
 }
 
 export interface ICellsUpdateSizeProps {
@@ -68,6 +70,7 @@ export interface IPropertyCellOptionsCache {
   bandSize: IRectOptions;
   price: ITextOptions;
   name: ITextOptions;
+  stars: IArbitraryFormsOptions[];
 }
 export interface ICornerCellOptionsCache {
   name: ITextOptions;
@@ -86,4 +89,20 @@ export interface IActionCellOptionsCache extends ICornerCellOptionsCache {
 export interface IUtilitesCellOptionsCache extends ICornerCellOptionsCache {
   playerColor: IRectOptions;
   price: ITextOptions;
+}
+
+export interface ICellsGameProps {
+  cells: CellModel[]
+  drawService: CanvasDraw
+  images: { 
+    ship: string; 
+    dice: string;
+    lottery: string;
+    tax: string;
+    water: string;
+    energy: string;
+    start: string;
+    customs: string;
+    theatre: string;
+  }
 }

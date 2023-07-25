@@ -11,4 +11,5 @@ export const GAME_BOARD_SRC = {
     theatre: '/theatre.png',
   },
   center: '/center-board.png',
+  players: '/players.png',
 }

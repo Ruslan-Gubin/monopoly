@@ -1,89 +1,145 @@
-import { CanvasDraw,  IColorPlayerVariant } from "@/shared";
+import { CanvasDraw,  IArbitraryFormsOptions,  IColorPlayerVariant, IRectOptions, ITextOptions } from "@/shared";
 import { CellModel, IPropertyCellOptionsCache } from "../../model";
 import { getStarsSize } from "../helpers";
+import { BaseCellPlayers } from "./BaseCell";
 
 
-export class PropertyCell {
-  private drawService: CanvasDraw;
-  private readonly textAling = 'center';
-  private readonly baseline = 'middle';
-  private readonly playerColor;
-  private cache;
-
+export class PropertyCell extends BaseCellPlayers {
   constructor({ drawService, playerColor }: { drawService: CanvasDraw, playerColor: IColorPlayerVariant }) {
-    this.drawService = drawService
-    this.playerColor = playerColor
-    this.cache = new Map()
+    super({ drawService, playerColor })
   }
 
   public drawPropertyCell(cell: CellModel, color: string, colorStars: string) {
-  const playerColor = cell.owner ? cell.owner.color : null;
-  const side = cell.direction?.includes('side')
-  const cellOptions = this.getSizeDirection(side, cell, playerColor, color)
+    const ownerColor = cell.owner ? cell.owner.color : null;
+    const side = cell.direction?.includes('side')
 
-  if(!cellOptions) return;
+    const id = cell._id
+    let cellCache = this.getCellCacheId<IPropertyCellOptionsCache>(id)
 
-  const bandHeight = cellOptions.bandSize.size.height
-  
+    if (!cellCache) {
+      cellCache = this.getParamsPosition<IPropertyCellOptionsCache>({
+        id,
+        fields: {
+          playerColor: this.getParamsPlayerColor(cell, ownerColor, true),
+          ceilCell: this.getParamsCeil(cell),
+          bandSize: this.getParamsBand(cell, color, side),
+          price: this.getParamsPrice(cell, side),
+          name: this.getParamsTitle(cell, side),
+          stars: this.getParamsStars(cell, side),
+        },
+      });
+    }
+
+    if (!cellCache) return;
+
   /** Закрасить поле в цвет владельца, если есть владелец */
-  if (playerColor) {
-  this.drawService.rect(cellOptions.playerColor)
+  if (ownerColor) {
+  this.drawRectCell(cellCache.playerColor)
   }
   /** Вся ячейка */
-  this.drawService.rect(cellOptions.ceilCell)
+  this.drawRectCell(cellCache.ceilCell)
   /** Название собственности */
-  this.drawService.text(cellOptions.name) 
+  this.drawTextCell(cellCache.name) 
   /** Верхняя полоса */
-  this.drawService.rect(cellOptions.bandSize)
+  this.drawRectCell(cellCache.bandSize)
   /** Цена собственности или оплата владельцу */
-  this.drawService.text(cellOptions.price)
-
+  this.drawTextCell(cellCache.price)
   /** Показываем улучшение собственности */
-   const houseCount = cell.house_count
-   if (houseCount > 0 && houseCount < 5) {
-     this.drawStars(cell, houseCount, bandHeight, colorStars)
-     if (cell.name === 'кресло') {
-    }
-    } else if (houseCount === 5) {
-      this.drawHotel(cell, bandHeight)
-    }  
-}
-
-private drawStars(cell: CellModel, houseCount: number, bandHeight: number, colorStars: string) {
-  if (houseCount < 1) return;
-  const keyStarsInCache = `stars${cell._id}${houseCount}`;
-
-  if (!this.cache.has(keyStarsInCache)) {
-    const { nexStep, starsSize } = getStarsSize(cell, bandHeight)
-
-    this.cache.set(keyStarsInCache, [])
-    const starsItem = this.cache.get(keyStarsInCache)
-
-    for (let i = 0; i < houseCount; i++) {
-      starsItem.push({ start: starsSize.start(), lines: starsSize.lines() })
-      
-     starsSize.leftSize.x += nexStep
-     starsSize.top.x += nexStep
-     starsSize.bottom.x += nexStep
-     starsSize.rightSize.x += nexStep
-   } 
+  const houseCount = cellCache.stars.length
+if (houseCount > 0 && houseCount < 5) {
+  this.drawStars(cellCache.stars, colorStars)
+ } else if (houseCount > 4) {
+  this.drawHotel(cell, side)
  }
 
- const cacheStar = this.cache.get(keyStarsInCache)
- if (!cacheStar) return;
+}
 
-  for (let i = 0; i < cacheStar.length; i++) {
-    const stars = cacheStar[i]
-    this.drawService.arbitraryForms({
-      startLine: stars.start,
-      lines: stars.lines,
+private getParamsStars(cell: CellModel, side: boolean | undefined): IArbitraryFormsOptions[] | [] {
+  if (!cell.house_count) {
+    return [];
+  }
+
+  const starsArray: IArbitraryFormsOptions[] = []
+  const { nexStep, starsSize } = getStarsSize(cell, side)
+
+    for (let i = 0; i < cell.house_count; i++) {
+    starsArray.push({ startLine: starsSize.start(), lines: starsSize.lines() })
+      
+    starsSize.leftSize.x += nexStep
+    starsSize.top.x += nexStep
+    starsSize.bottom.x += nexStep
+    starsSize.rightSize.x += nexStep
+   } 
+
+  return starsArray
+}
+
+private getParamsBand(cell: CellModel, color: string, side: boolean | undefined): IRectOptions {
+  const height = side ? cell.width / 4 : cell.height / 4
+
+  return {
+    start: { x: cell.x, y: cell.y },
+    size: { width: cell.width, height },
+    border: { width: 2 },
+    fill: { color } 
+  }
+}
+
+private getParamsPrice(cell: CellModel, side: boolean | undefined): ITextOptions {
+  const cellPrice = (cell.owner ? cell.owner.price : cell.price) as number;
+  let textY = cell.width > 40 ? cell.y + (cell.height / 1.3) : cell.y + (cell.height / 1.2)
+  let fontSize = cell.width > 40 ? '1.3rem' : '.6rem';
+  
+  if (side) {
+    textY =  cell.y + (cell.height / 1.2)
+    fontSize = cell.width > 80 ? '1.3rem' : '.8rem';
+  }
+
+  return {
+    text: String(cellPrice),
+    x: cell.x + (cell.width / 2),
+    y: textY,
+    textAling: this.textAling,
+    baseline: this.baseline,
+    maxWidth: cell.width / 2,
+    fontSize,
+  }
+}
+
+private getParamsTitle(cell: CellModel, side: boolean | undefined): ITextOptions {
+  let textY = cell.y + (cell.height / 2)
+  let fontSize = cell.width > 40 ? '1.2rem' : '.6rem';
+
+  if (side) {
+    textY = cell.y + (cell.height / 1.9)
+    fontSize = cell.width > 80 ? '1.3rem' : '.9rem';
+  }
+
+  return {
+    text: cell.name,
+    x: cell.x + (cell.width / 2),
+    y: textY,
+    textAling: this.textAling,
+    baseline: this.baseline,
+    maxWidth: cell.width - 10,
+    fontSize: fontSize,
+  }
+}
+
+private drawStars(stars: IArbitraryFormsOptions[], colorStars: string) {
+  for (let i = 0; i < stars.length; i++) {
+    const currentStars = stars[i]
+    this.drawArbitraryCell({
+      startLine: currentStars.startLine,
+      lines: currentStars.lines,
       border: { width: 1, color: 'white' },
       fill: {color: colorStars}
     })
   }
 }
 
-private drawHotel(cell: CellModel, bandHeight: number) {
+private drawHotel(cell: CellModel, side: boolean | undefined) {
+  const bandHeight = side ? cell.width / 4 : cell.height / 4
   const fontSize = (cell.width / 13) * 2
 
   this.drawService.text({
@@ -95,66 +151,6 @@ private drawHotel(cell: CellModel, bandHeight: number) {
     color: 'white',
     fontSize: `${fontSize}px`
   })
-}
-
-/** Вычисляем расположение елементов ячейки */
-private getSizeDirection(side: boolean | undefined, cell: CellModel, playerColor: string | null, color: string): IPropertyCellOptionsCache | undefined {
-  
-  if (!this.cache.has(cell._id)) {
-    const cellPrice = (cell.owner ? cell.owner.price : cell.price) as number;
-
-    const cellOptions: IPropertyCellOptionsCache = {
-      playerColor: {
-        start: { x: cell.x, y: cell.y + cell.height / 4 },
-        size: { width: cell.width, height: cell.height - cell.height / 4 },
-        fill: playerColor ? {color: this.playerColor[playerColor]} : { color: '' }
-      },
-      ceilCell: {
-        size: {height: cell.height, width: cell.width},
-        start: {x: cell.x, y: cell.y},
-        border: { width: 2 },  
-      },
-      bandSize: {
-        start: { x: cell.x, y: cell.y },
-        size: { width: cell.width, height: cell.height / 4 },
-        border: { width: 2 },
-        fill: { color } 
-      },
-      price: {
-        text: String(cellPrice),
-        x: cell.x + (cell.width / 2),
-        y: cell.width > 40 ? cell.y + (cell.height / 1.3) : cell.y + (cell.height / 1.2),
-        textAling: this.textAling,
-        baseline: this.baseline,
-        maxWidth: cell.width / 2,
-        fontSize: cell.width > 40 ? '1.5rem' : '.6rem',
-      },
-      name: {
-        text: cell.name,
-        x: cell.x + (cell.width / 2),
-        y: cell.y + (cell.height / 2),
-        textAling: this.textAling,
-        baseline: this.baseline,
-        maxWidth: cell.width - 10,
-        fontSize: cell.width > 40 ? '1.3rem' : '.7rem',
-      }
-
-    }
-
-    if (side) {
-      cellOptions.bandSize.size.height = cell.width / 4;
-      cellOptions.name.y = cell.y + (cell.height / 1.8);
-      cellOptions.name.fontSize = cell.width > 60 ? '1.5rem' : '.9rem';
-      cellOptions.price.y = cell.y + (cell.height / 1.2);
-      cellOptions.price.fontSize = cell.width > 80 ? '1.5rem' : '.8rem';
-    }
-    this.cache.set(cell._id, cellOptions)
-  }
-
-  const cellCache = this.cache.get(cell._id)
-  if (!cellCache) return;
-  
- return cellCache;
 }
 
 }

@@ -51,17 +51,8 @@ export class BoardGame {
     })
   }
 
-  public animate(sizeX: number) {
-    this.drawService.arc({
-      size: {x: sizeX, y: 300, radius: 10},
-      border: {color: 'red'},
-      fill: {color: 'orange'}
-    })
-  }
-
-  public update(sizeX: number) {
+  public update() {
     this.drawBoard();
     this.drawCenterBoard();
-    this.animate(sizeX);
   }
 }

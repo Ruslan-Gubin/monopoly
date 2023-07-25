@@ -1,6 +1,6 @@
 import { ActionCardModel, CellModel, PlayerModel } from "@/entities";
 
-interface ISize {
+export interface ISize {
   x: number;
   y: number;
   width: number;

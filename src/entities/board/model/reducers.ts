@@ -6,7 +6,7 @@ export const reducers = {
   
   initBoard(state: BoardInitState, action: PayloadAction<{ initSize: RectTypeSize }>) {
     const { initSize } = action.payload
-   
+    
     state.size = initSize;
   },
 };

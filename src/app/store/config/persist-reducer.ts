@@ -17,6 +17,7 @@ export const persistedReducer = persistReducer(
       'selection',
       'cells',
       'board',
+      'player',
     ],
   },
   rootReducer
