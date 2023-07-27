@@ -4,18 +4,12 @@ import { BoardModel, calculateSizeBoard, CellModel, DiceModel, PlayerModel, useB
 import { boardSockedSend, boardSocketMessage } from '@/entities/board/model/connect-ws';
 import { GameCanvas, CenterBoard } from '@/widgets';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
-
-interface GameBoardPageProps {
-  boardId: string, 
-  cells: CellModel[], 
-  players: PlayerModel[], 
-  board: BoardModel,
-  dice: DiceModel,
-}
+import { useRouter } from "next/router";
 
 
-const GameBoardPage = ({ boardId, cells, players, board, dice }: GameBoardPageProps) => {
-  const { query } = useRouterNavigation()
+
+const GameBoardPage = ({ boardId, cells, players, board, dice }: any) => {
+  const { query, pathname } = useRouterNavigation()
   const { fetchAllCells, clearCells, cellsUpdateSize } = useCellsAction()
   const { width, height } = useScreenSize()
   const { initBoard, connectedBoard } = useBoardAction()
@@ -23,20 +17,20 @@ const GameBoardPage = ({ boardId, cells, players, board, dice }: GameBoardPagePr
   const {  loading, error } = useCells()
   const { viewer } = useViewer()
 
-// 64c161122651b621676aad7c
+console.log(boardId, cells, players, board, dice)
 
-  console.log(boardId, cells, players, board, dice)
+// 64c161122651b621676aad7c
 
 
   useEffect(() => {
-    console.log(viewer, boardId)
-    if (!viewer ) return;
+    if (!viewer || !query.id) return;
+    console.log(viewer, query.id)
     connectedBoard({
         method: "connect",
         body: {
           fullName: viewer.fullName,
           id: viewer.viewerId,
-          boardId: boardId
+          boardId: query.id
         },
       });
      
@@ -46,7 +40,7 @@ const GameBoardPage = ({ boardId, cells, players, board, dice }: GameBoardPagePr
         body: {
           fullName: viewer.fullName,
           id: viewer.viewerId,
-          boardId: boardId
+          boardId: query.id
         },
       });
     };
@@ -71,7 +65,7 @@ const GameBoardPage = ({ boardId, cells, players, board, dice }: GameBoardPagePr
   // },[width, height, loading])
 
 
-  if (loading || !cells || !size) {
+  if (loading || !cells || !size || !query.id) {
     return <Loader />;
   }
   
@@ -92,8 +86,9 @@ const GameBoardPage = ({ boardId, cells, players, board, dice }: GameBoardPagePr
 };
 
 
-export const getServerSideProps: GetServerSideProps<GameBoardPageProps> = async(context: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps<any> = async(context: GetServerSidePropsContext) => {
   let boardId = context.query.id as string
+
   const responseCells = await fetch(`${config.API_ENDPOINT}/all-cells/${'nep'}`)
   const cells = await responseCells.json()
 
@@ -103,8 +98,8 @@ export const getServerSideProps: GetServerSideProps<GameBoardPageProps> = async(
   const responseBoard = await fetch(`${config.API_ENDPOINT}/get-board/${boardId}`)
   const board = await responseBoard.json()
 
-  const diceBoardId = board[0].dice
-console.log(board[0].dice)
+  const diceBoardId = board.dice
+
   const responseDice = await fetch(`${config.API_ENDPOINT}/dice-board/${diceBoardId}`)
   const dice = await responseDice.json()
 
