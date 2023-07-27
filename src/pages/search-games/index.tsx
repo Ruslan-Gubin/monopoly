@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelectAction, useViewer } from "@/entities";
+import {  useSelectAction, useViewer } from "@/entities";
 import { useRouterNavigation } from "@/shared";
 import {
   Layout,
@@ -24,14 +24,14 @@ const SearchGame = () => {
 
   useEffect(() => {
     if (!viewer) return;
-    connectSelection({
-      method: "connect",
-      body: {
-        fullName: viewer.fullName,
-        id: viewer.viewerId,
-      },
-    });
-
+      connectSelection({
+        method: "connect",
+        body: {
+          fullName: viewer.fullName,
+          id: viewer.viewerId,
+        },
+      });
+     
     return () => {
       connectSelection({
         method: "disconect",
@@ -41,8 +41,9 @@ const SearchGame = () => {
         },
       });
     };
-  }, [connectSelection, viewer]);
+  }, [viewer]);
 
+  
   return (
     <Layout title="Поиск игры" keywords="Search Game">
       <SelectionGameConfirmation />

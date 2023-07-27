@@ -11,7 +11,7 @@
       position: relative;
 
       .player_active {
-        background-color: green;
+        // background-color: green;
         width: 30px;
         height: 5px;
         border-radius: 20px;
@@ -29,9 +29,28 @@
           rotate: (90deg);
           width: 15px;
           height: 5px;
-          background-color: green;
+          background-color: inherit;
         }
       }
     }
   }
+}
+
+.red {
+  background-color: rgb(202, 1, 1);
+}
+.blue {
+  background-color: rgb(2, 134, 190);
+}
+.green {
+  background-color: rgb(61, 171, 1);
+}
+.yellow {
+  background-color: rgb(189, 167, 2);
+}
+.pink {
+  background-color: rgb(199, 0, 163);
+}
+.black {
+  background-color: rgb(100, 100, 100);
 }

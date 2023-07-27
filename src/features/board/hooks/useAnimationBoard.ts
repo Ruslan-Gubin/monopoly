@@ -1,3 +1,4 @@
+'use client'
 import {  useLayoutEffect, useRef, useState } from "react";
 import { BoardGame, useBoard, CellsGame, useCells, PlayersGame, usePlayer } from "@/entities";
 import { CanvasDraw, GAME_BOARD_SRC, debounce, GAME_OPTIONS } from "@/shared";

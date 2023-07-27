@@ -1,5 +1,6 @@
-import { GameSendMessage } from "@/features";
+'use client'
 import { ChangeEvent, useState } from "react";
+import { GameSendMessage } from "@/features";
 
 import styles from './GameMessage.module.scss';
 

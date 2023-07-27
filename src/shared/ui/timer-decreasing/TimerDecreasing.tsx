@@ -1,3 +1,4 @@
+'use client'
 import { FC, useEffect, useRef, useState } from 'react';
 
 import styles from './TimerDecreasing.module.scss';
@@ -11,7 +12,14 @@ const TimerDecreasing: FC<TimerDecreasingProps> = ({ duration, endCallback }) =>
   const [endTime, setEndTime] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const initDuration = 70 * duration 
-  let frame = initDuration   
+  let frame = initDuration
+  const animationIdRef = useRef<number | null>(null);
+  
+  useEffect(() => {
+    if (endTime) {
+      endCallback();
+    }
+  }, [endTime, endCallback]);
   
   useEffect(() => { 
     if (!canvasRef.current) return; 
@@ -33,22 +41,22 @@ const TimerDecreasing: FC<TimerDecreasingProps> = ({ duration, endCallback }) =>
       frame--;
       drawProgressBar(); 
       if (frame > 0) { 
-        requestAnimationFrame(animate);
+        animationIdRef.current =  requestAnimationFrame(animate);
       } else {
         setEndTime(true);
       }
-    };  
+    }; 
+
  
     requestAnimationFrame(animate);  
         
     return () => {
-      cancelAnimationFrame(Number(animate));
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+      }
     }    
   }, [frame, initDuration])
 
-  if (endTime) {
-    endCallback()
-  }
 
   return (
       <canvas className={styles.canvas} ref={canvasRef}></canvas>

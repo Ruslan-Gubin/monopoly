@@ -2,6 +2,7 @@ import { GameNotification } from "../game-notification/GameNotification";
 import { GamePlayers } from "../game-players/GamePlayers";
 import { GameManagement } from "../game-management/GameManagement";
 import { GameMessage } from "../send-message/GameMessage";
+
 import styles from "./CenterBoard.module.scss";
 
 interface CenterBoardProps {
@@ -28,4 +29,4 @@ const CenterBoard = ({ sizeCenterInBoard }: CenterBoardProps) => {
   );
 };
 
-export { CenterBoard };
+export default CenterBoard;

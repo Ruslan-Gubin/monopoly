@@ -1,9 +1,17 @@
-import { fetchGet } from "@/shared";
+import { PlayerConfirmation } from "@/features";
+import { config, fetchPost, GameSocket } from "@/shared";
 
-const getBoard = <T>(id: string): Promise<T> => {
-    return fetchGet('get-board', id)
+const createBoard = <T>(body: PlayerConfirmation[]): Promise<T> => {
+    return fetchPost('create-board', body)
 }
 
+const getBoardSSR = () => {
+
+}
+
+const boardWS = new GameSocket({ patch: config.GAME_BOARD_URL })
+
 export const BoardApi = {
-  getBoard,
+  createBoard,
+  boardWS,
 }

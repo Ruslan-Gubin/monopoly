@@ -1,22 +1,44 @@
-import { useViewer } from "@/entities";
-import { ModalSuccess, useGameConfirmation, useGameConfirmationAction } from "@/features";
+'use client'
+import { useEffect, useMemo } from "react";
+import { useBoard, useBoardAction, useSelect, useViewer } from "@/entities";
+import { ConfirmSelectedColor, ModalSuccess, useGameConfirmation, useGameConfirmationAction } from "@/features";
 import { useCancelConfirmation } from "@/features";
-import { ModalRG, TimerDecreasing, UserAvatar, useRouterNavigation } from "@/shared";
-
-import styles from './SelectionGameConfirmation.module.scss';
+import { ModalRG, TimerDecreasing, useRouterNavigation } from "@/shared";
+import { ConfirmPlayerList } from "../confirm-playerList/ConfirmPlayerList";
 
 const SelectionGameConfirmation = () => {
   const { isModalActive, players, sessionId } = useGameConfirmation() 
   const { cancelParticipationGame } = useCancelConfirmation()
-  const { navigate } = useRouterNavigation()
   const { cancelConfinmPlayer } = useGameConfirmationAction()
+  const { createBoard, goToGameRemove } = useBoardAction()
   const { viewer } = useViewer()
+  const { owner } = useSelect()
+  const { navigateDinamicId } = useRouterNavigation()
+  const { gameBoardId, isGoGame } = useBoard()
+
+  useEffect(() => {
+    if (!isGoGame || !gameBoardId) return;
+    navigateDinamicId('/game-board/', gameBoardId)
+    
+    return () => {
+      goToGameRemove()
+    }
+  },[isGoGame, gameBoardId])
+
+
+  const checkIsActive = useMemo(() => {
+    const findViewer = players.find(player => player.id === viewer?.viewerId)
+    if (!findViewer) {
+      return false
+    }
+    return findViewer.confirmation
+  },[players, viewer])
 
   if (!isModalActive) { 
     return null;
   }
 
-  const handleCancelTimeParticipation = async() => {
+  const handleCancelTimeParticipation = () => {
     if (!sessionId) return;
 
     const checkConfirmations = players.find(player => !player.confirmation)  
@@ -24,29 +46,23 @@ const SelectionGameConfirmation = () => {
     if (checkConfirmations) {
       cancelParticipationGame({name: checkConfirmations.fullName})
     } else {
-      navigate('push', '/game/33')
+      if (owner && !gameBoardId && !isGoGame) {
+       createBoard(players)
+      }
       cancelConfinmPlayer({ sessionId })
-      
     }
+
   }
 
   return (
      <ModalRG 
-      active={isModalActive}
-      handleClose={() => cancelParticipationGame({name: viewer?.fullName})}
-      >
-        <TimerDecreasing  duration={20} endCallback={handleCancelTimeParticipation} />
-        <ul className={styles.player_list}>
-          {players.map(player => 
-            <li key={player.id} className={styles.player_img}>
-              <div className={styles.img_container}>
-              {player.confirmation && <div className={styles.player_active}></div>}
-              <UserAvatar image={player.img} />
-              </div>
-            </li>
-            )}
-        </ul>
-        <ModalSuccess />
+     active={isModalActive}
+     handleClose={() => cancelParticipationGame({name: viewer?.fullName})}
+     >
+      <TimerDecreasing  duration={6} endCallback={handleCancelTimeParticipation} />
+      <ConfirmSelectedColor checkIsActive={checkIsActive} /> 
+      <ConfirmPlayerList players={players} checkIsActive={checkIsActive} />
+      <ModalSuccess checkIsActive={checkIsActive} />
       </ModalRG>
   );
 };

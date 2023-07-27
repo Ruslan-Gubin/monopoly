@@ -1,7 +1,7 @@
 import { baseFetch } from "./baseApi"
 
-const fetchGet = <T>( url: string, params?: string): Promise<T> => {
-  return baseFetch({url,  method: 'GET', params: params ? params : null})
+const fetchGet = <T>( url: string, params?: string, tokenSSR?: string): Promise<T> => {
+  return baseFetch({url,  method: 'GET', params: params ? params : null, tokenSSR})
 }
 
 const fetchPost = <T>(url: string, body: any , params?: string ): Promise<T> => {

@@ -1,4 +1,5 @@
 import { ActionCardModel, CellModel, PlayerModel } from "@/entities";
+import { GameSocket } from "@/shared";
 
 export interface ISize {
   x: number;
@@ -25,4 +26,27 @@ export interface BoardInitState {
   board: BoardModel | null;
   loading: boolean;
   error: string | null;
+  gameBoardId: string | null;
+  isGoGame: boolean;
+}
+
+export interface ICreateBoardBody {
+  color: string;
+  fullName: string;
+  id: string;
+  img: string;
+}
+export interface IConnectBoard {
+  method: string;
+  body: {
+    fullName: string;
+    id: string;
+    boardId: string
+  };
+}
+export interface HandleDisconnectBoardProps {
+  boardSocket: GameSocket;
+  fullName: string;
+  boardId: string;
+  playerId: string;
 }

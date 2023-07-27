@@ -1,3 +1,4 @@
+'use client';
 import { FC, memo } from "react";
 import Head from "next/head";
 import { HeaderContainer } from "../header-container/HeaderContainer";
@@ -13,6 +14,8 @@ interface IShopLayout {
 
 const LayoutF: FC<IShopLayout> = ({ children, title, keywords }) => {
   const { pathname } = useRouterNavigation()
+
+  if (!pathname) return null;
 
   const checkGamePage = /\bgame\b/.test(pathname)
 

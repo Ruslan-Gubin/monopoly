@@ -1,10 +1,12 @@
+import { PlayerConfirmation } from "@/features";
 import { RectTypeSize, useAppDispatch, useAppSelector } from "@/shared";
-
+import { connectBoard } from "./connect-ws";
 import { boardSlice } from "./slice";
-import { fetchBoard } from "./thunk";
+import { createBoard } from "./thunk";
+import { IConnectBoard } from "./types";
 
 const select = (state: RootState) => state.board;
-const action = boardSlice.actions;
+export const boardAction = boardSlice.actions;
 export const boardReducer = boardSlice.reducer;
 
 export const useBoard = () => {
@@ -15,7 +17,9 @@ export const useBoardAction = () => {
   const dispatch = useAppDispatch();
 
   return {
-    fetchBoard: (id: string) => dispatch(fetchBoard(id)),
-    initBoard: ({ initSize }: { initSize: RectTypeSize }) => dispatch(action.initBoard({ initSize })),
+    createBoard: (body: PlayerConfirmation[]) => dispatch(createBoard(body)),
+    initBoard: ({ initSize }: { initSize: RectTypeSize }) => dispatch(boardAction.initBoard({ initSize })),
+    goToGameRemove: () => dispatch(boardAction.goToGameRemove()),
+    connectedBoard: (body: IConnectBoard) => dispatch(connectBoard(body)),
   };
 };

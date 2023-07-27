@@ -9,14 +9,14 @@ class Socket {
     this.mainPatch = config.BASE_WS_URL;
   }
 
-  connect(patch: string) {
+  connect(patch: string) { 
     if (!this.socket) {
       const newUrl = new URL(`${this.mainPatch}/${patch}`);
       this.socket = new WebSocket(newUrl);
     }
   }
 
-  disconnect() {
+  disconnect() { 
     if (this.socket) {
       this.socket.close();
       this.socket = null;

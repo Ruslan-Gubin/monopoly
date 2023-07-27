@@ -1,47 +1,40 @@
 import { useSelect, useSelectAction } from "@/entities";
 import { ButtonRG } from "@/shared";
-import { useMemo } from "react";
 import { useGameConfirmation } from "../../model";
 
 import styles from "./ModalSuccess.module.scss";
 
-const ModalSuccess = () => {
+ 
+const ModalSuccess = ({ checkIsActive }: { checkIsActive: boolean }) => {
   const { selectionSendMessage } = useSelectAction();
   const { authId } = useSelect();
-  const { sessionId, players } = useGameConfirmation();
-
-  const myConfirmation = useMemo(() => {
-    const findMyConfirmation = players.find((player) => player.id === authId);
-
-    if (!findMyConfirmation || findMyConfirmation.confirmation) {
-      return false;
-    } else {
-      return true;
-    }
-  }, [players, authId]);
+  const { sessionId, selectedColor } = useGameConfirmation();
 
   const handleSubmit = () => {
-    if (!authId || !sessionId || !myConfirmation) return;
-
+    if (!authId || !sessionId || !selectedColor) return;
+  
     selectionSendMessage<{
       method: string;
       body: {
         authId: string;
         sessionId: string;
+        color: string,
       };
     }>({
       method: "confirmParticipationGame",
       body: {
         authId,
         sessionId,
+        color: selectedColor,
       },
     });
   };
 
   return (
     <>
-      {myConfirmation ? (
+      {!checkIsActive ? (
         <ButtonRG
+          disabled={!selectedColor}
           className={styles.submit_btn}
           handleClick={handleSubmit}
           size="md"

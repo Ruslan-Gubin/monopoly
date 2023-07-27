@@ -1,3 +1,4 @@
+'use client'
 import  { ChangeEvent, FormEvent,  useCallback, useState } from 'react';
 import { useViewerAction } from '@/entities';
 import { IUserLoginValue } from '../../model';

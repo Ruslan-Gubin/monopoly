@@ -1,10 +1,10 @@
 
 
-function getCookie(name: string): string | undefined {
-  let matches = document.cookie.match(new RegExp(
+function getCookie(name: string = 'token'): string | null {
+  const matches = document?.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
   ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
+  return matches ? decodeURIComponent(matches[1]) : null;
 }
 
 function setCookie(name: string, value: string, options = {}) {

@@ -1,3 +1,4 @@
+'use client'
 import { LayoutHeaderViewer } from "@/features";
 import {  Logo, useRouterNavigation,  } from "@/shared";
 import { LayoutHeaderLinkList } from "../header-link-list/LayoutHeaderLinkList";
@@ -12,6 +13,8 @@ const HeaderContainer = () => {
     if (pathname === patch) return;
     navigate('push', patch)
    }
+
+   if (!pathname) return null;
 
   return (
     <header className={styles.root}>

@@ -3,9 +3,7 @@ import { connectSelection } from './thunk'
 import { SelectInitState } from './types'
 
 
-
 export const extraReducers = (builder: ActionReducerMapBuilder<SelectInitState>) => {
-
 		builder
 		.addCase(connectSelection.pending, (state) => {
 			state.isConnected = false

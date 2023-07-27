@@ -7,3 +7,4 @@ export * from "./selection-avatar/SelectionAvatar";
 export * from "./send-message/SendMessage";
 export * from "./texarea-message/TexareaMessage";
 export * from "./modal-success/ModalSuccess";
+export * from "./selection-color/ConfirmSelectedColor";

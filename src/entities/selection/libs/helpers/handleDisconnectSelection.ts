@@ -1,8 +1,8 @@
-import { SelectionSocket } from "../../api";
+import { GameSocket } from "@/shared";
 import { IConnectSelection } from "../../model";
 
 export async function handleDisconnectSelection(
-  selectionApi: SelectionSocket,
+  selectionApi: GameSocket,
   viewer: IConnectSelection,
   owner: string | null,
   joinSession: string | null

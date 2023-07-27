@@ -6,13 +6,14 @@ interface BaseFetchProps {
   params: string | null;
   url: string;
   method: string;
-  body?: {}
+  body?: {};
+  tokenSSR?: string | null
 }
 
-export const baseFetch = <T>({ body, params, url, method='GET' }:BaseFetchProps ): Promise<T> => {
+export const baseFetch = <T>({ body, params, url, method='GET', tokenSSR }:BaseFetchProps ): Promise<T> => {
   
-  const urlEndpoint = config.API_ENDPOINT
-  const token = CookieService.get('token')
+  const urlEndpoint = config.API_ENDPOINT 
+  let token = tokenSSR ? tokenSSR : CookieService.get('token')
   
   return new Promise((resolve, reject) => {
       try{

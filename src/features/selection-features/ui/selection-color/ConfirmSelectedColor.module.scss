@@ -1,0 +1,57 @@
+.color_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  position: relative;
+
+  .color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 10px;
+    position: relative;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.575);
+    .color_active {
+      background-color: green;
+      width: 15px;
+      height: 3px;
+      border-radius: 20px;
+      rotate: (-45deg);
+      position: absolute;
+      top: 14px;
+      left: 11px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        border-radius: 20px;
+        rotate: (90deg);
+        width: 10px;
+        height: 3px;
+        background-color: green;
+      }
+    }
+  }
+}
+
+.red {
+  background-color: rgb(255, 65, 65);
+}
+.blue {
+  background-color: rgba(0, 179, 255, 0.739);
+}
+.green {
+  background-color: rgba(89, 255, 0, 0.739);
+}
+.yellow {
+  background-color: rgba(255, 225, 0, 0.739);
+}
+.pink {
+  background-color: rgba(255, 0, 208, 0.739);
+}
+.black {
+  background-color: rgb(165, 165, 165);
+}

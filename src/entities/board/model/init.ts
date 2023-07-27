@@ -6,6 +6,8 @@ const initialState: BoardInitState = {
   board: null,
   loading: false,
   error: null,
+  gameBoardId: null,
+  isGoGame: false,
 }
 
 export { initialState }

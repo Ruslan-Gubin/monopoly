@@ -1,7 +1,8 @@
+'use client'
 import { FC, useLayoutEffect } from "react";
 import {  PlayerModel, useCells, usePlayerAction } from "@/entities";
 import { useAnimationBoard } from "@/features";
-import { getRandomNumber } from "@/shared";
+import { ButtonMain, getRandomNumber, useRouterNavigation } from "@/shared";
 
 import styles from "./GameCanvas.module.scss";
 
@@ -18,6 +19,7 @@ const GameCanvas: FC = () => {
   const { cells,  smallSize } = useCells()  
   const { playerUpdatePosition, setMoveValue } = usePlayerAction()
   const { boardRef, height, width } = useAnimationBoard()
+  const { navigate } = useRouterNavigation()
 
   useLayoutEffect(() => {
     if (!cells) return;
@@ -57,10 +59,11 @@ const GameCanvas: FC = () => {
         <span>Width X: {width}</span>
         <span>Height Y: {height}</span>
         <button onClick={handleRoollDice}>Бросить кость</button>
+        <button onClick={() => navigate('push', '/')}>Go Home</button>
       </div>
       <canvas id='boardGame' ref={boardRef}></canvas>
     </div>
   );
 };
 
-export { GameCanvas };
+export default GameCanvas ;

@@ -13,7 +13,8 @@ export const useGameConfirmationAction = () => {
   const dispatch = useAppDispatch()
 
   return {
-    cancelConfinmPlayer: ({ sessionId }: { sessionId: string }) => dispatch(gameConfirmationAction.cancelConfinmPlayer({ sessionId }))
+    cancelConfinmPlayer: ({ sessionId }: { sessionId: string }) => dispatch(gameConfirmationAction.cancelConfinmPlayer({ sessionId })),
+    setSelectedColor: (color: string) => dispatch(gameConfirmationAction.setSelectedColor(color)),
   }
 }
 

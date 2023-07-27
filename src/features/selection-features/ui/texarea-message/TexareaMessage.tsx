@@ -1,3 +1,4 @@
+'use client'
 import { ChangeEvent, FC, useEffect, useRef } from 'react';
 
 import styles from './TexareaMessage.module.scss';

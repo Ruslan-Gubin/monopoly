@@ -29,4 +29,5 @@ export const config = {
   API_ENDPOINT,
   BASE_WS_URL,
   SELECTION_URL: "ws-session",
+  GAME_BOARD_URL: "ws-board",
 } as const;
