@@ -30,7 +30,7 @@ console.log(boardId, cells, players, board, dice)
         body: {
           fullName: viewer.fullName,
           id: viewer.viewerId,
-          boardId: query.id
+          boardId: String(query.id)
         },
       });
      
@@ -40,7 +40,7 @@ console.log(boardId, cells, players, board, dice)
         body: {
           fullName: viewer.fullName,
           id: viewer.viewerId,
-          boardId: query.id
+          boardId: String(query.id)
         },
       });
     };
