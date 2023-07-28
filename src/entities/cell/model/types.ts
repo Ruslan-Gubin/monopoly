@@ -51,16 +51,14 @@ export interface CellModel {
 
 export interface CellInitState {
   cells: CellModel[] | null;
-  loading: boolean;
-  error: string | null;
   smallSize: number;
   cornerSize: number;
   cellRace: ICellRace | null,
+  isCells: boolean,
 }
 
 export interface ICellsUpdateSizeProps {
   size: RectTypeSize;
-  cells: CellModel[];
   cellsSize: { cornerCell: number; smallCell: number };
 }
 

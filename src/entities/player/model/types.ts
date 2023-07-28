@@ -19,10 +19,10 @@ export interface PlayerInitState {
   isMove: boolean;
   dices: { first: number; second: number };
   target: { x: number; y: number };
+  players: PlayerModel[]
 }
 
 export interface IPlayerUpdatePosition {
-  players: PlayerModel[];
   cells: CellModel[];
   cellSize: number;
 }

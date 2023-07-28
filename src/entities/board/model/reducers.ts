@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { RectTypeSize } from "@/shared";
-import { BoardInitState } from "./types";
+import { BoardInitState, BoardModel } from "./types";
 
 export const reducers = {
   
@@ -17,4 +17,8 @@ export const reducers = {
   goToGameRemove(state: BoardInitState) {
     state.isGoGame = false;
   },
+
+  getBoardInDb(state: BoardInitState, action: PayloadAction<{ board: BoardModel }>) {
+    state.board = action.payload.board
+  }
 };

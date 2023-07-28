@@ -7,6 +7,7 @@ const initialState: PlayerInitState = {
   isMove: false,
   dices: { first: 0, second: 0 },
   target: { x: 0, y: 0 },
+  players: [],
 }
 
 export { initialState }

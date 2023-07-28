@@ -1,6 +1,10 @@
+import { actionCells } from "@/entities/cell";
+import { actionDice } from "@/entities/dice";
+import { playerAction } from "@/entities/player";
 import { createAppThunk } from "@/shared";
 import { BoardApi } from "../api";
 import { handleDisconnectBoard } from "../libs";
+import { boardAction } from "./selector";
 import { IConnectBoard } from "./types";
 
 
@@ -14,7 +18,7 @@ export const connectBoard = createAppThunk("sessionSlice/connectBoard", async (v
           playerId: viewer.body.id
         }
         );
-        return; 
+        return { type: "disconect" }; 
       }
 
       const socketMessage = (e: MessageEvent) => dispatch(boardSocketMessage(e));
@@ -31,7 +35,7 @@ export const connectBoard = createAppThunk("sessionSlice/connectBoard", async (v
       if (!BoardApi.boardWS.socket) {
         rejectWithValue("Error connecting to socket");
       }
-      console.log(BoardApi.boardWS)
+      return { type: "connect" };
     } catch (error) {
       console.error("Failed to connect WebSocket id selection:", error);
       return rejectWithValue(
@@ -58,16 +62,18 @@ export const boardSocketMessage = createAppThunk(
   async (e: MessageEvent, { rejectWithValue, dispatch, getState }) => {
     try {
       const messageEvent = JSON.parse(e.data);
+
       const authId = getState().viewer.authId;
 
       console.log(messageEvent)
 
       switch (messageEvent.method) {
-        // case "connectData":
-        //   dispatch(
-        //     selectionAction.connectData({ sessions: messageEvent.data })
-        //   );
-        //   break;
+        case "connectData":
+          dispatch(actionCells.getAllCells({cells: messageEvent.data.cells}));
+          dispatch(playerAction.initAllPlayers({ players: messageEvent.data.players }))
+          dispatch(boardAction.getBoardInDb({ board: messageEvent.data.board }))
+          dispatch(actionDice.setDice({ dice: messageEvent.data.dice }))
+          break;
         // case "connectedUser":
         //   dispatch(
         //     selectionNotificationAction.setNotification(messageEvent.title)

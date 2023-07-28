@@ -8,3 +8,7 @@ export interface DiceModel {
   isDouble: boolean; // выпало ли игроку две одинаковые грани
   _id: string;
 }
+
+export interface DiceInitState {
+  dice: DiceModel | null
+}

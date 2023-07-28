@@ -13,7 +13,6 @@ interface NavigationOptions {
 export const useRouterNavigation = () => {
   const router = useRouter()
 
-
   const navigate = (
     method: NavigationMethod = 'push',
     href: string,
@@ -24,8 +23,6 @@ export const useRouterNavigation = () => {
   const navigateDinamicId = (template: string, id: string) => {
     router.push(`${template}[id]`, `${template}${id}`)
   }
-
-
 
   return {  
     pathname: router.pathname,

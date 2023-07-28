@@ -1,42 +1,28 @@
 'use client'
-import { FC, useLayoutEffect } from "react";
-import {  PlayerModel, useCells, usePlayerAction } from "@/entities";
+import { FC } from "react";
+import {  useBoard, useCells, useDice, usePlayer, usePlayerAction } from "@/entities";
 import { useAnimationBoard } from "@/features";
-import { ButtonMain, getRandomNumber, useRouterNavigation } from "@/shared";
+import { getRandomNumber, useRouterNavigation } from "@/shared";
 
 import styles from "./GameCanvas.module.scss";
 
-export const mockPlayers = [ 
-  { _id: 'player1', position: 39, is_active: false, color: 'red' },
-  { _id: 'player2', position: 11, is_active: false, color: 'blue' },
-  { _id: 'player3', position: 11, is_active: false, color: 'green' },
-  { _id: 'player4', position: 11, is_active: false, color: 'yellow' },
-  { _id: 'player5', position: 11, is_active: false, color: 'pink' },
-  { _id: 'player6', position: 11, is_active: false, color: 'black' },
-] as PlayerModel[]
-
 const GameCanvas: FC = () => {
-  const { cells,  smallSize } = useCells()  
-  const { playerUpdatePosition, setMoveValue } = usePlayerAction()
-  const { boardRef, height, width } = useAnimationBoard()
-  const { navigate } = useRouterNavigation()
-
-  useLayoutEffect(() => {
-    if (!cells) return;
-    playerUpdatePosition({
-      cells,
-      cellSize: smallSize,
-      players: mockPlayers
-    })
-  },[])
-
+  const { cells } = useCells()  
+  const { setMoveValue } = usePlayerAction()
+  const { boardRef, mouseHeight, mouseWidth } = useAnimationBoard()
+  const { players } = usePlayer()
+  const { board } = useBoard()
+  const { dice } = useDice()
 
   const handleRoollDice = () => {
+    if (!board) return;
     const dice1 = getRandomNumber(1, 6);
     const dice2 = getRandomNumber(1, 6);
-    const prevPosition = mockPlayers.find(player => player.color === 'blue');
-    if (!prevPosition) return;
-    let newPosition = dice1 + dice2 + prevPosition.position;
+    const activePlayer = players.find(player => player._id === board.currentPlayerId)
+    if (!activePlayer) return;
+    const prevPosition = activePlayer.previous_position
+  
+    let newPosition = dice1 + dice2 + prevPosition;
     const totalCell = 39;
 
 
@@ -56,10 +42,9 @@ const GameCanvas: FC = () => {
   return (
     <div className={styles.root}>
       <div className={styles.position}>
-        <span>Width X: {width}</span>
-        <span>Height Y: {height}</span>
+        <span>Width X: {mouseWidth}</span>
+        <span>Height Y: {mouseHeight}</span>
         <button onClick={handleRoollDice}>Бросить кость</button>
-        <button onClick={() => navigate('push', '/')}>Go Home</button>
       </div>
       <canvas id='boardGame' ref={boardRef}></canvas>
     </div>

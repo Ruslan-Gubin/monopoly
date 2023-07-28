@@ -6,8 +6,7 @@ const initialState: CellInitState = {
   cellRace: null,
   smallSize: 0,
   cornerSize: 0,
-  loading: false,
-  error: null,
+  isCells: false,
 }
 
 export { initialState }

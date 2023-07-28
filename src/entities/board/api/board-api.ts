@@ -5,10 +5,6 @@ const createBoard = <T>(body: PlayerConfirmation[]): Promise<T> => {
     return fetchPost('create-board', body)
 }
 
-const getBoardSSR = () => {
-
-}
-
 const boardWS = new GameSocket({ patch: config.GAME_BOARD_URL })
 
 export const BoardApi = {

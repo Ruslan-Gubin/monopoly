@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./init";
 import { reducers } from "./reducers";
-import { extraReducers } from "./extraReducers";
 
-export const boardSlice = createSlice({
-  name: "board",
+export const diceSlice = createSlice({
+  name: "dice",
   initialState,
   reducers,
-  extraReducers,
 });
 

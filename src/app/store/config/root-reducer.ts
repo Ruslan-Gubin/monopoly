@@ -1,5 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { viewerReducer, selectionReducer, cellsReducer, boardReducer, playerReducer } from "@/entities";
+import { viewerReducer, selectionReducer, cellsReducer, boardReducer, playerReducer, diceReducer } from "@/entities";
 import {
   viewerFeatureReducer,
   selectionNotificationReducer,
@@ -17,6 +17,7 @@ export const rootReducer = combineReducers({
   cells: cellsReducer,
   board: boardReducer,
   player: playerReducer,
+  dice: diceReducer,
 
   // [baseApi.reducerPath]: baseApi.reducer,
 });

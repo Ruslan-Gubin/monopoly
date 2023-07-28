@@ -6,8 +6,8 @@ import { setupCanvas } from "../utils";
 import { useAnimationBoardUpdate } from "./useAnimationBoardUpdate";
 
 export const useAnimationBoard = () => {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [mouseWidth, setWidth] = useState(0);
+  const [mouseHeight, setHeight] = useState(0);
   const { cells, cornerSize, smallSize } = useCells()  
   const { size } = useBoard()
   const boardRef = useRef<HTMLCanvasElement>(null);
@@ -65,5 +65,5 @@ export const useAnimationBoard = () => {
     };
   }, [cells, size, cornerSize, smallSize, isMove, playersPosition]); 
 
-  return { animateBoard, animationRequestIdRef, boardRef, width, height }
+  return { animateBoard, animationRequestIdRef, boardRef, mouseWidth, mouseHeight }
 }

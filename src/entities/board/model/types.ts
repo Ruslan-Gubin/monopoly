@@ -28,6 +28,7 @@ export interface BoardInitState {
   error: string | null;
   gameBoardId: string | null;
   isGoGame: boolean;
+  isConnected: boolean;
 }
 
 export interface ICreateBoardBody {
