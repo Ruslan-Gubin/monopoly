@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit/dist/createAction";
-import { getPlayerPosition } from "../libs/helpers/getPlayerPosition";
-import { IPlayerUpdatePosition, PlayerInitState, PlayerModel, SetMoveValueProps } from "./types";
+import { getPlayerPosition, getTargetPosition } from "../libs";
+import { IfinishedMoveUpdatePosition, IMoveActiveProps, IPlayerUpdatePosition, PlayerInitState, PlayerModel } from "./types";
 
 export const reducers = {
 
@@ -11,17 +11,59 @@ export const reducers = {
   state.playersPosition = position
   },
 
-  setMoveValue(state: PlayerInitState, action: PayloadAction<SetMoveValueProps>) {
-    const first = action.payload.dices.first
-    const second = action.payload.dices.second
+  initAllPlayers(state: PlayerInitState, action: PayloadAction<{ players: PlayerModel[], authId: string | null }>) {
+    const { authId, players } = action.payload
+    state.players = players
 
-    state.dices = { first, second }
-    state.isMove = action.payload.isMove
-    state.target = action.payload.target
+    if (authId) {
+      const findAuthPlayer = players.find(player => player.user_id === authId)
+      if (!findAuthPlayer) return;
+      
+      state.player = findAuthPlayer
+    }
   },
 
-  initAllPlayers(state: PlayerInitState, action: PayloadAction<{ players: PlayerModel[] }>) {
-    state.players = action.payload.players
+  moveActive(state: PlayerInitState, action: PayloadAction<IMoveActiveProps>){
+    if (!action.payload.cells || !action.payload.board) return;
+    const { board, cells, diceValue } = action.payload
+
+
+    const target = getTargetPosition({
+      board,
+      cells,
+      diceValue,
+      players: state.players
+    }) 
+    if (!target) return;
+
+    state.target = { x: target.targetX, y: target.targetY, id: target.cellTargetId };
+    state.newPosition = target.newPosition;
+    state.isMove = true;
+  },
+
+  finishedMoveUpdatePosition(state: PlayerInitState, action: PayloadAction<IfinishedMoveUpdatePosition>){
+    const { cells, cellSize, player } = action.payload
+
+    const playerId = state.players.findIndex(p => p._id === player._id)
+    state.players[playerId] = player
+    const position = getPlayerPosition(cells, cellSize, state.players)
+    if (!position) return;
+    state.playersPosition = position
+  },
+
+  moveFinished(state: PlayerInitState) {
+    state.isMove = false;
+  },
+
+  updatePlayer(state: PlayerInitState, action: PayloadAction<{ player: PlayerModel }>){
+    const { player } = action.payload
+
+    const playerId = state.players.findIndex(p => p._id === player._id)
+    state.players[playerId] = player
+
+    if (player._id === state.player?._id) {
+      state.player = player
+    }
   },
 
 };

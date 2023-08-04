@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/shared";
 import { playerSlice } from "./slice";
-import { IPlayerUpdatePosition, SetMoveValueProps } from "./types";
+import { IPlayerUpdatePosition } from "./types";
 
 const select = (state: RootState) => state.player;
 export const playerAction = playerSlice.actions;
@@ -15,7 +15,7 @@ export const usePlayerAction = () => {
 
   return {
     playerUpdatePosition: ({ cells, cellSize }: IPlayerUpdatePosition) => dispatch(playerAction.playerUpdatePosition({ cells, cellSize })),
-    setMoveValue: ({ dices, isMove, target }: SetMoveValueProps) => dispatch(playerAction.setMoveValue({dices, isMove, target})),
+    moveFinished: () => dispatch(playerAction.moveFinished()),
   };
 };
 

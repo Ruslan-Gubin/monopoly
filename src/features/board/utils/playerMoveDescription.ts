@@ -18,7 +18,7 @@ const movePlayerDown = (cellRace: ICellRace, playersGame: PlayersGame, playerX: 
     }
   }
 };
-
+// застрял
 const movePlayerLeft = (cellRace: ICellRace, playersGame: PlayersGame, playerX: number, playerY: number, center: number, moveRace: MoveRaceType, activeDirection: string) => {
   if (playerY > cellRace.leftSide.topY && playerX < cellRace.leftSide.x + center && playerY < cellRace.leftSide.bottomY + center) {
     playersGame.playerMove = moveRace.left;
@@ -53,7 +53,7 @@ export const playerMoveDescription = (
   playerY: number,
   cornerSize: number,
 ) => {
-  const center = cornerSize / 6;
+  const center = cornerSize / 4; // change radius
   const speed = GAME_OPTIONS.speedPlayer;
   const { bottom, leftSide, right, top } = cellRace;
   const activeDirection = playersGame.getActiveDirection 

@@ -4,18 +4,19 @@ import styles from './PlayersCard.module.scss';
 
 interface PlayersCardProps {
   money: number;
-  img: string;
+  image: string;
+  name: string;
 }
 
-const PlayersCard = ({ money, img }: PlayersCardProps) => {
+const PlayersCard = ({ money, image, name }: PlayersCardProps) => {
 
   return (
     <div className={styles.root}>
       <picture className={styles.picture}>
-        <UserAvatar image={img} size='lg' />
+        <UserAvatar image={image} size='lg' />
       </picture>
       <div className={styles.info_container}>
-        <span className={styles.name}>Ruslan</span>
+        <span className={styles.name}>{name}</span>
         <div className={styles.price_container}>
         <span className={styles.money}>{money}</span>
         <span className={styles.total}>3000</span>

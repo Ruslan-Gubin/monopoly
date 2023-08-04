@@ -14,7 +14,7 @@ export const calculateSizeBoard = ( width: number, height: number ) => {
   const cornerCell = smallCell * 1.5;
 
   return {
-    size: { x: boardX, y: boardY, width: boardSize, height: boardSize},
+    initSize: { x: boardX, y: boardY, width: boardSize, height: boardSize},
     smallCell,
     cornerCell,
   }

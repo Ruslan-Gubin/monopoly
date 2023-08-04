@@ -79,7 +79,7 @@ export class PlayersGame extends Sprite {
   }
   
     if (this.playerActive) {
-      return {  playerX: this.playerActive.x,  playerY: this.playerActive.y, }
+      return {  playerX: this.playerActive.x,  playerY: this.playerActive.y }
     }
   }
 

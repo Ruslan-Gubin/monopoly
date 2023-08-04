@@ -1,7 +1,16 @@
+import { FC } from "react";
+import { BoardModel } from "@/entities";
 import { ButtonRG } from "@/shared";
 
+interface Props {
+  board: BoardModel
+}
 
-const UpdateProperty = () => {
+const UpdateProperty: FC<Props> = ({ board }) => {
+
+  if (board && !board.start_move) {
+    return null;
+  }
 
   const handleUpdateProperty = () => {
     console.log('Улучшение')

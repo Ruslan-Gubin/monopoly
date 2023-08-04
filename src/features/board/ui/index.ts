@@ -7,3 +7,5 @@ export * from "./buy-property/BuyProperty";
 export * from "./auction-refresh/AuctionRefresh";
 export * from "./send-offer/SendOffer";
 export * from "./update-property/UpdateProperty";
+export * from "./mortgage-property/MortgageProperty";
+export * from "./pay/Pay";

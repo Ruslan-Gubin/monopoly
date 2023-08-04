@@ -1,69 +1,61 @@
-import { useEffect } from 'react';
-import { config, Loader, PRODUCTION_API_ENDPOINT, useRouterNavigation, useScreenSize } from '@/shared';
-import { BoardModel, calculateSizeBoard, CellModel, DiceModel, PlayerModel, useBoard, useBoardAction, useCells, useCellsAction, usePlayerAction, useViewer } from '@/entities';
-import { boardSockedSend, boardSocketMessage } from '@/entities/board/model/connect-ws';
-import { GameCanvas, CenterBoard } from '@/widgets';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
+import { useCallback, useEffect } from 'react';
+import { calculateSizeBoard, getCellsPosition, useBoard, useBoardAction, useCells, useCellsAction, usePlayerAction, useViewer, getCellRace } from '@/entities';
+import {  Loader, useScreenSize } from '@/shared';
+import GameCanvas from '@/widgets/game/game-canvas/GameCanvas';
+import CenterBoard from '@/widgets/game/center-board/CenterBoard';
 
-// 64c295fc429d37f4db4c8488
+// 64c4e6d644e0c25ab2909690
 
 const GameBoardPage = () => {
-  const { query } = useRouterNavigation()
   const { cellsUpdateSize } = useCellsAction()
   const { width, height } = useScreenSize()
   const { initBoard, connectedBoard } = useBoardAction()
   const { size, loading, error } = useBoard()
-  const { isCells,cells, smallSize  } = useCells()
+  const { isCells, cells, cornerSize } = useCells()
   const { viewer } = useViewer()
   const { playerUpdatePosition } = usePlayerAction()
 
-  useEffect(() => {
-    if (!viewer || !query.id ) return;
-      connectedBoard({
-        method: "connect",
-        body: {
-          fullName: viewer.fullName,  
-          id: viewer.viewerId,
-          boardId: String(query.id),
-        },
-      });
 
-      
-    return () => { 
+  const connectWs = useCallback((method: string) => {
+    if (!viewer) return;
+    const boardId = window.location.pathname.replace(/\/game-board\//, '')
       connectedBoard({
-        method: "disconect",
+        method,
         body: {
-          fullName: viewer.fullName,
-          id: viewer.viewerId,
-          boardId: String(query.id),
-        },
-      });
-    };
-  }, [ viewer, query.id ]);
-
-  useEffect(() => {
-    if (!cells) return;
-    playerUpdatePosition({
-      cells,
-      cellSize: smallSize,
-    })
-  },[smallSize])
+        fullName: viewer.fullName,  
+        id: viewer.viewerId,
+        boardId,
+      },
+    });
+  },[])
 
   useEffect(() => { 
-    if (loading || !width || !height || !isCells) return;
+      connectWs('connect') 
+ 
+      // return () => { 
+      //   console.log('disconect')
+      //   connectWs('disconect') 
+      // };
+    }, []);
 
-    const { cornerCell, smallCell, size: initSize } = calculateSizeBoard(width, height)
+  useEffect(() => { 
+    if (!cells) return;
+    const { cornerCell, smallCell, initSize } = calculateSizeBoard(width, height) 
     
+    const updateCells = getCellsPosition({...initSize, x: 0, y: 0}, cells)
+    const raceCells = getCellRace(cornerCell, {...initSize, x: 0, y: 0})
+    
+    if (!updateCells) return;
     initBoard({ initSize })
-    cellsUpdateSize({size: {...initSize, x: 0, y: 0}, cellsSize: { cornerCell, smallCell }})
-    
-  },[width, height, isCells ])
+    cellsUpdateSize({ updateCells, cellsSize: { cornerCell, smallCell }, raceCells })
+    playerUpdatePosition({ cells: updateCells, cellSize: smallCell })
+  },[ isCells, width, height ])
 
 
-  if (loading || !isCells || !size || !query.id) {
+  if (loading || !isCells || !size ) {
     return <Loader />;
   }
-  
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -72,9 +64,7 @@ const GameBoardPage = () => {
   return (
    <>
     <GameCanvas />
-    {/* <CenterBoard 
-    sizeCenterInBoard={sizeCenterInBoard} 
-    />  */}
+    <CenterBoard size={size} cornerSize={cornerSize} /> 
     </>
   );
 };

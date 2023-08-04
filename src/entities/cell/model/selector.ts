@@ -14,7 +14,7 @@ export const useCellsAction = () => {
   const dispatch = useAppDispatch();
 
   return {
-    cellsUpdateSize: ({ size, cellsSize }: ICellsUpdateSizeProps) => dispatch(actionCells.cellsUpdateSize({ size, cellsSize })),
+    cellsUpdateSize: ({ updateCells, cellsSize, raceCells }: ICellsUpdateSizeProps) => dispatch(actionCells.cellsUpdateSize({ cellsSize, updateCells, raceCells })),
   };
 };
 

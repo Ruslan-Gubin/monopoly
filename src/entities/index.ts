@@ -5,3 +5,4 @@ export * from "./player";
 export * from "./action-card";
 export * from "./board";
 export * from "./dice";
+export * from "./property";

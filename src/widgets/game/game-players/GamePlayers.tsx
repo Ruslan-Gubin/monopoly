@@ -1,18 +1,19 @@
-import { PlayersCard } from '@/entities';
+import { PlayersCard, usePlayer } from '@/entities';
 import styles from './GamePlayers.module.scss';
 
-const mockImg = 'https://res.cloudinary.com/ds289tkqj/image/upload/v1688415759/Player/n4cyp6mxp5mg6cutf7vg.webp'
-
 const GamePlayers = () => {
+  const { players } = usePlayer()
 
   return (
     <ul className={styles.root}>
-      <PlayersCard img={mockImg} money={1500} />
-      <PlayersCard img={mockImg} money={1500} />
-      <PlayersCard img={mockImg} money={1500} />
-      <PlayersCard img={mockImg} money={1500} />
-      <PlayersCard img={mockImg} money={1500} />
-      <PlayersCard img={mockImg} money={1500} />
+      {players.map(player => 
+      <PlayersCard 
+      key={player._id} 
+      image={player.image}
+      money={player.money}
+      name={player.name} 
+      />
+        )}
     </ul>
   );
 };

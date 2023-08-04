@@ -6,16 +6,15 @@ export async function handleDisconnectBoard({
   boardId,
   playerId,
 }: HandleDisconnectBoardProps) {
-  // const body = {
-  //   fullName,
-  //   playerId,
-  //   boardId,
-  // };
 
-  // boardSocket.send({
-  //   method: "disconect",
-  //   body,
-  // });
+  boardSocket.send({
+    method: "disconect",
+    body: { 
+      fullName,
+      boardId,
+      id: playerId,
+    },
+  });
 
   boardSocket.disconectSelection();
 }

@@ -1,6 +1,7 @@
 import { actionCells } from "@/entities/cell";
 import { actionDice } from "@/entities/dice";
 import { playerAction } from "@/entities/player";
+import { actionProperty } from "@/entities/property";
 import { createAppThunk } from "@/shared";
 import { BoardApi } from "../api";
 import { handleDisconnectBoard } from "../libs";
@@ -18,7 +19,7 @@ export const connectBoard = createAppThunk("sessionSlice/connectBoard", async (v
           playerId: viewer.body.id
         }
         );
-        return { type: "disconect" }; 
+        return { type: "disconect" };
       }
 
       const socketMessage = (e: MessageEvent) => dispatch(boardSocketMessage(e));
@@ -37,9 +38,9 @@ export const connectBoard = createAppThunk("sessionSlice/connectBoard", async (v
       }
       return { type: "connect" };
     } catch (error) {
-      console.error("Failed to connect WebSocket id selection:", error);
+      console.error("Failed to connect game board WebSocket:", error);
       return rejectWithValue(
-        `Failed to connect WebSocket id selection: ${error}`
+        `Failed to connect game board WebSocket: ${error}`
       );
     }
   }
@@ -51,8 +52,8 @@ export const boardSockedSend = createAppThunk(
     try {
       BoardApi.boardWS.send(event);
     } catch (error) {
-      console.error("Failed to connect WebSocket:", error);
-      return rejectWithValue(`Failed to send message ${error}`);
+      console.error("Failed to send message game board WebSocket:", error);
+      return rejectWithValue(`Failed to send message game board WebSocket: ${error}`);
     }
   }
 );
@@ -62,103 +63,49 @@ export const boardSocketMessage = createAppThunk(
   async (e: MessageEvent, { rejectWithValue, dispatch, getState }) => {
     try {
       const messageEvent = JSON.parse(e.data);
-
-      const authId = getState().viewer.authId;
+      const { authId } = getState().viewer;
+      const { cells, smallSize } = getState().cells
+      const { board } = getState().board
 
       console.log(messageEvent)
-
+      
       switch (messageEvent.method) {
         case "connectData":
           dispatch(actionCells.getAllCells({cells: messageEvent.data.cells}));
-          dispatch(playerAction.initAllPlayers({ players: messageEvent.data.players }))
-          dispatch(boardAction.getBoardInDb({ board: messageEvent.data.board }))
+          dispatch(playerAction.initAllPlayers({ players: messageEvent.data.players, authId }))
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
           dispatch(actionDice.setDice({ dice: messageEvent.data.dice }))
+          dispatch(actionProperty.initProperty({ propertys: messageEvent.data.propertys }))
           break;
-        // case "connectedUser":
-        //   dispatch(
-        //     selectionNotificationAction.setNotification(messageEvent.title)
-        //   );
-        //   dispatch(selectionMessageAction.setMessages(messageEvent.messages));
-        //   break;
-        // case "disconectUser":
-        //   dispatch(selectionAction.disconectUpdate(messageEvent));
-        //   dispatch(
-        //     selectionNotificationAction.setNotification(messageEvent.title)
-        //   );
-        //   break;
-        // case "createSession":
-        //   dispatch(
-        //     selectionNotificationAction.setNotification(
-        //       `${messageEvent.data.players[0].fullName} создает игру`
-        //     )
-        //   );
-        //   dispatch(selectionAction.addNewSessions(messageEvent.data));
-        //   break;
-        // case "removeSession":
-        //   dispatch(
-        //     selectionNotificationAction.setNotification(
-        //       `${messageEvent.fullName} удаляет игру`
-        //     )
-        //   );
-        //   dispatch(selectionAction.removeSessionsUpdate(messageEvent));
-        //   break;
-        // case "joinSession":
-        //   dispatch(
-        //     selectionAction.joinSessionUpdate({
-        //       joinUserId: messageEvent.joinUserId,
-        //       sessionId: messageEvent.sessionId,
-        //       sessionUpdate: messageEvent.data,
-        //     })
-        //   );
-        //   break;
-        // case "uotSession":
-        //   dispatch(
-        //     selectionAction.outSessionUpdate({
-        //       outUserId: messageEvent.outUserId,
-        //       sessionId: messageEvent.sessionId,
-        //       sessionUpdate: messageEvent.data,
-        //     })
-        //   );
-        //   break;
-        // case "createMessage":
-        //   dispatch(
-        //     selectionMessageAction.addNewMessage(messageEvent.newMessage)
-        //   );
-        //   break;
-        // case "sessionStartConfirmation":
-        //   if (!authId) return;
-        //   dispatch(
-        //     selectionAction.setSelections({ sessions: messageEvent.sessions })
-        //   );
-        //   dispatch(
-        //     gameConfirmationAction.setStartConfirmation({
-        //       players: messageEvent.players,
-        //       authId,
-        //       sessionId: messageEvent.sessionId,
-        //     })
-        //   );
-        //   break;
-
-        // case "confirmParticipationGame":
-        //   dispatch(gameConfirmationAction.setConfinmPlayer(messageEvent.body));
-        //   break;
-        // case "cancelParticipationGame":
-        //   dispatch( selectionAction.setSelections({ sessions: messageEvent.sessions }));
-        //   dispatch( selectionNotificationAction.setNotification(`${messageEvent.authName} отменяет игру`));
-        //   dispatch(gameConfirmationAction.cancelConfinmPlayer({ sessionId: messageEvent.sessionId}));
-        //   break;
-        // case "createGameBoard":
-        //   dispatch(selectionNotificationAction.setNotification(messageEvent.title));
-
-        //   if (authId && messageEvent.user_id.includes(authId)) {
-        //     dispatch(boardAction.getStartBoardId(messageEvent.board_id))
-        //   }
-        //   break;
+        case "roolDice":
+          dispatch(actionDice.setDice({ dice: messageEvent.data.dice }));
+          dispatch(playerAction.moveActive({ cells, diceValue: messageEvent.data.dice.value, board }));
+          break;
+        case "finishedMove":
+          if (!cells) return;
+          dispatch(playerAction.finishedMoveUpdatePosition({ 
+            player: messageEvent.data.player,
+            cellSize: smallSize, 
+            cells, 
+          }))
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
+          break;
+        case "buyProperty":
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
+          dispatch(actionProperty.updatePropertys({ property: messageEvent.data.property, manyProperty: messageEvent.data.manyProperty }))
+          break;
+        case "pay":
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
+          break;
+       
       }
     } catch (error) {
-      console.error("Failed to get message in WebSocket selection:", error);
+      console.error("Failed to get message in WebSocket game board:", error);
       return rejectWithValue(
-        `Failed to get message in WebSocket selection: ${error}`
+        `Failed to get message in WebSocket game board: ${error}`
       );
     }
   }

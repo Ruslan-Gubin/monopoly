@@ -1,7 +1,16 @@
+import { BoardModel } from "@/entities";
 import { ButtonRG } from "@/shared";
+import { FC } from "react";
 
+interface Props {
+  board: BoardModel
+}
 
-const SendOffer = () => {
+const SendOffer: FC<Props> = ({ board }) => {
+
+  if (board && board.choosing_action) {
+    return null;
+  }
 
   const handleSendOffer = () => {
     console.log('отправить предложение')

@@ -1,6 +1,13 @@
-'use client'
-import {  useLayoutEffect, useRef, useState } from "react";
-import { BoardGame, useBoard, CellsGame, useCells, PlayersGame, usePlayer } from "@/entities";
+"use client";
+import { useLayoutEffect, useRef, useState } from "react";
+import {
+  BoardGame,
+  useBoard,
+  CellsGame,
+  useCells,
+  PlayersGame,
+  usePlayer,
+} from "@/entities";
 import { CanvasDraw, GAME_BOARD_SRC, debounce, GAME_OPTIONS } from "@/shared";
 import { setupCanvas } from "../utils";
 import { useAnimationBoardUpdate } from "./useAnimationBoardUpdate";
@@ -8,27 +15,35 @@ import { useAnimationBoardUpdate } from "./useAnimationBoardUpdate";
 export const useAnimationBoard = () => {
   const [mouseWidth, setWidth] = useState(0);
   const [mouseHeight, setHeight] = useState(0);
-  const { cells, cornerSize, smallSize } = useCells()  
-  const { size } = useBoard()
+  const { cells, cornerSize, smallSize, cellRace } = useCells();
+  const { size, board } = useBoard();
   const boardRef = useRef<HTMLCanvasElement>(null);
-  const { playersPosition, isMove } = usePlayer()
-  const { animateBoard, animationRequestIdRef } = useAnimationBoardUpdate()
-
+  const { playersPosition, isMove, target, players, newPosition, player } = usePlayer();
+  const { animateBoard, animationRequestIdRef } = useAnimationBoardUpdate({
+    size,
+    board,
+    target,
+    players,
+    cornerSize,
+    cellRace,
+    newPosition,
+    player
+  });
 
   useLayoutEffect(() => {
     if (!boardRef.current || !cells || !size) return;
     const context = setupCanvas(boardRef, size);
 
-    const drawService = new CanvasDraw(context)
+    const drawService = new CanvasDraw(context);
 
     const boardGame = new BoardGame({
       boardSize: { x: 0, y: 0, width: size.width, height: size.height },
       drawService,
-      cellsSize: {corner: cornerSize, small: smallSize},
+      cellsSize: { corner: cornerSize, small: smallSize },
       centerSrc: GAME_BOARD_SRC.center,
     });
-    
-    const cellsGame = new CellsGame({  
+
+    const cellsGame = new CellsGame({
       drawService,
       cells,
       images: GAME_BOARD_SRC.cells,
@@ -39,15 +54,19 @@ export const useAnimationBoard = () => {
       players: JSON.parse(JSON.stringify(playersPosition)),
       imageSrc: GAME_BOARD_SRC.players,
       frameHold: GAME_OPTIONS.frameHoldPlayer,
-    })
-   
-    const animateClouser = animateBoard(context, boardGame, cellsGame, playersGame)
+    });
+
+    const animateClouser = animateBoard(
+      context,
+      boardGame,
+      cellsGame,
+      playersGame
+    );
     if (animateClouser) {
       requestAnimationFrame(() => animateClouser(isMove));
     } else {
-      console.error('animateClouser is undefined');
+      console.error("animateClouser is undefined");
     }
-    
 
     const node = boardRef.current;
     const move = (e: MouseEvent) => {
@@ -60,10 +79,16 @@ export const useAnimationBoard = () => {
     return () => {
       node.removeEventListener("mousemove", mouveDebounce);
       if (animationRequestIdRef.current) {
-        cancelAnimationFrame(animationRequestIdRef.current)
+        cancelAnimationFrame(animationRequestIdRef.current);
       }
     };
-  }, [cells, size, cornerSize, smallSize, isMove, playersPosition]); 
+  }, [cells, size, cornerSize, smallSize, isMove, playersPosition]);
 
-  return { animateBoard, animationRequestIdRef, boardRef, mouseWidth, mouseHeight }
-}
+  return {
+    animateBoard,
+    animationRequestIdRef,
+    boardRef,
+    mouseWidth,
+    mouseHeight,
+  };
+};

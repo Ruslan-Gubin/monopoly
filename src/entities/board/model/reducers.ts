@@ -18,7 +18,7 @@ export const reducers = {
     state.isGoGame = false;
   },
 
-  getBoardInDb(state: BoardInitState, action: PayloadAction<{ board: BoardModel }>) {
+  updateBoard(state: BoardInitState, action: PayloadAction<{ board: BoardModel }>) {
     state.board = action.payload.board
   }
 };

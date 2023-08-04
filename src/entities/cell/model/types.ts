@@ -1,4 +1,4 @@
-import { CanvasDraw, IArbitraryFormsOptions, IImageOptions, ITextOptions, RectTypeSize } from "@/shared";
+import { CanvasDraw, IArbitraryFormsOptions, IImageOptions, ITextOptions } from "@/shared";
 import { IRectOptions } from "@/shared";
 import { ICellRace } from "../libs/helpers/getCellRace";
 
@@ -58,8 +58,9 @@ export interface CellInitState {
 }
 
 export interface ICellsUpdateSizeProps {
-  size: RectTypeSize;
+  updateCells: CellModel[];
   cellsSize: { cornerCell: number; smallCell: number };
+  raceCells: ICellRace
 }
 
 export interface IPropertyCellOptionsCache {

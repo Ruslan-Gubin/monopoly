@@ -19,6 +19,7 @@ export const persistedReducer = persistReducer(
       'board',
       'player',
       'dice',
+      'property',
     ],
   },
   rootReducer
