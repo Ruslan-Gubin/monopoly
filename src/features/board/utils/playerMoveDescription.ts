@@ -18,7 +18,7 @@ const movePlayerDown = (cellRace: ICellRace, playersGame: PlayersGame, playerX: 
     }
   }
 };
-// застрял
+
 const movePlayerLeft = (cellRace: ICellRace, playersGame: PlayersGame, playerX: number, playerY: number, center: number, moveRace: MoveRaceType, activeDirection: string) => {
   if (playerY > cellRace.leftSide.topY && playerX < cellRace.leftSide.x + center && playerY < cellRace.leftSide.bottomY + center) {
     playersGame.playerMove = moveRace.left;

@@ -12,20 +12,23 @@ const BuyProperty: FC<Props> = ({ board, player }) => {
   const { cells } = useCells()
   const { dice } = useDice()
 
-  if (!dice || !cells || board &&  board.action !== 'can buy' || player.money < board.price) {
+  if (!dice || !cells ) {
     return null;
   }
 
   const handleBuyProperty = () => {
+    const cell = cells.find(cell => cell.position === board.currentCellPosition)
+    
     boardSockedSend({
       method: 'buyProperty',
         body: {
           board_id: board._id,
           player_id: board.currentPlayerId,
-          cell: cells.find(cell => cell.position === board.currentCellPosition),
+          cell,
           ws_id: board.ws_id,
           players: board.players,
           isDouble: dice.isDouble,
+          player_color: player.color,
         }
     })
   }

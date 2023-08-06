@@ -18,7 +18,8 @@ export class PortCell extends BaseCellPlayers {
   }
 
   async drawPortCell(cell: CellModel) {
-    const ownerColor = cell.owner ? cell.owner.color : null;
+    const ownerColor = cell.ownerColor ? cell.ownerColor : null;
+    const isMortgage = cell.is_mortgage ? cell.is_mortgage : false;
     const id = cell._id
     let cellCache = this.getCellCacheId<IPortCellOptionsCache>(id)
 
@@ -30,6 +31,7 @@ export class PortCell extends BaseCellPlayers {
           direction: this.getParamsTitle(cell),
           price: this.getParamsPrice(cell),
           img: this.getParamsImage(cell),
+          mortgage: this.getParamsMortgage(cell, isMortgage),
         },
       });
     }
@@ -43,8 +45,13 @@ export class PortCell extends BaseCellPlayers {
 
     /** Название направление порта */
     this.drawTextCell(cellCache.direction);
-    /** Стоимость ячейки, или оплата владельцу */
-    this.drawTextCell(cellCache.price);
+    /** Если собственность заложена */
+    if (!cellCache.mortgage) {
+      /** Стоимость ячейки, или оплата владельцу */
+      this.drawTextCell(cellCache.price);
+    } else {
+      this.drawTextCell(cellCache.mortgage)
+    }
     /** Изображение */
     this.drawImgCell(cellCache.img);
   }
@@ -112,5 +119,21 @@ export class PortCell extends BaseCellPlayers {
     }
 
     return fontSize
+  }
+
+  private getParamsMortgage(cell: CellModel, isMorgage: boolean): ITextOptions | null {
+    if (!isMorgage) return null;
+    const step = cell.height / 4;
+  
+    return {
+      text: 'Заложено',
+      x: cell.x + cell.width / 2,
+      y: cell.y + step * 1.5,
+      textAling: this.textAling,
+      baseline: this.baseline,
+      maxWidth: cell.width - 6,
+      fontSize: this.getFontSize(cell),
+      color: 'red'
+    }
   }
 }

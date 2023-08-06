@@ -19,6 +19,7 @@ export const reducers = {
   },
 
   updateBoard(state: BoardInitState, action: PayloadAction<{ board: BoardModel }>) {
+    if (!action.payload.board) return;
     state.board = action.payload.board
   }
 };

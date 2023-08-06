@@ -27,7 +27,6 @@ export const reducers = {
     if (!action.payload.cells || !action.payload.board) return;
     const { board, cells, diceValue } = action.payload
 
-
     const target = getTargetPosition({
       board,
       cells,
@@ -35,7 +34,6 @@ export const reducers = {
       players: state.players
     }) 
     if (!target) return;
-
     state.target = { x: target.targetX, y: target.targetY, id: target.cellTargetId };
     state.newPosition = target.newPosition;
     state.isMove = true;
@@ -51,11 +49,20 @@ export const reducers = {
     state.playersPosition = position
   },
 
-  moveFinished(state: PlayerInitState) {
+  moveFinished(state: PlayerInitState, action: PayloadAction<{ x: number, y: number, color: string }>) {
+    const { color, x, y } = action.payload
+
+    state.playersPosition.forEach(player => {
+      if (player.color === color) {
+        player.x = x
+        player.y = y
+      }
+    })
     state.isMove = false;
   },
 
-  updatePlayer(state: PlayerInitState, action: PayloadAction<{ player: PlayerModel }>){
+  updatePlayer(state: PlayerInitState, action: PayloadAction<{ player: PlayerModel }>) {
+    if (!action.payload.player) return;
     const { player } = action.payload
 
     const playerId = state.players.findIndex(p => p._id === player._id)

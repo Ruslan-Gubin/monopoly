@@ -9,8 +9,8 @@ export const COLOR_CELL_VARIANT: IColorCellVariant = {
   blue: "#2d69f6",
   yellow: "#ebe00d",
   violet: "#8c07a7",
-  none: "#ffffff00",
   borderCell: "#363535",
+  none: "#ffffff00",
 };
 
 export const COLOR_CELL_PLAYER_COLOR: IColorPlayerVariant = {

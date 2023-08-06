@@ -3,7 +3,7 @@ export class Sprite {
   public framesHold: number;
   public framesElapsed: number;
   public framesMax: number = 3;
-  constructor(frameHold:number) {
+  constructor(frameHold: number) {
     this.framesCurrent = 0;
     this.framesHold = frameHold;
     this.framesElapsed = 0;

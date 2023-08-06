@@ -3,6 +3,7 @@ import { BoardGame, CellsGame, PlayersGame, useBoardAction, useCells, useDice, u
 import { playerMoveDescription } from "../utils/playerMoveDescription";
 import { checkFinishMove } from "../utils/checkFinishMove";
 import { UseAnimationBoardUpdateProps } from "../types/types";
+import { startMovePositionPlayer } from "../utils";
 
 export const useAnimationBoardUpdate = (
   props: UseAnimationBoardUpdateProps
@@ -14,8 +15,8 @@ export const useAnimationBoardUpdate = (
   const { moveFinished } = usePlayerAction()
   const { cells } = useCells()
 
-  const playerFinishedMove = () => {
-    moveFinished();
+  const playerFinishedMove = ({ x, y, color }: { x: number, y: number, color: string }) => {
+    moveFinished({ x, y, color });
 
     if (!player || !board) return;
     if (board.currentPlayerId === player._id) {
@@ -36,6 +37,7 @@ export const useAnimationBoardUpdate = (
           chanse_current: board.chanse_current,
           property_id: null,
           cell: cell ? cell : null,
+          ws_id: board.ws_id
         }
       })
     }
@@ -62,6 +64,7 @@ export const useAnimationBoardUpdate = (
 
     const currentPlayer = board.currentPlayerId;
     const playerActive = players.find((player) => player._id === currentPlayer);
+    const startMovePosition = startMovePositionPlayer(cells, playerActive?.position)
    
     const animateFrame = () => {
       animationRequestIdRef.current = requestAnimationFrame(() =>
@@ -70,8 +73,9 @@ export const useAnimationBoardUpdate = (
       clearCanvas();
       updateGameObjects();
   
-      if (isMoveActive && target && playerActive) {
-        const playerPosition = playersGame.getPosition(playerActive.color);
+      
+      if (isMoveActive && target && playerActive && startMovePosition) {
+        const playerPosition = playersGame.getPosition(playerActive.color, startMovePosition);
         if (!playerPosition || !cellRace) return;
 
         const playerX = Math.ceil(playerPosition.playerX);
@@ -85,7 +89,7 @@ export const useAnimationBoardUpdate = (
         );
 
         if (checkFinish) {
-          playerFinishedMove();
+          playerFinishedMove({ x: target.x, y: target.y, color: playerActive.color });
         }
 
         playerMoveDescription(

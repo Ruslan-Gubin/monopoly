@@ -24,7 +24,8 @@ export class UtilitiesCell extends BaseCellPlayers {
   }
 
   async drawUtilitesCell(cell: CellModel) {
-    const ownerColor = cell.owner ? cell.owner.color : null;
+    const ownerColor = cell.ownerColor ? cell.ownerColor : null;
+    const isMortgage = cell.is_mortgage ? cell.is_mortgage : false;
     const id = cell._id
     let cellCache = this.getCellCacheId<IUtilitesCellOptionsCache>(id)
 
@@ -36,6 +37,7 @@ export class UtilitiesCell extends BaseCellPlayers {
           name: this.getParamsTitle(cell),
           price: this.getParamsPrice(cell),
           img: this.getParamsImage(cell),
+          mortgage: this.getParamsMortgage(cell, isMortgage),
         },
       });
     }
@@ -49,8 +51,13 @@ export class UtilitiesCell extends BaseCellPlayers {
 
     /** Название */
     this.drawTextCell(cellCache.name);
-    /** Стоимость ячейки, или оплата владельцу */
-    this.drawTextCell(cellCache.price);
+    /** Если собственность заложена */
+    if (!cellCache.mortgage) {
+      /** Стоимость ячейки, или оплата владельцу */
+      this.drawTextCell(cellCache.price);
+    } else {
+      this.drawTextCell(cellCache.mortgage)
+    }
     /** Изображение */
     this.drawImgCell(cellCache.img);
   }
@@ -111,6 +118,23 @@ export class UtilitiesCell extends BaseCellPlayers {
       }
     }
     return fontSize
+  }
+
+  private getParamsMortgage(cell: CellModel, isMorgage: boolean): ITextOptions | null {
+    if (!isMorgage) return null;
+    const step = cell.height / 4;
+    let fontSize = cell.width > 50 ? "1.4rem" : "0.8rem";
+  
+    return {
+      text: 'Заложено',
+      x: cell.x + cell.width / 2,
+      y: cell.y + step * 1.5,
+      textAling: this.textAling,
+      baseline: this.baseline,
+      maxWidth: cell.width - 6,
+      fontSize: fontSize,
+      color: 'red'
+    }
   }
 
 }

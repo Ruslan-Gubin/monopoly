@@ -15,7 +15,7 @@ export const usePlayerAction = () => {
 
   return {
     playerUpdatePosition: ({ cells, cellSize }: IPlayerUpdatePosition) => dispatch(playerAction.playerUpdatePosition({ cells, cellSize })),
-    moveFinished: () => dispatch(playerAction.moveFinished()),
+    moveFinished: ({ x, y, color }: { x: number, y: number, color: string }) => dispatch(playerAction.moveFinished({ x, y, color })),
   };
 };
 

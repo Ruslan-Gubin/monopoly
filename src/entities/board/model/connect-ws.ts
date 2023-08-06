@@ -67,7 +67,7 @@ export const boardSocketMessage = createAppThunk(
       const { cells, smallSize } = getState().cells
       const { board } = getState().board
 
-      console.log(messageEvent)
+      // console.log(messageEvent)
       
       switch (messageEvent.method) {
         case "connectData":
@@ -79,7 +79,12 @@ export const boardSocketMessage = createAppThunk(
           break;
         case "roolDice":
           dispatch(actionDice.setDice({ dice: messageEvent.data.dice }));
-          dispatch(playerAction.moveActive({ cells, diceValue: messageEvent.data.dice.value, board }));
+          if (!messageEvent.data.boardUpdate) {
+            dispatch(playerAction.moveActive({ cells, diceValue: messageEvent.data.dice.value, board }));
+          }
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.boardUpdate }))
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.playerUpdate }))
+          
           break;
         case "finishedMove":
           if (!cells) return;
@@ -99,6 +104,18 @@ export const boardSocketMessage = createAppThunk(
         case "pay":
           dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
           dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
+          if (messageEvent.data.propertyOwner) {
+            dispatch(playerAction.updatePlayer({ player: messageEvent.data.propertyOwner }))
+          }
+          break;
+        case "updateProperty":
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
+          dispatch(actionProperty.updateProperty({ property: messageEvent.data.property }))
+          break;
+        case "mortgageProperty":
+          console.log(messageEvent)
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
+          dispatch(actionProperty.updateProperty({ property: messageEvent.data.property }))
           break;
        
       }

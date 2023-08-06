@@ -1,5 +1,6 @@
 import { BoardModel } from "@/entities/board";
 import { CellModel } from "@/entities/cell";
+import { CanvasDraw } from "@/shared";
 
 export interface PlayerModel {
   name: string;
@@ -75,4 +76,19 @@ export interface GetTargetPositionProps {
   players: PlayerModel[];
   diceValue: number;
   cells: CellModel[];
+}
+export interface IPlayerProps {
+  drawService: CanvasDraw;
+  players: PlayerCanvasType[];
+  imageSrc: string;
+  frameHold: number;
+}
+export interface IMoveParams {
+  isCenterCell: boolean,
+  isStart: boolean,
+  endPosition: { x: number, y: number }
+}
+export interface IStartMovePlayerPosition {
+  startMoveX: number, 
+  startMoveY: number
 }

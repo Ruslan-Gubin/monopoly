@@ -10,6 +10,7 @@ export interface PropertyModel {
   is_mortgage: boolean;
   position: number;
   port_count: number;
+  player_color: string;
   _id: string;
 }
 

@@ -1,19 +1,6 @@
 import { CanvasDraw, Sprite } from "@/shared";
-import { IFrames, PlayerCanvasType } from "../../model";
+import { IFrames, IPlayerProps, IStartMovePlayerPosition, PlayerCanvasType } from "../../model";
 import { playerFrames } from "../utils/playersFrame";
-
-export interface BasePlayerProps {
-  drawService: CanvasDraw;
-  players: PlayerCanvasType[];
-  imageSrc: string;
-  frameHold: number;
-}
-
-export interface IMoveParams {
-  isCenterCell: boolean,
-  isStart: boolean,
-  endPosition: { x: number, y: number }
-}
 
 export class PlayersGame extends Sprite {
   public drawService: CanvasDraw;
@@ -23,7 +10,7 @@ export class PlayersGame extends Sprite {
   private activeDirection: string;
   private framesVariant: IFrames[];
 
-  constructor({  drawService, players, imageSrc, frameHold }: BasePlayerProps) {
+  constructor({  drawService, players, imageSrc, frameHold }: IPlayerProps) {
     super(frameHold)
     this.drawService = drawService;
     this.players = players;
@@ -34,18 +21,10 @@ export class PlayersGame extends Sprite {
     this.framesVariant = []
   }
 
- private drawPlayer() {
-    for (let i = 0; i < this.players.length; i++) {
-      const player = this.players[i]
-      const playerHeight = player.width * 1.4 
-      let sourceImage = playerFrames[player.color].down[1] 
-      
-      if (this.playerActive?.color === player.color) {
-        const activeFrame = this.getFramesVariant()
-        if (activeFrame) {
-          sourceImage = activeFrame
-        }
-     }
+ private drawPlayers() {
+    for (const player of this.players) {
+      const playerHeight = this.calculatePlayerHeight(player.width); 
+      let sourceImage = this.getSourceImage(player);  
 
      this.drawService.image({
        image: this.image,
@@ -54,6 +33,25 @@ export class PlayersGame extends Sprite {
       })
     }
   }
+
+  private calculatePlayerHeight(width: number): number {
+    return width * 1.4;
+  }
+
+  private getSourceImage(player: PlayerCanvasType) {
+    if (this.playerActive?.color === player.color) {
+      const activeFrame = this.getFramesVariant();
+      if (activeFrame) {
+        return activeFrame;
+      }
+    }
+  
+    return playerFrames[player.color].down[1];
+  }
+
+  private getFramesVariant(): IFrames {
+    return this.framesVariant[this.framesCurrent];
+}
 
   set playerMove(position: { x: number, y: number }) {
     if (!this.playerActive) return;
@@ -71,10 +69,11 @@ export class PlayersGame extends Sprite {
    return this.activeDirection
   }
 
-   getPosition(color: string): { playerX: number, playerY: number } | undefined  {
+ public getPosition(color: string, startMovePosition: IStartMovePlayerPosition): { playerX: number, playerY: number } | undefined  {
     if (!this.playerActive) {
-    const player = this.players.find(player => player.color === color)
-    if (!player) return;
+      const player = this.players.find(player => player.color === color)
+      if (!player) return;
+      this.setStartMovePosition(player, startMovePosition)
     this.playerActive = player
   }
   
@@ -83,12 +82,13 @@ export class PlayersGame extends Sprite {
     }
   }
 
-  private getFramesVariant() {
-      return this.framesVariant[this.framesCurrent]
+  private setStartMovePosition(player: PlayerCanvasType, startMovePosition: IStartMovePlayerPosition) {
+    player.x = startMovePosition.startMoveX
+    player.y = startMovePosition.startMoveY
   }
 
   update() {
-    this.drawPlayer()
+    this.drawPlayers()
     if (this.playerActive) {
       this.animateFrames()
     }

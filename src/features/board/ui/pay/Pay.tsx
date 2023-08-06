@@ -1,23 +1,21 @@
 import { FC } from "react";
-import { BoardModel, useBoardAction, useDice, usePlayer } from "@/entities";
+import { BoardModel, PlayerModel, useBoardAction, useDice, useProperty } from "@/entities";
 import { ButtonRG } from "@/shared";
 
 interface Props {
   board: BoardModel
+   player: PlayerModel
 }
 
-const Pay: FC<Props> = ({ board }) => {
-  const { player } = usePlayer()
+const Pay: FC<Props> = ({ board, player }) => {
   const { dice } = useDice()
+  const { propertyes } = useProperty()
   const { boardSockedSend } = useBoardAction()
 
-  if (!board || !player || board.action !== 'need pay' || player.money < board.price) {
-    return null;
-  }
 
- 
   const handleRoollDice = () => {
-    if (!board || !player || !dice) return;
+    if (!dice) return;
+    const propertyOwnerId = propertyes.find(property => property.position === player.position)?.owner;
     boardSockedSend({
       method: 'pay',
       body: {
@@ -27,6 +25,7 @@ const Pay: FC<Props> = ({ board }) => {
         isDouble: dice.isDouble,
         players: board.players,
         player_name: player.name,
+        propertyOwnerId,
       }
     })
   }

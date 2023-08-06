@@ -10,7 +10,8 @@ export class PropertyCell extends BaseCellPlayers {
   }
 
   public drawPropertyCell(cell: CellModel, color: string, colorStars: string) {
-    const ownerColor = cell.owner ? cell.owner.color : null;
+    const ownerColor = cell.ownerColor ? cell.ownerColor : null;
+    const isMortgage = cell.is_mortgage ? cell.is_mortgage : false;
     const side = cell.direction?.includes('side')
 
     const id = cell._id
@@ -26,6 +27,7 @@ export class PropertyCell extends BaseCellPlayers {
           price: this.getParamsPrice(cell, side),
           name: this.getParamsTitle(cell, side),
           stars: this.getParamsStars(cell, side),
+          mortgage: this.getParamsMortgage(cell, side, isMortgage, color),
         },
       });
     }
@@ -44,6 +46,10 @@ export class PropertyCell extends BaseCellPlayers {
   this.drawRectCell(cellCache.bandSize)
   /** Цена собственности или оплата владельцу */
   this.drawTextCell(cellCache.price)
+  /** Если собственность заложена */
+  if (cellCache.mortgage) {
+    this.drawTextCell(cellCache.mortgage)
+  }
   /** Показываем улучшение собственности */
   const houseCount = cellCache.stars.length
 if (houseCount > 0 && houseCount < 5) {
@@ -123,6 +129,24 @@ private getParamsTitle(cell: CellModel, side: boolean | undefined): ITextOptions
     baseline: this.baseline,
     maxWidth: cell.width - 10,
     fontSize: fontSize,
+  }
+}
+
+private getParamsMortgage(cell: CellModel, side: boolean | undefined, isMorgage: boolean, color: string): ITextOptions | null {
+  if (!isMorgage) return null;
+  const bandHeight = side ? cell.width / 4 : cell.height / 4
+  const fontSize = (cell.width / 13) * 2
+  const colorText = color === '#d90b0b' ? 'white' : 'red'
+
+  return {
+    text: 'Заложено',
+    x: cell.x + (cell.width / 2),
+    y: (cell.y + bandHeight / 2),
+    textAling: this.textAling,
+    baseline: this.baseline,
+    maxWidth: cell.width - 10,
+    fontSize: `${fontSize}px`,
+    color: colorText,
   }
 }
 

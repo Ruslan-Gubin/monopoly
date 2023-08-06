@@ -1,3 +1,4 @@
+import { PropertyModel } from "@/entities/property";
 import { CanvasDraw, IArbitraryFormsOptions, IImageOptions, ITextOptions } from "@/shared";
 import { IRectOptions } from "@/shared";
 import { ICellRace } from "../libs/helpers/getCellRace";
@@ -45,8 +46,10 @@ export interface CellModel {
   y: number;
   width: number;
   height: number;
-  owner: { _id: string; color: CellOwnerColor; price: number };
+  owner: { _id: string; color: CellOwnerColor; price: number }; // todo delete
   house_count: number;
+  ownerColor?: string
+  is_mortgage?: boolean;
 }
 
 export interface CellInitState {
@@ -70,6 +73,8 @@ export interface IPropertyCellOptionsCache {
   price: ITextOptions;
   name: ITextOptions;
   stars: IArbitraryFormsOptions[];
+  mortgage: ITextOptions | null
+  
 }
 export interface ICornerCellOptionsCache {
   name: ITextOptions;
@@ -80,6 +85,7 @@ export interface IPortCellOptionsCache {
   direction: ITextOptions;
   price: ITextOptions;
   img: IImageOptions;
+  mortgage: ITextOptions | null
 }
 export interface IActionCellOptionsCache extends ICornerCellOptionsCache {
   ceilCell: IRectOptions;
@@ -88,11 +94,13 @@ export interface IActionCellOptionsCache extends ICornerCellOptionsCache {
 export interface IUtilitesCellOptionsCache extends ICornerCellOptionsCache {
   playerColor: IRectOptions;
   price: ITextOptions;
+  mortgage: ITextOptions | null
 }
 
 export interface ICellsGameProps {
   cells: CellModel[]
   drawService: CanvasDraw
+  propertyes: PropertyModel[]
   images: { 
     ship: string; 
     dice: string;

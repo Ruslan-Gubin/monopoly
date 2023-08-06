@@ -7,6 +7,7 @@ import {
   useCells,
   PlayersGame,
   usePlayer,
+  useProperty,
 } from "@/entities";
 import { CanvasDraw, GAME_BOARD_SRC, debounce, GAME_OPTIONS } from "@/shared";
 import { setupCanvas } from "../utils";
@@ -15,6 +16,7 @@ import { useAnimationBoardUpdate } from "./useAnimationBoardUpdate";
 export const useAnimationBoard = () => {
   const [mouseWidth, setWidth] = useState(0);
   const [mouseHeight, setHeight] = useState(0);
+  const { propertyes } = useProperty()
   const { cells, cornerSize, smallSize, cellRace } = useCells();
   const { size, board } = useBoard();
   const boardRef = useRef<HTMLCanvasElement>(null);
@@ -45,7 +47,8 @@ export const useAnimationBoard = () => {
 
     const cellsGame = new CellsGame({
       drawService,
-      cells,
+      cells: JSON.parse(JSON.stringify(cells)),
+      propertyes: JSON.parse(JSON.stringify(propertyes)),
       images: GAME_BOARD_SRC.cells,
     });
 
@@ -82,7 +85,7 @@ export const useAnimationBoard = () => {
         cancelAnimationFrame(animationRequestIdRef.current);
       }
     };
-  }, [cells, size, cornerSize, smallSize, isMove, playersPosition]);
+  }, [cells, size, cornerSize, smallSize, isMove, playersPosition, propertyes]);
 
   return {
     animateBoard,

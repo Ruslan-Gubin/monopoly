@@ -21,4 +21,14 @@ export const reducers = {
     }
   },
 
+  updateProperty(state: PropertyInitState, action: PayloadAction<{ property: PropertyModel }>) {
+    if (!action.payload.property) return;
+    const { property } = action.payload
+
+    const propertyIndex = state.propertyes.findIndex(elem => elem._id === property._id)
+    state.propertyes[propertyIndex] = property
+  },
+
+
+
 };

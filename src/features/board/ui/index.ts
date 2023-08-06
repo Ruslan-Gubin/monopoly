@@ -9,3 +9,4 @@ export * from "./send-offer/SendOffer";
 export * from "./update-property/UpdateProperty";
 export * from "./mortgage-property/MortgageProperty";
 export * from "./pay/Pay";
+export * from "./buy-back-property/BuyBackProperty";
