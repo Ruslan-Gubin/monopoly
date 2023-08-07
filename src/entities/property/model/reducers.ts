@@ -9,6 +9,7 @@ export const reducers = {
   },
 
   updatePropertys(state: PropertyInitState, action: PayloadAction<{ property: PropertyModel, manyProperty: PropertyModel[] }>) {
+    if (!action.payload.property || !action.payload.manyProperty) return;
     const { property, manyProperty } = action.payload
 
     state.propertyes = [...state.propertyes, property]

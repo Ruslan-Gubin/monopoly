@@ -1,11 +1,8 @@
-import { actionCells } from "@/entities/cell";
-import { actionDice } from "@/entities/dice";
-import { playerAction } from "@/entities/player";
-import { actionProperty } from "@/entities/property";
-import { createAppThunk } from "@/shared";
 import { BoardApi } from "../api";
-import { handleDisconnectBoard } from "../libs";
+import { auctionAction, actionCells, actionDice, playerAction, actionProperty } from "@/entities";
+import { createAppThunk } from "@/shared";
 import { boardAction } from "./selector";
+import { handleDisconnectBoard } from "../libs";
 import { IConnectBoard } from "./types";
 
 
@@ -76,6 +73,7 @@ export const boardSocketMessage = createAppThunk(
           dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
           dispatch(actionDice.setDice({ dice: messageEvent.data.dice }))
           dispatch(actionProperty.initProperty({ propertys: messageEvent.data.propertys }))
+          dispatch(auctionAction.updateAuction({ auction: messageEvent.data.auction }))
           break;
         case "roolDice":
           dispatch(actionDice.setDice({ dice: messageEvent.data.dice }));
@@ -113,9 +111,18 @@ export const boardSocketMessage = createAppThunk(
           dispatch(actionProperty.updateProperty({ property: messageEvent.data.property }))
           break;
         case "mortgageProperty":
-          console.log(messageEvent)
           dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
           dispatch(actionProperty.updateProperty({ property: messageEvent.data.property }))
+          break;
+        case "auctionRefresh":
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
+          dispatch(auctionAction.updateAuction({ auction: messageEvent.data.auction }))
+          break;
+        case "auctionAction":
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
+          dispatch(auctionAction.updateAuction({ auction: messageEvent.data.auction }))
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
+          dispatch(actionProperty.updatePropertys({ property: messageEvent.data.property, manyProperty: messageEvent.data.manyProperty }))
           break;
        
       }

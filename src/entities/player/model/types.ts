@@ -5,13 +5,10 @@ import { CanvasDraw } from "@/shared";
 export interface PlayerModel {
   name: string;
   position: number;
-  previous_position: number;
   is_active: boolean;
   money: number;
-  properties: string[];
   in_jail: boolean;
   current_jail: number;
-  getOutOfJailCards: number;
   board_id: string;
   color: string;
   _id: string;

@@ -6,3 +6,4 @@ export * from "./action-card";
 export * from "./board";
 export * from "./dice";
 export * from "./property";
+export * from "./auction";

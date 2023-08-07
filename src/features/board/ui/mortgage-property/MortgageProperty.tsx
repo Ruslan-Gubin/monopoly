@@ -1,5 +1,5 @@
 import { FC, useEffect, useMemo, useState } from "react";
-import { BoardModel, PlayerModel, useBoardAction, useCells, usePlayer, useProperty } from "@/entities";
+import { BoardModel, PlayerModel, useBoardAction, useCells, useProperty } from "@/entities";
 import { ButtonRG, ModalRG } from "@/shared";
 import { IPropertyUpdateObj } from "../update-property/UpdateProperty";
 import { checkGameOver } from "../../utils";
@@ -42,6 +42,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
         body: {
           ws_id: board.ws_id,
           player_id: player._id,
+          player_name: player.name,
         }
       })
   }, [])
