@@ -8,7 +8,7 @@ interface Props {
 
 const OfferDeal: FC<Props> = ({ board }) => {
 
-  if (board && !board.start_move) {
+  if (board.action !== 'start move') {
     return null;
   }
 

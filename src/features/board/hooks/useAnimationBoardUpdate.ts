@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { BoardGame, CellsGame, PlayersGame, useBoardAction, useCells, useDice, usePlayerAction } from "@/entities";
+import { BoardGame, CellsGame, PlayersGame, useBoardAction, useCells, useDice, usePlayerAction, useProperty } from "@/entities";
 import { playerMoveDescription } from "../utils/playerMoveDescription";
 import { checkFinishMove } from "../utils/checkFinishMove";
 import { UseAnimationBoardUpdateProps } from "../types/types";
@@ -14,30 +14,32 @@ export const useAnimationBoardUpdate = (
   const { boardSockedSend } = useBoardAction()
   const { moveFinished } = usePlayerAction()
   const { cells } = useCells()
+  const { propertyes } = useProperty()
 
   const playerFinishedMove = ({ x, y, color }: { x: number, y: number, color: string }) => {
     moveFinished({ x, y, color });
 
-    if (!player || !board) return;
+    if (!player || !board || !cells) return;
     if (board.currentPlayerId === player._id) {
-     const cell = cells?.find(cell => cell.position === newPosition)
+      const cell = cells.find(cell => cell.position === newPosition)
+      if (!cell) return;
+      const property = propertyes.find(elem => elem.cell_id === cell._id)
+
       boardSockedSend({
         method: 'finishedMove',
         body: {
+          cell_rent: cell.rent,
+          cell_price: cell.price,
+          cell_name: cell.name,
           player_id: player._id,
-          player_name: player.name,
           board_id: player.board_id,
           previous_position: player.position,
-          player_money: player.money,
           isDouble: dice?.isDouble,
           newPosition,
           cell_id: target.id,
-          players: board.players,
-          lottery_current: board.lottery_current,
-          chanse_current: board.chanse_current,
-          property_id: null,
-          cell: cell ? cell : null,
-          ws_id: board.ws_id
+          property_id: property ? property._id : null,
+          ws_id: board.ws_id,
+          cell_type: cell.type,
         }
       })
     }

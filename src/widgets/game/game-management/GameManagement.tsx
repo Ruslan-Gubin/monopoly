@@ -32,7 +32,9 @@ const GameManagement = () => {
       <Pay board={board} player={player} />
       }
 
+      {board.action === 'start move' && playerActive &&
       <OfferDeal  board={board} />
+      }
 
       {board.action === 'can buy' && player.money >= board.price && playerActive &&
       <BuyProperty  board={board} player={player} />
@@ -41,11 +43,11 @@ const GameManagement = () => {
       <AuctionRefresh  board={board} />
       }
 
-      {board.action === 'auction' && auctionActive &&
+      {board.action === 'auction' && auctionActive && 
       <AuctionAction board={board} />
       }
 
-      <SendOffer  board={board} />
+      {/* <SendOffer  board={board} /> */}
       {board.action === 'need pay'  &&  player.money < board.price && playerActive &&
       <MortgageProperty board={board} player={player} />
       }

@@ -5,8 +5,8 @@ export interface AuctionModel {
   players: string[];
   /** Лидер */
   last_player_bet: string;
-  /** Активный */
-  is_active: string;
+  /** ID ячейки */
+  cell_id: string;
   /** ID */
   _id: string;
 }

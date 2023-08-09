@@ -24,6 +24,7 @@ const ThrowDice: FC<Props> = ({ board, player }) => {
         in_jail: player.in_jail,
         player_id: board.currentPlayerId,
         players: board.players,
+        current_jail: player.current_jail,
       }
     })
   }

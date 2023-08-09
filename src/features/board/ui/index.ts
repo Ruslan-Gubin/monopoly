@@ -11,3 +11,4 @@ export * from "./mortgage-property/MortgageProperty";
 export * from "./pay/Pay";
 export * from "./buy-back-property/BuyBackProperty";
 export * from "./auction-action/AuctionAction";
+export * from "./game-over/GameOver";

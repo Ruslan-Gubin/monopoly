@@ -15,7 +15,7 @@ const AuctionRefresh: FC<Props> = ({ board }) => {
 
   
     const handleAuctionRefresh = () => {  
-      const currentCell = cells?.find(cell => cell._id === board.currentCellId)
+      const currentCell = cells?.find(cell => cell.position === player?.position)
       if (!currentCell || !auction || !player) {
         console.error('Failed find current cell to action refresh');
         return;
@@ -28,6 +28,7 @@ const AuctionRefresh: FC<Props> = ({ board }) => {
             cell_name: currentCell.name,
             player_name: player.name,
             property_price: currentCell.price,
+            cell_id: currentCell._id,
             board_id: board._id,
             players: board.players.filter(otherPlayer => otherPlayer !== player?._id),
             auction_id: auction._id,

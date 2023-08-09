@@ -41,7 +41,8 @@ export const reducers = {
 
   finishedMoveUpdatePosition(state: PlayerInitState, action: PayloadAction<IfinishedMoveUpdatePosition>){
     const { cells, cellSize, player } = action.payload
-
+    
+    state.isMove = false
     const playerId = state.players.findIndex(p => p._id === player._id)
     state.players[playerId] = player
     const position = getPlayerPosition(cells, cellSize, state.players)
@@ -65,8 +66,19 @@ export const reducers = {
     if (!action.payload.player) return;
     const { player } = action.payload
 
-    const playerId = state.players.findIndex(p => p._id === player._id)
-    state.players[playerId] = player
+    const playerId = state.players.findIndex(p => p._id === player._id) 
+    state.players[playerId] = player 
+
+    if (player._id === state.player?._id) {
+      state.player = player
+    }
+  },
+
+  overPlayer(state: PlayerInitState, action: PayloadAction<{ player: PlayerModel }>) {
+    if (!action.payload.player) return;
+    const { player } = action.payload
+
+    state.playersPosition = state.playersPosition.filter(elem => elem.color !== player.color)
 
     if (player._id === state.player?._id) {
       state.player = player

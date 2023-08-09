@@ -3,9 +3,10 @@ import { GameNotification } from "../game-notification/GameNotification";
 import { GamePlayers } from "../game-players/GamePlayers";
 import { GameManagement } from "../game-management/GameManagement";
 import { GameMessage } from "../send-message/GameMessage";
-import { ISize } from "@/entities";
+import { ISize, useBoard } from "@/entities";
 
 import styles from "./CenterBoard.module.scss";
+import { GameOver } from "@/features";
 
 interface CenterBoardProps {
   size: ISize;
@@ -13,6 +14,7 @@ interface CenterBoardProps {
 }
 
 const CenterBoard: FC<CenterBoardProps> = ({ cornerSize, size }) => {
+  const { board } = useBoard()
 
   const centerCoordinateSize = useMemo(() => {
     return {
@@ -29,12 +31,18 @@ const CenterBoard: FC<CenterBoardProps> = ({ cornerSize, size }) => {
     style={centerCoordinateSize} 
     className={styles.root}
     >
-      <div className={styles.left_side}>
-      <GameNotification />
-      <GameManagement />
-      <GameMessage />
-      </div>
-      <GamePlayers />
+      {board && board.action !== 'end game' ?
+      <>
+    <div className={styles.left_side}>
+    <GameNotification />
+    <GameManagement />
+    <GameMessage />
+    </div>
+    <GamePlayers />
+      </>
+    :
+      <GameOver />
+    }
     </section>
   );
 };

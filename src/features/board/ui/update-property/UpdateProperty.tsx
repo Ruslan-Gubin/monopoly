@@ -17,7 +17,6 @@ export interface IPropertyUpdateObj {
 }
 
 const UpdateProperty: FC<Props> = ({ board, player }) => {
-
   const { propertyes } = useProperty()
   const { cells } = useCells()
   const [ update, setUpdate ] = useState<boolean>(true)

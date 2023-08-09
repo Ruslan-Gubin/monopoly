@@ -8,7 +8,7 @@ interface Props {
 
 const SendOffer: FC<Props> = ({ board }) => {
 
-  if (board && board.choosing_action) {
+  if (board.action !== 'start move') {
     return null;
   }
 

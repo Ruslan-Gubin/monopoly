@@ -77,12 +77,11 @@ export const boardSocketMessage = createAppThunk(
           break;
         case "roolDice":
           dispatch(actionDice.setDice({ dice: messageEvent.data.dice }));
-          if (!messageEvent.data.boardUpdate) {
+          if (!messageEvent.data.board) {  
             dispatch(playerAction.moveActive({ cells, diceValue: messageEvent.data.dice.value, board }));
           }
-          dispatch(boardAction.updateBoard({ board: messageEvent.data.boardUpdate }))
-          dispatch(playerAction.updatePlayer({ player: messageEvent.data.playerUpdate }))
-          
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
+          dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
           break;
         case "finishedMove":
           if (!cells) return;
@@ -123,6 +122,11 @@ export const boardSocketMessage = createAppThunk(
           dispatch(auctionAction.updateAuction({ auction: messageEvent.data.auction }))
           dispatch(playerAction.updatePlayer({ player: messageEvent.data.player }))
           dispatch(actionProperty.updatePropertys({ property: messageEvent.data.property, manyProperty: messageEvent.data.manyProperty }))
+          break;
+        case "playerGameOver":
+          dispatch(boardAction.updateBoard({ board: messageEvent.data.board }))
+          dispatch(playerAction.overPlayer({ player: messageEvent.data.player }))
+          dispatch(actionProperty.overPropertys({ owner_id: messageEvent.data.player._id }))
           break;
        
       }

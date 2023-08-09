@@ -24,12 +24,17 @@ export const reducers = {
 
   updateProperty(state: PropertyInitState, action: PayloadAction<{ property: PropertyModel }>) {
     if (!action.payload.property) return;
-    const { property } = action.payload
+    const { property } = action.payload;
 
-    const propertyIndex = state.propertyes.findIndex(elem => elem._id === property._id)
-    state.propertyes[propertyIndex] = property
+    const propertyIndex = state.propertyes.findIndex(elem => elem._id === property._id);
+    state.propertyes[propertyIndex] = property;
   },
 
+  overPropertys(state: PropertyInitState, action: PayloadAction<{ owner_id: string }>) {
+    if (!action.payload.owner_id) return;
+    const { owner_id } = action.payload;
 
+    state.propertyes = state.propertyes.filter(property => property.owner !== owner_id);
+  },
 
 };

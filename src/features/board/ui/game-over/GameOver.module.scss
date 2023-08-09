@@ -1,0 +1,29 @@
+.root {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .player {
+    background-color: rgb(249, 247, 247);
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.436);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 70%;
+    max-width: 70%;
+    max-height: 70%;
+    
+  
+  .winner {
+    font-size: 2svh;
+    color: rgb(79, 74, 74);
+    font-weight: 700;
+  }
+}
+
+}

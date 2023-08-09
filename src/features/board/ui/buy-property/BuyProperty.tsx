@@ -17,7 +17,7 @@ const BuyProperty: FC<Props> = ({ board, player }) => {
   }
 
   const handleBuyProperty = () => {
-    const cell = cells.find(cell => cell.position === board.currentCellPosition)
+    const cell = cells.find(cell => cell.position === player.position)
     
     boardSockedSend({
       method: 'buyProperty',

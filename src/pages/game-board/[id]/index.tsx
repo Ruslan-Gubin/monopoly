@@ -4,13 +4,12 @@ import {  Loader, useScreenSize } from '@/shared';
 import GameCanvas from '@/widgets/game/game-canvas/GameCanvas';
 import CenterBoard from '@/widgets/game/center-board/CenterBoard';
 
-// 64c4e6d644e0c25ab2909690
 
 const GameBoardPage = () => {
   const { cellsUpdateSize } = useCellsAction()
   const { width, height } = useScreenSize()
   const { initBoard, connectedBoard } = useBoardAction()
-  const { size, loading, error } = useBoard()
+  const { size, loading, error, board } = useBoard()
   const { isCells, cells, cornerSize } = useCells()
   const { viewer } = useViewer()
   const { playerUpdatePosition } = usePlayerAction()
@@ -32,10 +31,9 @@ const GameBoardPage = () => {
   useEffect(() => { 
       connectWs('connect') 
  
-      // return () => { 
-      //   console.log('disconect')
-      //   connectWs('disconect') 
-      // };
+      return () => { 
+        connectWs('disconect') 
+      };
     }, []);
 
   useEffect(() => { 

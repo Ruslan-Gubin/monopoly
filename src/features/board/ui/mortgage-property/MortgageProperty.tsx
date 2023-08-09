@@ -17,7 +17,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
   const { boardSockedSend } = useBoardAction()
   const [modal, setModal] = useState(false)
   const [propertyActive, setPropertyActive] = useState<IPropertyUpdateObj | null>(null)
-
+  
 
   const updateList = useMemo(() => {
     return propertyes.reduce((acc: IPropertyUpdateObj[], property) => {
@@ -43,6 +43,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
           ws_id: board.ws_id,
           player_id: player._id,
           player_name: player.name,
+          board_id: board._id,
         }
       })
   }, [])

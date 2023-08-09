@@ -16,7 +16,7 @@ const AuctionAction: FC<Props> = ({ board }) => {
 
   
     const handleAuctionAction = (action: boolean) => {  
-      const currentCell = cells?.find(cell => cell._id === board.currentCellId)
+      const currentCell = cells?.find(cell => cell._id === auction?.cell_id)
       if (!currentCell || !auction || !player) {
         console.error('Failed find current cell to action refresh');
         return;
@@ -47,13 +47,15 @@ const AuctionAction: FC<Props> = ({ board }) => {
 
   return (
     <>
+    {player && auction && player?.money >= auction?.price &&
     <ButtonRG  
-      handleClick={() => handleAuctionAction(true)} 
-      color="success" 
-      type="button" 
-      >
+    handleClick={() => handleAuctionAction(true)} 
+    color="success" 
+    type="button" 
+    >
       {upAuctionText}
      </ButtonRG>   
+      }
     <ButtonRG  
       handleClick={() => handleAuctionAction(false)} 
       color="success" 
