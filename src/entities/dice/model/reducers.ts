@@ -6,5 +6,9 @@ export const reducers = {
   setDice(state: DiceInitState, action: PayloadAction<{dice: DiceModel}>) {
     state.dice = action.payload.dice
   },
+  
+  resetDice(state: DiceInitState) {
+    state.dice = null;
+  }
 
 };

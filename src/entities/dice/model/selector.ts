@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/shared";
+import { useAppSelector } from "@/shared";
 import { diceSlice } from "./slice";
 
 const select = (state: RootState) => state.dice;
@@ -9,11 +9,5 @@ export const useDice = () => {
   return useAppSelector(select);
 };
 
-// export const useDiceAction = () => {
-//   const dispatch = useAppDispatch();
 
-//   return {
-    
-//   };
-// };
 

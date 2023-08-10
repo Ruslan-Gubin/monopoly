@@ -85,4 +85,13 @@ export const reducers = {
     }
   },
 
+  resetPlayer(state: PlayerInitState) {
+    state.isMove = false;
+    state.newPosition = 0;
+    state.player = null;
+    state.players = [];
+    state.playersPosition = [];
+    state.target = { x: 0, y: 0, id: "" };
+  },
+
 };

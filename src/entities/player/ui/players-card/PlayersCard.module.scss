@@ -1,33 +1,39 @@
 %field {
   display: flex;
-  padding: 5px 20px;
+  padding: 3px 10px;
+  padding-left: 20px;
   background-image: linear-gradient(to top, (rgb(88, 86, 86), rgb(60, 78, 50)));
   color: white;
-  font-size: 1.3rem;
+  font-size: 1.7lvh;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   box-shadow: 3px 3px 5px 2px white;
   font-weight: 600;
   text-shadow: 1px 1px 4px black;
-  @media (max-height: 800px) {
-    font-size: 1rem;
-    padding: 2px 20px;
+  @media (max-height: 640px) {
+    font-size: 1.5lvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 10px;
   }
 }
 
 .root {
   padding: 10px;
+  padding-bottom: 13px;
+  padding-top: 3px;
   border-radius: 5px;
   background-image: linear-gradient(
     to left,
     (rgb(217, 212, 212), rgb(255, 255, 255))
   );
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-around;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.47);
   height: 15%;
-
+  position: relative;
   .picture {
     padding: 3px;
     border: 1px solid rgba(255, 255, 255, 0.221);
@@ -38,42 +44,51 @@
       (rgb(163, 161, 161), rgb(255, 255, 255))
     );
     margin-right: 10px;
+    width: 35%;
+    @media (max-height: 550px) {
+      display: none;
+    }
   }
 
   .info_container {
+    width: 50%;
+
+    @media (max-height: 550px) {
+      display: flex;
+      justify-content: center;
+    }
+
     .name {
       @extend %field;
+      padding-left: 10px;
     }
-    .price_container {
-      display: flex;
-      .money {
-        @extend %field;
-        flex: 1;
-        position: relative;
-        &::before {
-          content: "$";
-          position: absolute;
-          left: 7px;
-          color: rgb(255, 225, 0);
-        }
+
+    .money {
+      @extend %field;
+      position: relative;
+      &::before {
+        content: "$";
+        position: absolute;
+        left: 7px;
+        color: rgb(255, 225, 0);
       }
-      .total {
-        @extend %field;
-        flex: 1;
-        position: relative;
-        &::before {
-          content: "#";
-          position: absolute;
-          left: 5px;
-          color: rgb(255, 225, 0);
-        }
+    }
+
+    .total {
+      @extend %field;
+      position: relative;
+      &::before {
+        content: "#";
+        position: absolute;
+        left: 5px;
+        color: rgb(255, 225, 0);
       }
     }
   }
   .process_container {
-    margin-top: 4px;
-    @media (max-height: 650px) {
-      margin-top: 0px;
-    }
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
   }
 }

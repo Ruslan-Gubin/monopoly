@@ -32,7 +32,7 @@ export const useAnimationBoardUpdate = (
           cell_price: cell.price,
           cell_name: cell.name,
           player_id: player._id,
-          board_id: player.board_id,
+          board_id: board._id,
           previous_position: player.position,
           isDouble: dice?.isDouble,
           newPosition,

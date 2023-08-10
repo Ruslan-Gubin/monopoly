@@ -8,7 +8,7 @@ const GameOver = () => {
   const { board } = useBoard()
   const { players, player } = usePlayer()
   const { navigate } = useRouterNavigation()
-  console.log(board?.players[0], player?._id)
+
 
   const handleRemoveGame = () => {
     
@@ -32,12 +32,13 @@ const GameOver = () => {
 
   return (
     <div className={styles.root}>
-    <div className={styles.player}>
       {winnerPlayer && 
+    <div className={styles.player}>
+      
     <UserAvatar image={winnerPlayer.image} title='победитель' size='lg' />
-      }
-    <h1 className={styles.winner}>Победитель {winnerPlayer?.name} </h1>
+    <h1 className={styles.winner}>Победитель {winnerPlayer.name} </h1>
     </div>
+      }
       <ButtonRG
       handleClick={handleRemoveGame} 
       color="success" 

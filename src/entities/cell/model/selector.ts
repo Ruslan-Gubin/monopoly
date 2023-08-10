@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/shared";
 import { cellsSlice } from "./slice";
-import {  ICellsUpdateSizeProps } from "./types";
+import { ICellsUpdateSizeProps } from "./types";
 
 const select = (state: RootState) => state.cells;
-export const actionCells = cellsSlice.actions;
+export const cellAction = cellsSlice.actions;
 export const cellsReducer = cellsSlice.reducer;
 
 export const useCells = () => {
@@ -14,7 +14,13 @@ export const useCellsAction = () => {
   const dispatch = useAppDispatch();
 
   return {
-    cellsUpdateSize: ({ updateCells, cellsSize, raceCells }: ICellsUpdateSizeProps) => dispatch(actionCells.cellsUpdateSize({ cellsSize, updateCells, raceCells })),
+    cellsUpdateSize: ({
+      updateCells,
+      cellsSize,
+      raceCells,
+    }: ICellsUpdateSizeProps) =>
+      dispatch(
+        cellAction.cellsUpdateSize({ cellsSize, updateCells, raceCells })
+      ),
   };
 };
-

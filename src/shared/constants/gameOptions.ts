@@ -1,4 +1,4 @@
 export const GAME_OPTIONS = {
-  speedPlayer: 10,
-  frameHoldPlayer: 10,
+  speedPlayer: 2,
+  frameHoldPlayer: 7,
 }

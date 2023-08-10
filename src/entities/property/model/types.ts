@@ -6,7 +6,6 @@ export interface PropertyModel {
   is_sindicate: boolean;
   house_count: number;
   mortgage_price: number;
-  buy_back: number;
   is_mortgage: boolean;
   position: number;
   port_count: number;

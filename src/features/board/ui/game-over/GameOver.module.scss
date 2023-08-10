@@ -14,16 +14,12 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    width: 70%;
-    max-width: 70%;
-    max-height: 70%;
-    
-  
-  .winner {
-    font-size: 2svh;
-    color: rgb(79, 74, 74);
-    font-weight: 700;
-  }
-}
+    width: 50%;
 
+    .winner {
+      font-size: 2svh;
+      color: rgb(79, 74, 74);
+      font-weight: 700;
+    }
+  }
 }

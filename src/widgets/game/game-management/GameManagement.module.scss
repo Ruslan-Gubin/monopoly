@@ -1,5 +1,13 @@
 .root {
+ margin-top: 5px;
  display: flex;
- justify-content: space-around;
+ flex-direction: column;
+ font-size: 2lvh;
+
+ 
+ button {
+   margin: 3px 5px;
+ }
+
  
 }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BoardModel, PlayerModel, useBoardAction, useCells, useDice } from "@/entities";
 import { ButtonRG } from "@/shared";
 
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const BuyProperty: FC<Props> = ({ board, player }) => {
+  const [active, setActive] = useState(false)
   const { boardSockedSend } = useBoardAction()
   const { cells } = useCells()
   const { dice } = useDice()
@@ -31,10 +32,12 @@ const BuyProperty: FC<Props> = ({ board, player }) => {
           player_color: player.color,
         }
     })
+    setActive(true)
   }
 
   return (
-    <ButtonRG  
+    <ButtonRG
+      disabled={active}
       handleClick={handleBuyProperty} 
       color="success" 
       type="button" 

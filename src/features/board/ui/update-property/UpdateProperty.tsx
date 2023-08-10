@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from "react";
-import { BoardModel, PlayerModel, useBoardAction, useCells, usePlayer, useProperty } from "@/entities";
+import { BoardModel, PlayerModel, useBoardAction, useCells, useProperty } from "@/entities";
 import { ButtonRG, ModalRG } from "@/shared";
 
 import styles from './UpdateProperty.module.scss';
@@ -35,7 +35,7 @@ const UpdateProperty: FC<Props> = ({ board, player }) => {
       setPropertyActive(acc[0])
       return acc
     }, []).sort((a, b) => a.position - b.position)
-  }, [cells, propertyes])
+  }, [cells, propertyes, player])
 
   if (board &&  updateList.length === 0 || !update ) {
     return null;

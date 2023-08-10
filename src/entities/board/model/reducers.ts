@@ -21,5 +21,15 @@ export const reducers = {
   updateBoard(state: BoardInitState, action: PayloadAction<{ board: BoardModel }>) {
     if (!action.payload.board) return;
     state.board = action.payload.board
+  },
+
+  resetBoard(state: BoardInitState) {
+    state.board = null;
+    state.error = null;
+    state.gameBoardId = null;
+    state.isConnected = false;
+    state.isGoGame = false;
+    state.loading = false;
+    state.size = null;
   }
 };

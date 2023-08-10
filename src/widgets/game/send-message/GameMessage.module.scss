@@ -1,15 +1,33 @@
 .root {
   display: flex;
   align-items: center;
+  width: 100%;
+  position: relative;
+  border-radius: 10px;
+  padding: 10px;
   .input {
     padding: 10px;
     border-radius: 15px;
     border: 2px solid rgba(92, 89, 89, 0.05);
     width: 90%;
-    background-image: linear-gradient(to bottom, (rgb(242, 250, 194), rgb(255, 255, 231)));
+    background-image: linear-gradient(to bottom, (rgb(242, 250, 194), rgb(249, 249, 200)));
     color: rgb(52, 49, 49);
     font-weight: 600;
     font-size: 1.1rem;
-    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.407);
+    padding-right: 25px;
   }
+  .cancel {
+    font-size: 1.4rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(90, 86, 86);
+    position: absolute;
+    top: 19px;
+    right: 60px;
+  }
+}
+
+.active {
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.407);
+  background-color: rgb(242, 250, 194);
 }

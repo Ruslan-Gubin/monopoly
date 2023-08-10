@@ -9,7 +9,6 @@ export interface PlayerModel {
   money: number;
   in_jail: boolean;
   current_jail: number;
-  board_id: string;
   color: string;
   _id: string;
   image: string;

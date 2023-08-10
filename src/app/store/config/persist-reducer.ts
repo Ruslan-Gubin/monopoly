@@ -21,6 +21,7 @@ export const persistedReducer = persistReducer(
       'dice',
       'property',
       'auction',
+      'gameNotification',
     ],
   },
   rootReducer

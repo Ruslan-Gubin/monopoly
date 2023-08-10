@@ -37,4 +37,8 @@ export const reducers = {
     state.propertyes = state.propertyes.filter(property => property.owner !== owner_id);
   },
 
+  resetPropertys(state: PropertyInitState) {
+    state.propertyes = [];
+  },
+
 };

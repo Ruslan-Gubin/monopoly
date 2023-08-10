@@ -8,7 +8,7 @@ export const reducers = {
     state.auction = action.payload.auction
   },
 
-  cancelAuction(state: AuctionInitState) {
+  resetAuction(state: AuctionInitState) {
     state.auction = null;
   },
 

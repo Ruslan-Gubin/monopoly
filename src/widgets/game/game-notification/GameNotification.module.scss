@@ -1,15 +1,15 @@
-
-
 .root {
   background-color: rgb(158, 156, 156);
   background-image: linear-gradient(
     to bottom,
-    (rgba(0, 0, 0, 0.13),
-     rgb(253, 253, 253),
+    (
+      rgba(0, 0, 0, 0.13),
+      rgb(253, 253, 253),
       rgb(255, 255, 255),
       rgb(255, 255, 255),
       rgb(255, 255, 255),
-      rgba(0, 0, 0, 0.146),)
+      rgba(0, 0, 0, 0.146)
+    )
   );
   height: 60%;
   display: flex;
@@ -45,6 +45,7 @@
       margin-bottom: 10px;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-size: 2lvh;
     }
   }
 }

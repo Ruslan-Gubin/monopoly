@@ -30,7 +30,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
       setPropertyActive(acc[0])
       return acc
     }, []).sort((a, b) => a.position - b.position)
-  }, [cells, propertyes])
+  }, [cells, propertyes, player])
 
   const checkOver =  checkGameOver(updateList, player, board)
 
@@ -46,7 +46,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
           board_id: board._id,
         }
       })
-  }, [])
+  }, [board, checkOver, player])
   
   if (checkOver || updateList.length === 0) {
     return null;

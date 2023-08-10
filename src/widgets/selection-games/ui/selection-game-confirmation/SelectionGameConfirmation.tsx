@@ -59,7 +59,7 @@ const SelectionGameConfirmation = () => {
      active={isModalActive}
      handleClose={() => cancelParticipationGame({name: viewer?.fullName})}
      >
-      <TimerDecreasing  duration={6} endCallback={handleCancelTimeParticipation} />
+      <TimerDecreasing  duration={30} endCallback={handleCancelTimeParticipation} />
       <ConfirmSelectedColor checkIsActive={checkIsActive} /> 
       <ConfirmPlayerList players={players} checkIsActive={checkIsActive} />
       <ModalSuccess checkIsActive={checkIsActive} />

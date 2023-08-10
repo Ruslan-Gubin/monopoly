@@ -1,5 +1,5 @@
 "use client";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import {
   BoardGame,
   useBoard,
@@ -9,13 +9,11 @@ import {
   usePlayer,
   useProperty,
 } from "@/entities";
-import { CanvasDraw, GAME_BOARD_SRC, debounce, GAME_OPTIONS } from "@/shared";
+import { CanvasDraw, GAME_BOARD_SRC, GAME_OPTIONS } from "@/shared";
 import { setupCanvas } from "../utils";
 import { useAnimationBoardUpdate } from "./useAnimationBoardUpdate";
 
 export const useAnimationBoard = () => {
-  const [mouseWidth, setWidth] = useState(0);
-  const [mouseHeight, setHeight] = useState(0);
   const { propertyes } = useProperty()
   const { cells, cornerSize, smallSize, cellRace } = useCells();
   const { size, board } = useBoard();
@@ -71,27 +69,16 @@ export const useAnimationBoard = () => {
       console.error("animateClouser is undefined");
     }
 
-    const node = boardRef.current;
-    const move = (e: MouseEvent) => {
-      setWidth(e.offsetX);
-      setHeight(e.offsetY);
-    };
-    const mouveDebounce = debounce(move);
-    node.addEventListener("mousemove", mouveDebounce);
-
     return () => {
-      node.removeEventListener("mousemove", mouveDebounce);
       if (animationRequestIdRef.current) {
         cancelAnimationFrame(animationRequestIdRef.current);
       }
     };
-  }, [cells, size, cornerSize, smallSize, isMove, playersPosition, propertyes]);
+  }, [cells, size, cornerSize, smallSize, isMove, playersPosition, propertyes, players, animateBoard, animationRequestIdRef]);
 
   return {
     animateBoard,
     animationRequestIdRef,
     boardRef,
-    mouseWidth,
-    mouseHeight,
   };
 };

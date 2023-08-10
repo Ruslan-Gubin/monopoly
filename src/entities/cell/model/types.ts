@@ -46,7 +46,7 @@ export interface CellModel {
   y: number;
   width: number;
   height: number;
-  owner: { _id: string; color: CellOwnerColor; price: number }; // todo delete
+  owner: { _id: string; color: CellOwnerColor; price: number }; 
   house_count: number;
   ownerColor?: string
   is_mortgage?: boolean;

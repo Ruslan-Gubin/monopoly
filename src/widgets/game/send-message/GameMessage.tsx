@@ -15,11 +15,16 @@ const GameMessage = () => {
     setValue(() => '');
   };
 
+  const activeInput = value.length > 0
+
   return (
-    <div className={styles.root}>
+    <div className={activeInput ? `${styles.root} ${styles.active}` : styles.root}>
     <input className={styles.input} value={value} onChange={handleChangeValue} placeholder='Напишите сообщение'  />
-    {value.length > 2 && 
-    <GameSendMessage  value={value} cancelValue={cancelValue}  />
+    {activeInput && 
+    <>
+    <div className={styles.cancel} onClick={cancelValue}>x</div>
+    <GameSendMessage  value={value} cancelValue={cancelValue} />
+    </>
     }
     </div>
   );
