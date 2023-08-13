@@ -1,4 +1,4 @@
-import { useSelect, useSelectAction, useViewer } from "@/entities";
+import {  useSelect, useSelectAction, useViewer } from "@/entities";
 import { ButtonRG } from "@/shared";
 import styles from "./CreateSelection.module.scss";
 

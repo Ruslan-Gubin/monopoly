@@ -5,11 +5,11 @@ import {  useViewerFeatures, useViewerFeaturesAction } from "../../model";
 
 const ProfileModal = () => {
   const { modalActive, newName, buttonTextModal, activeFoto, titleModal } = useViewerFeatures()
-  const { toggle, closeModal } = useViewerFeaturesAction()
+  const { toggle, closeModal, resetActiveFoto } = useViewerFeaturesAction()
   const {  fetchDeleteViewer, fetchUpdateViewer } = useViewerAction()
-
   const { viewer, authId } = useViewer()
-  const {  navigate } = useRouterNavigation()
+  const { navigate } = useRouterNavigation()
+
 
   const modalSubmit = async () => {
     if (!viewer || !authId) return;
@@ -26,7 +26,7 @@ const ProfileModal = () => {
         imag: activeFoto ? activeFoto : '',
         prevImag: viewer.image.public_id,
       })
-      
+      resetActiveFoto()
   };
 }
 

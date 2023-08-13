@@ -1,3 +1,5 @@
+@use "@/app/styles/common/var";
+
 .button {
   background-color: rgb(33, 183, 171);
   color: white;
@@ -6,7 +8,7 @@
   font-size: 1.2rem;
   padding: 5px 15px;
   border-radius: 5px;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.204);
+  box-shadow: var.$box-shadow;
   max-height: 40px;
   margin: 15px;
   &:active{

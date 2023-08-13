@@ -1,0 +1,72 @@
+@use "@/app/styles/common/var";
+
+%cross {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.root {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  height: 65px;
+  width: 65px;
+  .container {
+    background-image: linear-gradient(
+      to bottom,
+      (rgb(90, 223, 250), rgb(240, 240, 240))
+    );
+    padding: var.$spasing-big-medium;
+    padding-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var.$box-shadow;
+    .user {
+      background-color: rgb(67, 64, 64);
+      width: 30px;
+      height: 30px;
+      border-radius: var.$border-radius-circle;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 32px;
+        left: -10px;
+        width: 50px;
+        height: 50px;
+        background-color: rgb(67, 64, 64);
+        border-radius: var.$border-radius-circle;
+      }
+    }
+  }
+
+  .circle {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    rotate: (-25deg);
+    background-image: linear-gradient(
+      to top,
+      (rgb(22, 55, 10), rgb(125, 250, 0))
+    );
+    border-radius: var.$border-radius-circle;
+  }
+
+  .cross_horizont {
+    @extend %cross;
+    width: 22px;
+    height: 5px;
+    bottom: 6px;
+    right: -1px;
+  }
+  .cross_vertical {
+    @extend %cross;
+    width: 5px;
+    height: 22px;
+    bottom: -2px;
+    right: 7px;
+  }
+}

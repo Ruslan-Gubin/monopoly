@@ -1,7 +1,9 @@
+@use "@/app/styles/common/var";
+@use '@/app/styles/common/extends';
+
 .root {
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  @extend %display-flex-direct-column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -9,16 +11,15 @@
   .player {
     background-color: rgb(249, 247, 247);
     border-radius: 10px;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.436);
+    box-shadow: var.$box-shadow;
     padding: 15px;
-    display: flex;
-    flex-direction: column;
+    @extend %display-flex-direct-column;
     margin-bottom: 10px;
     width: 50%;
 
     .winner {
       font-size: 2svh;
-      color: rgb(79, 74, 74);
+      color: var.$color-text-light-gray;
       font-weight: 700;
     }
   }

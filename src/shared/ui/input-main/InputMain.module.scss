@@ -1,19 +1,21 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .root {
-  display: flex;
-  flex-direction: column;
+  @extend %display-flex-direct-column; 
   width: 300px;
-  font-size: 1.3rem;
+  font-size: var.$font-size-button;
   padding: 15px 15px;
   .label {
     margin-bottom: 10px;
-    color: rgb(133, 129, 129);
+    color: var.$color-text-light-gray;
     font-weight: 700;
     display: flex;
   }
 
   .input {
     height: 40px;
-    color: rgb(87, 82, 82);
+    color: var.$color-text-light-gray;
     background-color: rgb(243, 243, 243);
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.286);

@@ -1,9 +1,10 @@
+@use '@/app/styles/common/extends';
+
 .root {
   width: 100%;
   height: 60px;
   padding: 10px 40px;
-  display: flex;
-  align-items: center;
+  @extend %display-flex-alin-center;
   padding-left: 70px;
   padding-right: 40px;
   position: absolute;

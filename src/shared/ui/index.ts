@@ -13,3 +13,4 @@ export * from "./user-avatar/UserAvatar";
 export * from "./no-content/NoContent";
 export * from "./send-message/SendMessageSVG";
 export * from "./timer-decreasing/TimerDecreasing";
+export * from "./icon-photo-upload/UserPhotoUploadIcon";

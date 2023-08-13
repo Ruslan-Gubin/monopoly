@@ -78,7 +78,8 @@ export const reducers = {
     if (!action.payload.player) return;
     const { player } = action.payload
 
-    state.playersPosition = state.playersPosition.filter(elem => elem.color !== player.color)
+    state.playersPosition = state.playersPosition.filter(elem => elem.color !== player.color);
+    state.players = state.players.filter(p => p._id !== player._id)
 
     if (player._id === state.player?._id) {
       state.player = player

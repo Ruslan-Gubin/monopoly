@@ -1,25 +1,48 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .root {
   display: flex;
   width: 450px;
   margin: 0 auto;
   margin-top: 50px;
   flex-direction: column;
-  
-  .header_link {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: rgb(133, 54, 190);
-    cursor: pointer;
-    margin-bottom: 20px;
+
+  .emptyFoto {
+    color: rgb(227, 23, 23);
+    height: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .header {
+   display: flex;
+    
+    .text {
+      color: var.$color-text-light-gray;
+      font-size: 1.2rem;
+      display: block;
+      margin-right: 10px;
+    }
+    
+    .header_link {
+      font-size: var.$font-size-button;
+      font-weight: 600;
+      color: rgb(133, 54, 190);
+      cursor: pointer;
+      margin-bottom: 20px;
+   
+      
+    }
+    
   }
 
   .form_container {
     position: relative;
     padding-bottom: 40px;
-    display: flex;
-    flex-direction: column;
+    @extend %display-flex-direct-column;
     border: 1px solid rgba(0, 0, 0, 0.13);
-    padding: 15px;
+    padding: var.$spasing-medium;
     border-radius: 10px;
     padding-bottom: 40px;
     
@@ -31,10 +54,14 @@
     .addImage {
       cursor: pointer;
       display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 0 auto;
       width: 110px;
-      height: 120px;
+      height: auto;
+      height: 110px;
       border-radius: 10px;
+      position: relative;
     }
       
     }

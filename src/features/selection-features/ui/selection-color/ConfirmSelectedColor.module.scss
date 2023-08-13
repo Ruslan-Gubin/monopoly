@@ -1,3 +1,5 @@
+@use "@/app/styles/common/var";
+
 .color_list {
   display: flex;
   justify-content: center;
@@ -8,16 +10,16 @@
   .color {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
+    border-radius: var.$border-radius-circle;
     cursor: pointer;
     margin: 0 10px;
     position: relative;
-    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.575);
+    box-shadow: var.$box-shadow;
     .color_active {
       background-color: green;
       width: 15px;
       height: 3px;
-      border-radius: 20px;
+      border-radius: var.$spasing-big-medium;
       rotate: (-45deg);
       position: absolute;
       top: 14px;
@@ -27,7 +29,7 @@
         position: absolute;
         top: -4px;
         left: -4px;
-        border-radius: 20px;
+        border-radius: var.$spasing-big-medium;
         rotate: (90deg);
         width: 10px;
         height: 3px;

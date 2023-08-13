@@ -1,18 +1,20 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .root {
   position: absolute;
-  padding: 20px;
+  padding: var.$spasing-big-medium;
   display: flex;
   justify-content: space-around;
   @media (max-width: 800px) {
-    padding: 10px;
+    padding: var.$spasing-normal;
   }
   @media (max-height: 800px) {
-    padding: 10px;
+    padding: var.$spasing-normal;
   }
   .left_side {
     width: 60%;
-    display: flex;
-    flex-direction: column;
+    @extend %display-flex-direct-column; 
     justify-content: space-between;
   }
 }

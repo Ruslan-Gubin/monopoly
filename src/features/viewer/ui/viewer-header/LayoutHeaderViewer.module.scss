@@ -1,11 +1,13 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .viewer_header__nav {
-  display: flex;
-  align-items: center;
+  @extend %display-flex-alin-center; 
 }
 
 .logIn_btn {
   position: absolute;
-  top: 20px;
+  top: var.$spasing-big-medium;
   right: 0;
   padding: 5px 15px;
   border-radius: 6px;

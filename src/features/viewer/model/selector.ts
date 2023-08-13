@@ -19,5 +19,6 @@ export const useViewerFeaturesAction = () => {
     changeName: (value: string) => dispatch(action.changeName({ value })),
     closeModal: () => dispatch(action.closeModal()),
     loginStatusToggle: () => dispatch(action.loginStatusToggle()),
+    resetActiveFoto: () => dispatch(action.resetActiveFoto()),
   };
 };

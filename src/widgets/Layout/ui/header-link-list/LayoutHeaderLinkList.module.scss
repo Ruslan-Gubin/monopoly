@@ -1,6 +1,7 @@
+@use '@/app/styles/common/extends';
+
 .root {
-  display: flex;
-  align-items: center;
+  @extend %display-flex-alin-center;
   .link_text {
     font-size: 1.4rem;
     padding: 5px 10px;

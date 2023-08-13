@@ -7,12 +7,13 @@ import { checkInputBeforFetch } from '../helpers';
 
 const useViewerLogin = () => {
   const [userValue, setUserValue] = useState<IUserLoginValue>({
-    email: { text: "gubin_ruslan@ramble.ru", error: false },
-    password: { text: "1234qwer", error: false },
-    name: { text: "Ruslan", error: false },
+    email: { text: "", error: false },
+    password: { text: "", error: false },
+    name: { text: "", error: false },
   });
   const [viewsPassworld, setViewsPassworld] = useState<boolean>(false);
   const { fetchRegistration, fetchLogin } = useViewerAction()
+  const [fotoEmpty, setFotoEmpty] = useState(false)
 
 
   const handleChangeEaeViews = useCallback(() => {
@@ -33,7 +34,7 @@ const useViewerLogin = () => {
   const validInputs = useCallback((e: FormEvent<HTMLFormElement>, type: string , imag: string) => {
     e.preventDefault();
 
- const errorInput =  checkInputBeforFetch(userValue, setUserValue)
+ const errorInput =  checkInputBeforFetch(userValue, setUserValue, type)
  if (errorInput) return;
 
     if (type === "login") {
@@ -42,6 +43,10 @@ const useViewerLogin = () => {
         password: userValue.password.text,
       })
     } else {
+  if (!imag) {
+    setFotoEmpty(true)
+    return;
+  }
       fetchRegistration({
         email: userValue.email.text,
         password: userValue.password.text,
@@ -58,6 +63,7 @@ const useViewerLogin = () => {
     viewsPassworld,
     handleChangeEaeViews,
     userValue,
+    fotoEmpty,
   };
 };
 

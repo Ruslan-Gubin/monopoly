@@ -12,8 +12,8 @@ const fetchPatch = <T>(url: string, body: any , params?: string): Promise<T> => 
   return baseFetch({url, body, method: 'PATCH', params: params ? params : null})
 }
 
-const fetchDelete = <T>(url: string,  params?: string): Promise<T> => {
-  return baseFetch({url, method: 'DELETE', params: params ? params : null})
+const fetchDelete = <T>(url: string, body?: any,  params?: string): Promise<T> => {
+  return baseFetch({url, body, method: 'DELETE', params: params ? params : null})
 }
 
 // const fetchPut = <T>(url: string, body: BodyInit , params?: string): Promise<T> => {

@@ -1,15 +1,17 @@
+@use '@/app/styles/common/var';
+
 .textarea {
   background: #ffffff;
   border-radius: 0;
   border: none;
   border-bottom: 1px solid #ededed;
-  font-size: 1.1rem;
+  font-size: var.$font-size-normal;
   line-height: 1.5;
   padding: 8px 15px;
   resize: none;
   transition: border-color 150ms ease;
   width: 86%;
-  color: rgb(89, 84, 84);
+  color: var.$color-text-light-gray;
   border-radius: 10px;
 
   &::-webkit-scrollbar {

@@ -1,29 +1,19 @@
 'use client'
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useBoard, useBoardAction, useSelect, useViewer } from "@/entities";
 import { ConfirmSelectedColor, ModalSuccess, useGameConfirmation, useGameConfirmationAction } from "@/features";
 import { useCancelConfirmation } from "@/features";
-import { ModalRG, TimerDecreasing, useRouterNavigation } from "@/shared";
+import { ModalRG, TimerDecreasing } from "@/shared";
 import { ConfirmPlayerList } from "../confirm-playerList/ConfirmPlayerList";
 
 const SelectionGameConfirmation = () => {
   const { isModalActive, players, sessionId } = useGameConfirmation() 
   const { cancelParticipationGame } = useCancelConfirmation()
   const { cancelConfinmPlayer } = useGameConfirmationAction()
-  const { createBoard, goToGameRemove } = useBoardAction()
+  const { createBoard } = useBoardAction()
   const { viewer } = useViewer()
   const { owner } = useSelect()
-  const { navigateDinamicId } = useRouterNavigation()
   const { gameBoardId, isGoGame } = useBoard()
-
-  useEffect(() => {
-    if (!isGoGame || !gameBoardId) return;
-    navigateDinamicId('/game-board/', gameBoardId)
-    
-    return () => {
-      goToGameRemove()
-    }
-  },[isGoGame, gameBoardId])
 
 
   const checkIsActive = useMemo(() => {

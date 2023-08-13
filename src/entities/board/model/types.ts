@@ -1,4 +1,3 @@
-import { ActionCardModel, CellModel, PlayerModel } from "@/entities";
 import { GameSocket } from "@/shared";
 
 export interface ISize {
@@ -12,11 +11,11 @@ export interface BoardModel {
   /** Название игровой доски */
   board_name: string;
   /** Mассив id участников  игры */
-  players: string[]; 
+  players: string[];
   /** Идентификатор текущего активного игрока */
   currentPlayerId: string;
   /** ID игровых костей */
-  dice: string; 
+  dice: string;
   /** Текущее доступное действие */
   action: string;
   /** Текущее цена действия */
@@ -29,7 +28,7 @@ export interface BoardModel {
   auction_id: string;
   /** ID для веб сокета */
   ws_id: number;
-  _id: string
+  _id: string;
 }
 
 export interface BoardInitState {
@@ -40,6 +39,7 @@ export interface BoardInitState {
   gameBoardId: string | null;
   isGoGame: boolean;
   isConnected: boolean;
+  allBoardsGames: AllBoardGames[];
 }
 
 export interface ICreateBoardBody {
@@ -53,7 +53,7 @@ export interface IConnectBoard {
   body: {
     fullName: string;
     id: string;
-    boardId: string
+    boardId: string;
   };
 }
 export interface HandleDisconnectBoardProps {
@@ -61,4 +61,15 @@ export interface HandleDisconnectBoardProps {
   fullName: string;
   boardId: string;
   playerId: string;
+}
+export interface AllBoardPlayersList {
+    color: string;
+    image: string;
+    name: string;
+    user_id: string;
+}
+export interface AllBoardGames {
+  board_id: string;
+  date_create: string;
+  player_list: AllBoardPlayersList[];
 }

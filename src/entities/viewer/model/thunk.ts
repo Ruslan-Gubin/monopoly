@@ -15,11 +15,15 @@ export const fetchLogin = createAppThunk('viewer/fetchLogin', async(login: ReqAu
   return response
 })
 
-export const fetchRegistration = createAppThunk('viewer/fetchRegistration', async(userData: ReqUserRegistration, { rejectWithValue }) => {
+export const fetchRegistration = createAppThunk('viewer/fetchRegistration', async(userData: ReqUserRegistration, { rejectWithValue }) => { 
   const response = await ViewerApi.registration<ResAuth>(userData)
- 
-  if (response.text) {
-    return rejectWithValue(response.text)
+
+  if (response.error) {
+    let errorText = response.text
+    if (response.error.keyValue.hasOwnProperty('email')) {
+      errorText = 'Такой email уже занят'
+    }
+    return rejectWithValue(errorText ? errorText : '')
   }
 
   return response

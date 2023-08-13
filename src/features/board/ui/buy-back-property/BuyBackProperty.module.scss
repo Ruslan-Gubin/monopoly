@@ -1,14 +1,15 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .propertyList {
   padding: 10px 0;
   max-height: 250px;
 
   .property_item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: rgb(50, 49, 49);
-    font-size: 1.3rem;
-    padding: 5px 20px;
+    @extend %display-flex-alin-center-just-berween;
+    color: var.$color-text-light-gray;
+    font-size: var.$font-size-button;
+    padding: 5px var.$spasing-big-medium;
     text-transform: capitalize;
     cursor: pointer;
     font-weight: 600;

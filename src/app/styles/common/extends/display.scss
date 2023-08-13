@@ -1,0 +1,21 @@
+%display-flex-direct-column {
+  display: flex;
+  flex-direction: column;
+}
+
+%display-flex-alin-center-just-berween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+%display-flex-alin-center-just-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+%display-flex-alin-center {
+  display: flex;
+  align-items: center;
+}

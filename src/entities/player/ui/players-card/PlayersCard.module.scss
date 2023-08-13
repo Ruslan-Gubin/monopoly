@@ -1,7 +1,9 @@
+@use '@/app/styles/common/var';
+
 %field {
   display: flex;
   padding: 3px 10px;
-  padding-left: 20px;
+  padding-left: var.$spasing-big-medium;
   background-image: linear-gradient(to top, (rgb(88, 86, 86), rgb(60, 78, 50)));
   color: white;
   font-size: 1.7lvh;
@@ -20,7 +22,7 @@
 }
 
 .root {
-  padding: 10px;
+  padding: var.$spasing-normal;
   padding-bottom: 13px;
   padding-top: 3px;
   border-radius: 5px;
@@ -31,14 +33,14 @@
   margin-bottom: 5px;
   display: flex;
   justify-content: space-around;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: var.$box-shadow;
   height: 15%;
   position: relative;
   .picture {
     padding: 3px;
     border: 1px solid rgba(255, 255, 255, 0.221);
     border-radius: 10px;
-    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.823);
+    box-shadow: var.$box-shadow;
     background-image: linear-gradient(
       to left,
       (rgb(163, 161, 161), rgb(255, 255, 255))

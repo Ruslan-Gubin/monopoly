@@ -9,10 +9,10 @@ const GamePlayers = () => {
 
   const getTotalSumPlayer = useCallback((id: string, money: number): number => {
     if (!player || !player.money) return 0;
-    const playerProperty = propertyes.filter(property => property.owner === id)
+    const playerProperty = propertyes.filter(property => property.owner === id && !property.is_mortgage)
     const totoalSumProperty = playerProperty.reduce((acc, prop) => acc + prop.mortgage_price, 0)
     return money + totoalSumProperty 
-  }, [players, propertyes, player])
+  }, [propertyes, player])
 
   return (
     <ul className={styles.root}>

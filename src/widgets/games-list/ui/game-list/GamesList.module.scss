@@ -1,0 +1,30 @@
+@use "@/app/styles/common/var";
+@use "@/app/styles/common/extends";
+
+.root {
+  width: 100%;
+  background-color: white;
+  padding: var.$spasing-medium;
+  border-radius: var.$spasing-medium;
+  height: 88vh;
+  overflow: scroll;
+  @extend %custom-scroll;
+
+  .title_container {
+    @extend %display-flex-alin-center;
+    padding: var.$spasing-medium 0;
+    font-size: var.$font-size-average;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.131);
+    margin-bottom: var.$spasing-medium;
+
+    .title {
+      font-weight: 600;
+      margin: 0;
+      margin-right: var.$spasing-medium;
+    }
+
+    .count {
+      color: var.$color-text-light-gray;
+    }
+  }
+}

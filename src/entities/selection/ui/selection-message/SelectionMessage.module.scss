@@ -1,17 +1,20 @@
+@use "@/app/styles/common/var";
+@use '@/app/styles/common/extends';
+
 %textItem {
   margin-bottom: 10px;
-  font-size: 1rem;
+  font-size: var.$font-size-normal;
   position: relative;
-  padding: 10px;
-  padding-bottom: 20px;
+  padding: var.$spasing-normal;
+  padding-bottom: var.$spasing-big-medium;
   border-radius: 15px;
   min-width: 30%;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.124);
+  box-shadow: var.$box-shadow;
   align-self: flex-start;
   background-color: rgb(242, 242, 242);
   line-height: 18px;
   max-width: 60%;
-  
+
   @media (max-width: 1300px) {
     max-width: 70%;
   }
@@ -21,45 +24,41 @@
   @media (max-width: 900px) {
     max-width: 90%;
   }
-
 }
 
-
 .root {
-  display: flex;
-  flex-direction: column;
+  @extend %display-flex-direct-column;
   position: relative;
 
   .author {
-    display: flex;
-    align-items: center;
-    
+    @extend %display-flex-alin-center;
+
     &_name {
-      color: rgb(90, 88, 88);
+      color: var.$color-text-light-gray;
       padding-left: 10px;
     }
   }
-  
-  .message {
-        box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.124);
-        align-self: flex-start;
-        background-color: rgb(242, 242, 242);
-        @extend %textItem;
-        .text {
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-       .mymessage {
-        align-self: flex-end;
-        background-color: #cef0ca;
-      }
 
-      .date {
-        color: gray;
-        font-size: 0.9rem;
-        position: absolute;
-        bottom: 3px;
-        right: 10px;
-      }
+  .message {
+    box-shadow: var.$box-shadow;
+    align-self: flex-start;
+    background-color: rgb(242, 242, 242);
+    @extend %textItem;
+    .text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .mymessage {
+    align-self: flex-end;
+    background-color: #cef0ca;
+  }
+
+  .date {
+    color: var.$color-text-light-gray;
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+  }
 }

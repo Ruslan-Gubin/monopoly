@@ -1,13 +1,15 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .user_info__container {
   flex: 6;
-  display: flex;
-  flex-direction: column;
+  @extend %display-flex-direct-column;
 
   .input_field {
     border: none;
     box-shadow: none;
-    font-size: 1.3rem;
-    color: rgb(78, 75, 75);
+    font-size: var.$font-size-button;
+    color: var.$color-text-light-gray;
     font-weight: 600;
     border-radius: 0px;
     margin-bottom: 15px;
@@ -15,10 +17,10 @@
 
   .info_field {
     padding: 10px 0;
-    font-size: 1.3rem;
-    color: rgb(78, 75, 75);
+    font-size: var.$font-size-button;
+    color: var.$color-text-light-gray;
     .info_label {
-      color: rgb(110, 110, 110);
+      color: var.$color-text-light-gray;
       margin-right: 15px;
     }
   }

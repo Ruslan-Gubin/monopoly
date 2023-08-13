@@ -14,8 +14,8 @@ const ViewerProfile = () => {
       <ProfileModal />
       <div className={styles.avatar_container}>
         <ProfileAvatar />
-        <ProfileChangeFoto className={styles.update_svg} />
         <ProfileButtons />
+        <ProfileChangeFoto className={styles.update_svg} />
       </div>
       <ProfileInfo />
     </section>

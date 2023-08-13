@@ -1,23 +1,23 @@
 import { FC, useState } from "react";
-import { BoardModel, PlayerModel, useBoardAction, useDice, useProperty } from "@/entities";
+import { BoardModel, DiceModel, PlayerModel, useProperty } from "@/entities";
 import { ButtonRG } from "@/shared";
 
 interface Props {
   board: BoardModel
-   player: PlayerModel
+  player: PlayerModel
+  dice: DiceModel;
+  handleSendAction: (body: object) => void;
 }
 
-const Pay: FC<Props> = ({ board, player }) => {
+const Pay: FC<Props> = ({ board, player, dice, handleSendAction }) => {
   const [active, setActive] = useState(false)
-  const { dice } = useDice()
   const { propertyes } = useProperty()
-  const { boardSockedSend } = useBoardAction()
 
 
   const handleRoollDice = () => {
     if (!dice) return;
     const propertyOwnerId = propertyes.find(property => property.position === player.position)?.owner;
-    boardSockedSend({
+    handleSendAction({
       method: 'pay',
       body: {
         board_id: board._id,

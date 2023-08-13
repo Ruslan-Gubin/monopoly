@@ -1,3 +1,5 @@
+@use "@/app/styles/common/var";
+
 .root {
   background-color: rgb(158, 156, 156);
   background-image: linear-gradient(
@@ -15,11 +17,11 @@
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  padding: 20px;
+  padding: var.$spasing-big-medium;
   border-radius: 10px;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.589);
+  box-shadow: var.$box-shadow;
   font-weight: 700;
-  color: #363333df;
+  color: var.$color-text-light-gray;
   padding-bottom: 20px;
   text-align: center;
   overflow: auto;

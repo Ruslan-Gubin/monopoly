@@ -36,6 +36,10 @@ export interface ResAuth {
   createdAt: string;
   __v: number;
   text?: string;
+  error?: {
+    keyPattern: { [key: string]: number };
+    keyValue: { [key: string]: string };
+  };
 }
 
 export interface ReqUserRegistration {
@@ -51,4 +55,3 @@ export interface ReqUpdateBody {
   imag: string;
   prevImag: string;
 }
-

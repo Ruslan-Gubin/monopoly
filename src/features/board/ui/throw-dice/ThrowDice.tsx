@@ -1,21 +1,18 @@
 import { FC } from "react";
-import { BoardModel, PlayerModel, useBoardAction, useDice, } from "@/entities";
+import { BoardModel, DiceModel, PlayerModel, } from "@/entities";
 import { ButtonRG } from "@/shared";
 
 interface Props {
-  board: BoardModel
-  player: PlayerModel
+  board: BoardModel;
+  player: PlayerModel;
+  dice: DiceModel;
+  handleSendAction: (body: object) => void;
 }
 
-const ThrowDice: FC<Props> = ({ board, player }) => {
-  const { dice } = useDice()
-  const { boardSockedSend } = useBoardAction()
+const ThrowDice: FC<Props> = ({ board, player, dice, handleSendAction }) => {
 
-
-  const handleRoollDice = () => {
-    if (!dice) return;
-    boardSockedSend({
-      method: 'roolDice',
+  const rollDiceBody = {
+    method: 'roolDice',
       body: {
         ws_id: board.ws_id,
         dice_id: dice._id,
@@ -25,13 +22,12 @@ const ThrowDice: FC<Props> = ({ board, player }) => {
         player_id: board.currentPlayerId,
         players: board.players,
         current_jail: player.current_jail,
-      }
-    })
+    }
   }
 
   return (
     <ButtonRG
-      handleClick={handleRoollDice} 
+      handleClick={() => handleSendAction(rollDiceBody)} 
       color="success" 
       type="button" 
       >

@@ -9,12 +9,17 @@ import {
 
 export const checkInputBeforFetch = (
   userValue: IUserLoginValue,
-  setUserValue: Dispatch<SetStateAction<IUserLoginValue>>
+  setUserValue: Dispatch<SetStateAction<IUserLoginValue>>,
+  type: string,
 ) => {
  
   const checkEmail = validateEmail(userValue.email.text);
   const checkPassword = validatePassword(userValue.password.text);
-  const checkName = validateName(userValue.name.text);
+  let checkName = validateName(userValue.name.text);
+
+  if (type === 'login') {
+    checkName = 'true';
+  }
 
   const checkInputs = [
     { input: "email", check: checkEmail },

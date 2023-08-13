@@ -1,28 +1,28 @@
 import { FC } from "react";
-import { BoardModel, useAuction, useBoardAction, useCells, useDice, usePlayer } from "@/entities";
+import { BoardModel, CellModel, DiceModel, useAuction,  usePlayer } from "@/entities";
 import { ButtonRG } from "@/shared";
 
 interface Props {
-  board: BoardModel
+  board: BoardModel;
+  cells: CellModel[];
+  dice: DiceModel;
+  handleSendAction: (body: object) => void;
 }
 
 
-const AuctionAction: FC<Props> = ({ board }) => {
-  const { boardSockedSend } = useBoardAction()
+const AuctionAction: FC<Props> = ({ board, cells, handleSendAction, dice }) => {
   const { player } = usePlayer()
-  const { cells } = useCells()
   const { auction } = useAuction()
-  const { dice } = useDice()
 
   
     const handleAuctionAction = (action: boolean) => {  
-      const currentCell = cells?.find(cell => cell._id === auction?.cell_id)
+      const currentCell = cells.find(cell => cell._id === auction?.cell_id)
       if (!currentCell || !auction || !player) {
         console.error('Failed find current cell to action refresh');
         return;
       };
 
-      boardSockedSend({
+      handleSendAction({
         method: 'auctionAction',
           body: {
             ws_id: board.ws_id,

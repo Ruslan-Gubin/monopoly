@@ -1,15 +1,17 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .submit_btn {
   width: 150px;
-  display: flex;
-  align-items: center;
+  @extend %display-flex-alin-center; 
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: var.$spasing-big-medium;
 }
 .success_text {
   width: 150px;
   padding: 6px 0;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: var.$spasing-big-medium;
   font-size: 1.8rem;
   color: rgb(19, 194, 40);
   text-align: center;

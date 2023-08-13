@@ -1,23 +1,25 @@
+@use "@/app/styles/common/var";
+@use '@/app/styles/common/extends';
+
 .root {
-  padding: 15px;
+  padding: var.$spasing-medium;
   background-color: rgb(250, 244, 244);
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
+  @extend %display-flex-direct-column; 
   align-items: center;
   justify-content: center;
-  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.213);
+  box-shadow: var.$box-shadow;
   width: 80%;
   margin: 0 auto;
   margin-top: 30px ;
 
   .title {
-    font-size: 1.3rem;
-    color: rgb(71, 70, 71);
+    font-size: var.$font-size-button;
+    color: var.$color-text-light-gray;
   }
   .hint {
     margin-top: 15px;
-    font-size: 1.1rem;
-    color: rgb(71, 70, 71);
+    font-size: var.$font-size-normal;
+    color: var.$color-text-light-gray;
   }
 }

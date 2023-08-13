@@ -1,12 +1,13 @@
 import { FC, useMemo, useState } from "react";
-import { BoardModel, PlayerModel, useBoardAction, useCells, useProperty } from "@/entities";
-import { ButtonRG, ModalRG } from "@/shared";
+import { BoardModel, PlayerModel, useCells, useProperty } from "@/entities";
+import { ButtonRG } from "@/shared";
 
-import styles from './UpdateProperty.module.scss';
+import { BoardActiveModal } from "../board-active-modal/BoardActiveModal";
 
 interface Props {
   board: BoardModel
   player: PlayerModel
+  handleSendAction: (body: object) => void;
 }
 
 export interface IPropertyUpdateObj {
@@ -16,13 +17,12 @@ export interface IPropertyUpdateObj {
   position: number;
 }
 
-const UpdateProperty: FC<Props> = ({ board, player }) => {
+const UpdateProperty: FC<Props> = ({ board, player, handleSendAction }) => {
   const { propertyes } = useProperty()
   const { cells } = useCells()
   const [ update, setUpdate ] = useState<boolean>(true)
   const [modal, setModal] = useState(false)
   const [propertyActive, setPropertyActive] = useState<IPropertyUpdateObj | null>(null)
-  const { boardSockedSend } = useBoardAction()
 
   const updateList = useMemo(() => {
     return propertyes.reduce((acc: IPropertyUpdateObj[], property) => {
@@ -41,12 +41,10 @@ const UpdateProperty: FC<Props> = ({ board, player }) => {
     return null;
   }
 
-
-
   const handleUpdateProperty = () => {
     if (propertyActive === null) return;
 
-    boardSockedSend({
+    handleSendAction({
       method: 'updateProperty',
       body: {
         ws_id: board.ws_id,
@@ -67,27 +65,15 @@ const UpdateProperty: FC<Props> = ({ board, player }) => {
 
   return (
     <>
-    <ModalRG 
-    active={modal}
-    handleClose={handleToggleModal}
-    handleCancel={handleToggleModal}
-    submitModal={handleUpdateProperty}
-    footer={{ cancelText: 'Отмена', submitText: 'Улучшить' }}
-    title='Выбирите собственность'
-    >
-      <ul className={styles.propertyList}>
-        {updateList.map(property => 
-          <li 
-          key={property.id} 
-          className={propertyActive?.id === property.id ? `${styles.property_item} ${styles.activeProperty}` : styles.property_item} 
-          onClick={() => setPropertyActive(property)} 
-          >
-            <span className={styles.property_item__name}>{property.name}</span>
-            <span className={styles.property_item__price}> {property?.price} Руб</span>
-          </li>
-        )}
-      </ul>
-    </ModalRG>
+    <BoardActiveModal
+    submitText="Улучшить"
+    updateList={updateList}
+    modal={modal}
+    propertyActive={propertyActive}
+    clickProperty={setPropertyActive}
+    handleSubmit={handleUpdateProperty}
+    handleToggleModal={handleToggleModal}
+    />
     <ButtonRG
       handleClick={handleToggleModal} 
       color="success" 

@@ -13,7 +13,7 @@ const getMy = <T>(id: string): Promise<T> => {
 };
 
 const deleteViewer = <T>(id: string): Promise<T> => {
-  return fetchDelete("auth-remove", id);
+  return fetchDelete("auth-remove", null, id);
 };
 
 const updateViewer = <T>(body: ReqUpdateBody): Promise<T> => {

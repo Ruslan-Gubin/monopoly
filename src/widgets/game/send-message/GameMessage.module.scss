@@ -1,26 +1,28 @@
+@use "@/app/styles/common/var";
+@use '@/app/styles/common/extends';
+
 .root {
-  display: flex;
-  align-items: center;
+  @extend %display-flex-alin-center;
   width: 100%;
   position: relative;
   border-radius: 10px;
-  padding: 10px;
+  padding: var.$spasing-normal;
   .input {
-    padding: 10px;
+    padding: var.$spasing-normal;
     border-radius: 15px;
     border: 2px solid rgba(92, 89, 89, 0.05);
     width: 90%;
     background-image: linear-gradient(to bottom, (rgb(242, 250, 194), rgb(249, 249, 200)));
-    color: rgb(52, 49, 49);
+    color: var.$color-text-light-gray;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: var.$font-size-normal;
     padding-right: 25px;
   }
   .cancel {
     font-size: 1.4rem;
     cursor: pointer;
     font-weight: 600;
-    color: rgb(90, 86, 86);
+    color: var.$color-text-light-gray;
     position: absolute;
     top: 19px;
     right: 60px;
@@ -28,6 +30,6 @@
 }
 
 .active {
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.407);
+  box-shadow: var.$box-shadow;
   background-color: rgb(242, 250, 194);
 }

@@ -1,0 +1,34 @@
+@use "@/app/styles/common/var";
+
+.game_card {
+  box-shadow: var.$box-shadow;
+  border-radius: 10px;
+  margin-bottom: 15px;
+
+  .card_header {
+    height: 50px;
+    background-color: rgb(246, 246, 246);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var.$font-size-normal;
+    padding: 10px 15px;
+    &__watch {
+      color: var.$color-text-light-gray;
+      font-weight: 600;
+      padding: 6px 10px;
+      box-shadow: var.$box-shadow;
+      border-radius: 5px;
+    }
+
+    &__create {
+      color: var.$color-text-light-gray;
+    }
+  }
+  .watch_active {
+    background-color: #119311;
+    color: white;
+  }
+}

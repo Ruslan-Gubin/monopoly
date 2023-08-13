@@ -8,12 +8,12 @@ import styles from "./ProfileButtons.module.scss";
 const ProfileButtons = () => {
   const { activeFoto, newName } = useViewerFeatures();
   const { openModal } = useViewerFeaturesAction();
-  const { viewer } = useViewer();
+  const { viewer, loading } = useViewer();
 
   return (
     <>
       <ButtonRG
-        disabled={!checkUpdateUser(newName, viewer?.fullName, activeFoto)}
+        disabled={!checkUpdateUser(newName, viewer?.fullName, activeFoto) || loading}
         className={styles.button}
         handleClick={() => openModal("update")}
         color="warning"
@@ -21,6 +21,7 @@ const ProfileButtons = () => {
         Update
       </ButtonRG>
       <ButtonRG
+        disabled={loading}
         className={styles.button}
         handleClick={() => openModal("remove")}
         color="danger"

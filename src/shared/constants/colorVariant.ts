@@ -18,6 +18,7 @@ export const COLOR_CELL_PLAYER_COLOR: IColorPlayerVariant = {
   blue: "#0000ff20",
   green: '#00800028',
   yellow: "#ffff0030",
-  pink: "#ffc0cb6f",
+  pink: "#ffc0cbba",
   violet: "#ee82ee32",
+  black: "#75757548",
 };

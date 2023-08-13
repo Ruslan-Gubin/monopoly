@@ -9,6 +9,7 @@ const initialState: BoardInitState = {
   gameBoardId: null,
   isGoGame: false,
   isConnected: false,
+  allBoardsGames: [],
 }
 
 export { initialState }

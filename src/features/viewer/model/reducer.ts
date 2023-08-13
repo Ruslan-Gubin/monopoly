@@ -49,5 +49,9 @@ export const reducers = {
    
   },
 
+  resetActiveFoto(state: ViewerFeatureInit) {
+    state.activeFoto = null;
+  },
+
 
 }

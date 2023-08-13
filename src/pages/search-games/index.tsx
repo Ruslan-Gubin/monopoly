@@ -41,7 +41,7 @@ const SearchGame = () => {
         },
       });
     };
-  }, [viewer]);
+  }, [viewer, connectSelection]);
 
   
   return (

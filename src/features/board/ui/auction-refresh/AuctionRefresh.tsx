@@ -1,16 +1,15 @@
 import { FC } from "react";
-import { BoardModel, useAuction, useBoardAction, useCells, usePlayer } from "@/entities";
+import { BoardModel, CellModel, useAuction, useCells, usePlayer } from "@/entities";
 import { ButtonRG } from "@/shared";
 
 interface Props {
-  board: BoardModel
+  board: BoardModel;
+  cells: CellModel[]
+  handleSendAction: (body: object) => void;
 }
 
-
-const AuctionRefresh: FC<Props> = ({ board }) => {
-  const { boardSockedSend } = useBoardAction()
+const AuctionRefresh: FC<Props> = ({ board, handleSendAction, cells }) => {
   const { player } = usePlayer()
-  const { cells } = useCells()
   const { auction } = useAuction()
 
   
@@ -21,7 +20,7 @@ const AuctionRefresh: FC<Props> = ({ board }) => {
         return;
       };
 
-      boardSockedSend({
+      handleSendAction({
         method: 'auctionRefresh',
           body: {
             ws_id: board.ws_id,

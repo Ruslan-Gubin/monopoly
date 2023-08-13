@@ -11,10 +11,10 @@ const GameBoardPage = () => {
   const { cellsUpdateSize } = useCellsAction()
   const { width, height } = useScreenSize()
   const { initBoard, connectedBoard } = useBoardAction()
-  const { size, loading, error } = useBoard()
   const { isCells, cells, cornerSize } = useCells()
   const { viewer } = useViewer()
   const { playerUpdatePosition } = usePlayerAction()
+  const { size, loading, error } = useBoard() //TODO за этого ререндер
 
 
   const connectWs = useCallback((method: string) => {
@@ -28,7 +28,7 @@ const GameBoardPage = () => {
         boardId,
       },
     });
-  },[])
+  },[viewer])
 
   useEffect(() => { 
       connectWs('connect') 
@@ -36,7 +36,7 @@ const GameBoardPage = () => {
       return () => { 
         connectWs('disconect')
       };
-    }, []);
+    }, [connectWs]);
 
   useEffect(() => { 
     if (!cells) return;
@@ -49,7 +49,7 @@ const GameBoardPage = () => {
     initBoard({ initSize })
     cellsUpdateSize({ updateCells, cellsSize: { cornerCell, smallCell }, raceCells })
     playerUpdatePosition({ cells: updateCells, cellSize: smallCell })
-  },[ isCells, width, height ])
+  },[ isCells, width, height ]) 
 
 
   if (loading || !isCells || !size ) {
@@ -60,7 +60,7 @@ const GameBoardPage = () => {
     return <div>Error: {error}</div>;
   }
 
-
+console.log('rerender')
   return (
    <div className={styles.root}>
     <GameCanvas />

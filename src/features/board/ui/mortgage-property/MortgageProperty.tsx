@@ -1,24 +1,24 @@
 import { FC, useEffect, useMemo, useState } from "react";
-import { BoardModel, PlayerModel, useBoardAction, useCells, useProperty } from "@/entities";
-import { ButtonRG, ModalRG } from "@/shared";
+import { BoardModel, CellModel, PlayerModel, useProperty } from "@/entities";
+import { ButtonRG } from "@/shared";
 import { IPropertyUpdateObj } from "../update-property/UpdateProperty";
 import { checkGameOver } from "../../utils";
 
-import styles from './MortgageProperty.module.scss';
+
+import { BoardActiveModal } from "../board-active-modal/BoardActiveModal";
 
 interface Props {
   board: BoardModel
   player: PlayerModel
+  cells: CellModel[];
+  handleSendAction: (body: object) => void;
 }
 
-const MortgageProperty: FC<Props> = ({ board, player }) => {
-  const { cells } = useCells()
+const MortgageProperty: FC<Props> = ({ board, player, cells, handleSendAction }) => {
   const { propertyes } = useProperty()
-  const { boardSockedSend } = useBoardAction()
   const [modal, setModal] = useState(false)
   const [propertyActive, setPropertyActive] = useState<IPropertyUpdateObj | null>(null)
   
-
   const updateList = useMemo(() => {
     return propertyes.reduce((acc: IPropertyUpdateObj[], property) => {
       if (property.owner === player._id && !property.is_sindicate  && !property.is_mortgage) {
@@ -37,7 +37,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
   useEffect(() => {
     if (!checkOver) return;
 
-      boardSockedSend({
+      handleSendAction({
         method: 'playerGameOver',
         body: {
           ws_id: board.ws_id,
@@ -46,7 +46,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
           board_id: board._id,
         }
       })
-  }, [board, checkOver, player])
+  }, [board, checkOver, player, handleSendAction])
   
   if (checkOver || updateList.length === 0) {
     return null;
@@ -55,7 +55,7 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
   const handleMortgageProperty = () => {
     if (propertyActive === null) return;
     
-    boardSockedSend({
+    handleSendAction({
       method: 'mortgageProperty',
       body: {
         ws_id: board.ws_id,
@@ -75,27 +75,15 @@ const MortgageProperty: FC<Props> = ({ board, player }) => {
 
   return (
     <>
-    <ModalRG
-    active={modal}
-    handleClose={handleToggleModal}
-    handleCancel={handleToggleModal}
-    submitModal={handleMortgageProperty}
-    footer={{ cancelText: 'Отмена', submitText: 'Заложить' }}
-    title='Выбирите собственность'
-    >
-      <ul className={styles.propertyList}>
-        {updateList.map(property => 
-          <li 
-          key={property.id} 
-          className={propertyActive?.id === property.id ? `${styles.property_item} ${styles.activeProperty}` : styles.property_item} 
-          onClick={() => setPropertyActive(property)} 
-          >
-            <span className={styles.property_item__name}>{property.name}</span>
-            <span className={styles.property_item__price}> {property?.price} Руб</span>
-          </li>
-        )}
-      </ul>
-    </ModalRG>
+    <BoardActiveModal
+    submitText="Заложить"
+    updateList={updateList}
+    modal={modal}
+    propertyActive={propertyActive}
+    clickProperty={setPropertyActive}
+    handleSubmit={handleMortgageProperty}
+    handleToggleModal={handleToggleModal}
+    />
     <ButtonRG
       handleClick={handleToggleModal} 
       color="success" 

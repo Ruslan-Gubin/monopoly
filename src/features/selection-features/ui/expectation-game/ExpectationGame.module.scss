@@ -1,6 +1,8 @@
+@use '@/app/styles/common/var';
+
 .expectation_text {
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: var.$font-size-average;
   color: rgb(81, 156, 66);
   margin: 0 auto;
 }

@@ -1,9 +1,11 @@
+@use '@/app/styles/common/var';
+
 .wrapper {
  
 }
 
 .title {
-  font-size: 1.6rem;
+  font-size: var.$font-size-average;
   font-weight: 600;
   padding: 10px 0;
 }
@@ -11,7 +13,7 @@
   padding: 15px 0;
 }
 .text {
-  font-size: 1.3rem;
+  font-size: var.$font-size-button;
   line-height: 23px;
   font-weight: 400;
   padding: 10px 0;
@@ -21,7 +23,7 @@
   position: relative;
   padding: 5px 0;
   padding-left: 30px;
-  font-size: 1.3rem;
+  font-size: var.$font-size-button;
   line-height: 23px;
   &::after {
     content: '';
@@ -31,6 +33,6 @@
     width: 10px;
     height: 10px;
     background-color: red;
-    border-radius: 50%;
+    border-radius: var.$border-radius-circle;
   }
 }

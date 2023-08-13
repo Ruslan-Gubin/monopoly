@@ -1,4 +1,4 @@
-import { boardAction } from "@/entities";
+  import { boardAction } from "@/entities";
 import { gameConfirmationAction, selectionMessageAction, selectionNotificationAction } from "@/features";
 import { createAppThunk } from "@/shared";
 import { selectionAction } from "./selector";
@@ -22,6 +22,7 @@ export const selectionSocketMessage = createAppThunk(
             selectionNotificationAction.setNotification(messageEvent.title)
           );
           dispatch(selectionMessageAction.setMessages(messageEvent.messages));
+          dispatch(boardAction.checkActiveGame({ boardId: messageEvent.boardId, }))
           break;
         case "disconectUser":
           dispatch(selectionAction.disconectUpdate(messageEvent));
@@ -91,8 +92,6 @@ export const selectionSocketMessage = createAppThunk(
           dispatch(gameConfirmationAction.cancelConfinmPlayer({ sessionId: messageEvent.sessionId}));
           break;
         case "createGameBoard":
-          dispatch(selectionNotificationAction.setNotification(messageEvent.title));
-
           if (authId && messageEvent.user_id.includes(authId)) {
             dispatch(boardAction.getStartBoardId(messageEvent.board_id))
           }

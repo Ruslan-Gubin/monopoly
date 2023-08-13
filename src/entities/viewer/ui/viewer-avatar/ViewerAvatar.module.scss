@@ -1,3 +1,5 @@
+@use '@/app/styles/common/var';
+
 .user_img {
   cursor: pointer;
 }
@@ -5,12 +7,12 @@
 .user_img__sm {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border-radius: var.$border-radius-circle;
 }
 .user_img__md {
   width: 75px;
   height: 75px;
-  border-radius: 50%;
+  border-radius: var.$border-radius-circle;
 }
 .user_img__lg {
   width: 100%;
@@ -20,5 +22,5 @@
 .user_img__vsm {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: var.$border-radius-circle;
 }

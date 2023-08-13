@@ -3,10 +3,27 @@ import { RectTypeSize } from "@/shared";
 import { BoardInitState, BoardModel } from "./types";
 
 export const reducers = {
-  
-  initBoard(state: BoardInitState, action: PayloadAction<{ initSize: RectTypeSize }>) {
-    const { initSize } = action.payload
+  initBoard(
+    state: BoardInitState,
+    action: PayloadAction<{ initSize: RectTypeSize }>
+  ) {
+    const { initSize } = action.payload;
     state.size = initSize;
+  },
+
+  checkActiveGame(
+    state: BoardInitState,
+    action: PayloadAction<{ boardId: string | null }>
+  ) {
+    const { boardId } = action.payload;
+
+    if (!boardId) {
+      state.gameBoardId = null;
+      state.isGoGame = false;
+    } else {
+      state.gameBoardId = boardId;
+      state.isGoGame = true;
+    }
   },
 
   getStartBoardId(state: BoardInitState, action: PayloadAction<string>) {
@@ -18,9 +35,16 @@ export const reducers = {
     state.isGoGame = false;
   },
 
-  updateBoard(state: BoardInitState, action: PayloadAction<{ board: BoardModel }>) {
+  updateBoard(
+    state: BoardInitState,
+    action: PayloadAction<{ board: BoardModel }>
+  ) {
     if (!action.payload.board) return;
-    state.board = action.payload.board
+    state.board = action.payload.board;
+  },
+
+  resetAllBoardGame(state: BoardInitState) {
+    state.allBoardsGames = [];
   },
 
   resetBoard(state: BoardInitState) {
@@ -31,5 +55,5 @@ export const reducers = {
     state.isGoGame = false;
     state.loading = false;
     state.size = null;
-  }
+  },
 };

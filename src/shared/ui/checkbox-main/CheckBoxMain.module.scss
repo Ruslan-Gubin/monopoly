@@ -1,7 +1,9 @@
+@use "@/app/styles/common/var";
+
 .root {
   flex: 1;
   display: flex;
- justify-content: center; 
+  justify-content: center; 
   .checkbox {
     border: 1px solid rgba(0, 0, 0, 0.266);
     border-radius: 5px;
@@ -9,7 +11,7 @@
     width: 20px;
     height: 20px;
     position: relative;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.174);
+    box-shadow: var.$box-shadow;
 
   }
  

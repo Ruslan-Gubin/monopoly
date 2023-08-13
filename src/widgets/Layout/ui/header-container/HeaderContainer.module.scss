@@ -1,6 +1,7 @@
+@use '@/app/styles/common/extends';
+
 .root {
-  display: flex;
-  align-items: center;
+  @extend %display-flex-alin-center;
   justify-content: space-between;
   padding: 15px 0;
   color: white;

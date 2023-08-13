@@ -1,5 +1,8 @@
+@use '@/app/styles/common/var';
+@use '@/app/styles/common/extends';
+
 .root {
-  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.193);
+  box-shadow: var.$box-shadow;
   border-radius: 10px;
   margin-bottom: 15px;
   padding: 15px 0;
@@ -16,15 +19,14 @@
     justify-content: space-around;
 
     .player_item {
-      display: flex;
-      flex-direction: column;
+      @extend %display-flex-direct-column;
       text-align: center;
     }
 
     .player__name {
       margin-top: 10px;
       width: 70px;
-      height: 20px;
+      height: var.$spasing-big-medium;
       overflow: hidden;
       text-overflow: ellipsis;
     }

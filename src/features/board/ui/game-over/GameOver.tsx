@@ -17,11 +17,7 @@ const GameOver = () => {
       boardSockedSend({
       method: 'removeGame',
       body: {
-        ws_id: board.ws_id,
         board_id: board._id,
-        auction_id: board.auction_id,
-        dice_id: board.dice,
-        player_id: player._id,
       }
     })
   }
