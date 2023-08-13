@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { calculateSizeBoard, getCellsPosition, useBoard, useBoardAction, useCells, useCellsAction, usePlayerAction, useViewer, getCellRace } from '@/entities';
+import { calculateSizeBoard, getCellsPosition, useBoardAction, useCells, useCellsAction, usePlayerAction, useViewer, getCellRace } from '@/entities';
 import { Loader, useScreenSize } from '@/shared';
 import GameCanvas from '@/widgets/game/game-canvas/GameCanvas';
 import CenterBoard from '@/widgets/game/center-board/CenterBoard';
@@ -14,7 +14,6 @@ const GameBoardPage = () => {
   const { isCells, cells, cornerSize } = useCells()
   const { viewer } = useViewer()
   const { playerUpdatePosition } = usePlayerAction()
-  const { size, loading, error } = useBoard() //TODO за этого ререндер
 
 
   const connectWs = useCallback((method: string) => {
@@ -52,19 +51,14 @@ const GameBoardPage = () => {
   },[ isCells, width, height ]) 
 
 
-  if (loading || !isCells || !size ) {
+  if (!isCells || !cornerSize) {
     return <Loader />;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-console.log('rerender')
   return (
    <div className={styles.root}>
     <GameCanvas />
-    <CenterBoard size={size} cornerSize={cornerSize} /> 
+    <CenterBoard /> 
     </div>
   );
 };

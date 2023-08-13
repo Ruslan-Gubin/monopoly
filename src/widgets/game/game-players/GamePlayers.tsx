@@ -7,6 +7,7 @@ const GamePlayers = () => {
   const { players, player } = usePlayer()
   const { propertyes } = useProperty()
 
+
   const getTotalSumPlayer = useCallback((id: string, money: number): number => {
     if (!player || !player.money) return 0;
     const playerProperty = propertyes.filter(property => property.owner === id && !property.is_mortgage)

@@ -1,22 +1,21 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import { GameNotification } from "../game-notification/GameNotification";
 import { GamePlayers } from "../game-players/GamePlayers";
 import { GameManagement } from "../game-management/GameManagement";
 import { GameMessage } from "../send-message/GameMessage";
-import { ISize, useBoard } from "@/entities";
+import { useBoard, useCells } from "@/entities";
 import { GameOver } from "@/features";
 
 import styles from "./CenterBoard.module.scss";
 
-interface CenterBoardProps {
-  size: ISize;
-  cornerSize: number;
-}
 
-const CenterBoard: FC<CenterBoardProps> = ({ cornerSize, size }) => {
-  const { board } = useBoard()
+const CenterBoard = () => {
+  const { board, size, error } = useBoard()
+  const { cornerSize } = useCells()
+  
 
   const centerCoordinateSize = useMemo(() => {
+    if (!size) return;
     return {
       width: size.width - (cornerSize * 2),
       height: size.height - (cornerSize * 2),
@@ -25,14 +24,20 @@ const CenterBoard: FC<CenterBoardProps> = ({ cornerSize, size }) => {
     }
   }, [cornerSize, size])
 
+ if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const checkGameOver =  board && board.players.length > 1
+
 
   return (
     <>
-    <section 
-    style={centerCoordinateSize} 
+    <section
+    style={centerCoordinateSize}
     className={styles.root}
     >
-    {board && board.players.length > 1 ?
+    {checkGameOver ?
     <>
     <div className={styles.left_side}>
     <GameNotification />
@@ -42,7 +47,7 @@ const CenterBoard: FC<CenterBoardProps> = ({ cornerSize, size }) => {
     <GamePlayers />
     </>
      : 
-     <GameOver />
+     <GameOver board={board} />
     }
   
     </section>

@@ -1,18 +1,22 @@
-import { useBoard, useBoardAction, usePlayer } from '@/entities';
+import { BoardModel, useBoardAction, usePlayer } from '@/entities';
 import { ButtonRG, UserAvatar, useRouterNavigation } from '@/shared';
 
 import styles from './GameOver.module.scss';
 
-const GameOver = () => {
+interface GameOverProps {
+  board: BoardModel | null
+}
+
+const GameOver = ({ board }: GameOverProps) => {
   const { boardSockedSend } = useBoardAction()
-  const { board } = useBoard()
   const { players, player } = usePlayer()
   const { navigate } = useRouterNavigation()
 
+  const checkLastPlayer = player?._id === board?.players[0]
 
   const handleRemoveGame = () => {
     
-    if (player?._id === board?.players[0]) {
+    if (checkLastPlayer) {
       if (!board || !player) return;
       boardSockedSend({
       method: 'removeGame',
@@ -40,7 +44,7 @@ const GameOver = () => {
       color="success" 
       type='button'
       >
-        {player?._id === players[0]._id ? 'Завершить игру' : 'Вернутся в подбор игр'}
+        {checkLastPlayer ? 'Завершить игру' : 'Вернутся в подбор игр'}
       </ButtonRG>
     </div>
   );

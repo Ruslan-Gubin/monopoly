@@ -27,28 +27,29 @@ export class PropertyCell extends BaseCellPlayers {
           price: this.getParamsPrice(cell, side),
           name: this.getParamsTitle(cell, side),
           stars: this.getParamsStars(cell, side),
-          mortgage: this.getParamsMortgage(cell, side, isMortgage, color),
+          mortgage: this.getParamsMortgage(cell, side, isMortgage),
         },
       });
     }
 
     if (!cellCache) return;
 
-  /** Закрасить поле в цвет владельца, если есть владелец */
-  if (ownerColor) {
-  this.drawRectCell(cellCache.playerColor)
-  }
+    /** Закрасить поле в цвет владельца, если есть владелец */
+    if (ownerColor) {
+      this.drawRectCell(cellCache.playerColor)
+    }
   /** Вся ячейка */
   this.drawRectCell(cellCache.ceilCell)
   /** Название собственности */
   this.drawTextCell(cellCache.name) 
   /** Верхняя полоса */
   this.drawRectCell(cellCache.bandSize)
-  /** Цена собственности или оплата владельцу */
-  this.drawTextCell(cellCache.price)
   /** Если собственность заложена */
   if (cellCache.mortgage) {
     this.drawTextCell(cellCache.mortgage)
+  } else {
+    /** Цена собственности или оплата владельцу */
+    this.drawTextCell(cellCache.price)
   }
   /** Показываем улучшение собственности */
   const houseCount = cellCache.stars.length
@@ -132,21 +133,25 @@ private getParamsTitle(cell: CellModel, side: boolean | undefined): ITextOptions
   }
 }
 
-private getParamsMortgage(cell: CellModel, side: boolean | undefined, isMorgage: boolean, color: string): ITextOptions | null {
+private getParamsMortgage(cell: CellModel, side: boolean | undefined, isMorgage: boolean): ITextOptions | null {
   if (!isMorgage) return null;
-  const bandHeight = side ? cell.width / 4 : cell.height / 4
   const fontSize = (cell.width / 13) * 2
-  const colorText = color === '#d90b0b' ? 'white' : 'red'
+
+  let textY = cell.width > 40 ? cell.y + (cell.height / 1.3) : cell.y + (cell.height / 1.2)
+
+  if (side) {
+    textY =  cell.y + (cell.height / 1.2)
+  }
 
   return {
     text: 'Заложено',
     x: cell.x + (cell.width / 2),
-    y: (cell.y + bandHeight / 2),
+    y: textY,
     textAling: this.textAling,
     baseline: this.baseline,
     maxWidth: cell.width - 10,
     fontSize: `${fontSize}px`,
-    color: colorText,
+    color: 'red',
   }
 }
 
