@@ -1,4 +1,4 @@
-## [Монополия онлайн можно посмотреть здесь](https://monopoly-chi.vercel.app/search-games).
+## [Монополия онлайн можно посмотреть здесь](https://monopoly-chi.vercel.app).
 
 ## [Frontend](src)
  
