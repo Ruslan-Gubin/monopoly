@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { TimerDecreasing, UserAvatar } from '@/shared';
+import {  UserAvatar } from '@/shared';
 
 import styles from './PlayersCard.module.scss';
 
@@ -8,12 +8,13 @@ interface PlayersCardProps {
   image: string;
   name: string;
   totalSum: number;
+  color: string;
 }
 
-const PlayersCard = memo(({ money, image, name, totalSum }: PlayersCardProps) => {
+const PlayersCard = memo(({ money, image, name, totalSum, color }: PlayersCardProps) => {
 
   return (
-    <li className={styles.root}>
+    <li className={`${styles[color]}  ${styles.root}`}>
       <picture className={styles.picture}>
         <UserAvatar image={image} size='lg' />
       </picture>
@@ -23,7 +24,6 @@ const PlayersCard = memo(({ money, image, name, totalSum }: PlayersCardProps) =>
         <span className={styles.total}>{totalSum}</span>
       </div>
         <div className={styles.process_container}>
-        <TimerDecreasing duration={10} endCallback={() => {}}/>
         </div>
     </li>
   );

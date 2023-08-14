@@ -26,10 +26,7 @@
   padding-bottom: 13px;
   padding-top: 3px;
   border-radius: 5px;
-  background-image: linear-gradient(
-    to left,
-    (rgb(217, 212, 212), rgb(255, 255, 255))
-  );
+  background-color: rgb(230, 230, 230);
   margin-bottom: 5px;
   display: flex;
   justify-content: space-around;
@@ -93,4 +90,24 @@
     left: 0px;
     width: 100%;
   }
+}
+
+
+.red {
+  background-image: linear-gradient(to right, (var.$player-color-text-red, rgba(35, 32, 32, 0), rgba(35, 32, 32, 0)));
+}
+.green {
+  background-image: linear-gradient(to right, (var.$player-color-text-green, rgba(35, 32, 32, 0), rgba(35, 32, 32, 0)));
+}
+.pink {
+  background-image: linear-gradient(to right, (var.$player-color-text-pink, rgba(35, 32, 32, 0), rgba(35, 32, 32, 0)));
+}
+.blue {
+  background-image: linear-gradient(to right, (var.$player-color-text-blue, rgba(35, 32, 32, 0), rgba(35, 32, 32, 0)));
+}
+.black {
+  background-image: linear-gradient(to right, (var.$player-color-text-black, rgba(35, 32, 32, 0), rgba(35, 32, 32, 0)));
+}
+.yellow {
+  background-image: linear-gradient(to right, (var.$player-color-text-yellow, rgba(35, 32, 32, 0), rgba(35, 32, 32, 0)));
 }

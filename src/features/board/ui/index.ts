@@ -11,3 +11,4 @@ export * from "./buy-back-property/BuyBackProperty";
 export * from "./auction-action/AuctionAction";
 export * from "./game-over/GameOver";
 export * from "./remove-board/RemoveBoard";
+export * from "./out-player/OutPlayer";

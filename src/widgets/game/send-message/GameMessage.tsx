@@ -1,11 +1,17 @@
 'use client'
 import { ChangeEvent, useState } from "react";
 import { GameSendMessage } from "@/features";
+import { BoardModel, usePlayer, useViewer } from "@/entities";
 
 import styles from './GameMessage.module.scss';
 
-const GameMessage = () => {
+const GameMessage = ({ board }: {board: BoardModel}) => {
   const [value, setValue] = useState<string>("");
+  const { player } = usePlayer()
+
+  if (!player || !board.players.includes(player._id)) {
+    return null;
+  }
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(() => e.target.value);

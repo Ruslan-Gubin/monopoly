@@ -22,7 +22,10 @@ export const selectionSocketMessage = createAppThunk(
             selectionNotificationAction.setNotification(messageEvent.title)
           );
           dispatch(selectionMessageAction.setMessages(messageEvent.messages));
-          dispatch(boardAction.checkActiveGame({ boardId: messageEvent.boardId, }))
+          
+            if (authId === messageEvent.userId) {
+              dispatch(boardAction.checkActiveGame({ boardId: messageEvent.boardId, }))
+            }
           break;
         case "disconectUser":
           dispatch(selectionAction.disconectUpdate(messageEvent));

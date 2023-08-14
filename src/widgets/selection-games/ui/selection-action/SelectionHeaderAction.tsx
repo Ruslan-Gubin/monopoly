@@ -13,11 +13,11 @@ import styles from "./SelectionHeaderAction.module.scss";
 const SelectionHeaderAction = () => {
   const { gameBoardId, isGoGame } = useBoard()
 
-  const checkActiveGame = !isGoGame && !gameBoardId;
+  const checkActiveGame = !!isGoGame && !!gameBoardId;
 
   return (
     <div className={styles.root}>
-      {checkActiveGame ? 
+      {!checkActiveGame ? 
       <>
       <ExpectationGame />
       <CreateSelection />

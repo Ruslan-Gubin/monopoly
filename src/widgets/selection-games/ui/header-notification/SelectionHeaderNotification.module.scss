@@ -1,10 +1,12 @@
 @use '@/app/styles/common/extends';
+@use '@/app/styles/common/var';
 
 .root {
   @extend %display-flex-alin-center;
   justify-content: center;
   min-height: 40px;
   background: white;
+  color: var.$color-text-light-gray;
   .notification {
     font-size: 1.2rem;
   }

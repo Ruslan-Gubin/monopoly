@@ -25,7 +25,7 @@ const GameOver = ({ board }: GameOverProps) => {
       }
     })
   }
-  navigate('push', '/search-games')
+  navigate('push', '/')
   }
 
   const winnerPlayer = players.find(player => player._id === board?.players[0])

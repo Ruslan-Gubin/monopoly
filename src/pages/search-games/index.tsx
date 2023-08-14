@@ -43,7 +43,7 @@ const SearchGame = () => {
     };
   }, [viewer, connectSelection]);
 
-  
+
   return (
     <Layout title="Поиск игры" keywords="Search Game">
       <SelectionGameConfirmation />

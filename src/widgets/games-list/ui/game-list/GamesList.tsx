@@ -9,7 +9,7 @@ const GamesList = () => {
   const { navigate } = useRouterNavigation();
   const { getAllBoards, resetAllBoardGame } = useBoardAction();
   const { allBoardsGames, loading, error } = useBoard();
-  const { authId } = useViewer()
+  const { authId,  autorization } = useViewer()
 
   useEffect(() => {
     getAllBoards();
@@ -20,11 +20,19 @@ const GamesList = () => {
   }, []);
 
   const handleClickAvatar = useCallback((id: string) => {
-    navigate("push", `/profile/${id}`);
+    if (autorization) {
+      navigate("push", `/profile/${id}`);
+    } else {
+      navigate("push", `/login`);
+    }
   }, []);
 
   const handleWatchGameRouter = useCallback((id: string) => {
-    navigate("push", `/game-board/${id}`);
+    if (autorization) {
+      navigate("push", `/game-board/${id}`);
+    } else {
+      navigate("push", `/login`);
+    }
   }, []);
 
   const checkActiveGame = useMemo(() => (players: AllBoardPlayersList[]) => {

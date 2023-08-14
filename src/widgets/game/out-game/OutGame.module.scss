@@ -1,0 +1,39 @@
+@use "@/app/styles/common/var";
+
+$color-out: rgb(255, 58, 58);
+
+.root {
+  width: 35px;
+  height: 35px;
+  background-color: $color-out;
+  border-radius: 6px;
+  box-shadow: var.$box-shadow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  z-index: 1;
+  cursor: pointer;
+  border: 1px solid rgb(108, 108, 108);
+  .center {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: var.$border-radius-circle;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 6px;
+      width: 1px;
+      height: 10px;
+      background-color: white;
+      border-left: 1px solid $color-out;
+      border-right: 1px solid $color-out;
+      padding: 1px;
+    }
+  }
+}

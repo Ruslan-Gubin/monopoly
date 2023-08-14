@@ -23,6 +23,7 @@ const GamePlayers = () => {
       image={player.image}
       money={player.money}
       name={player.name}
+      color={player.color}
       totalSum={getTotalSumPlayer(player._id, player.money)} 
       />
         )}

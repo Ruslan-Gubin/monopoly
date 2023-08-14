@@ -7,6 +7,7 @@ import { useBoard, useCells } from "@/entities";
 import { GameOver } from "@/features";
 
 import styles from "./CenterBoard.module.scss";
+import { OutGame } from "../out-game/OutGame";
 
 
 const CenterBoard = () => {
@@ -42,8 +43,9 @@ const CenterBoard = () => {
     <div className={styles.left_side}>
     <GameNotification />
     <GameManagement />
-    <GameMessage />
+    <GameMessage board={board} />
     </div>
+    <OutGame />
     <GamePlayers />
     </>
      : 

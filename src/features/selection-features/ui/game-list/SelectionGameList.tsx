@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import {
   SelectionCard,
   SelectionModel,
+  useBoard,
   useSelect,
 } from "@/entities";
 import { SelectionAvatar } from "../selection-avatar/SelectionAvatar";
@@ -11,16 +12,19 @@ import { NoContent } from "@/shared";
 import styles from "./SelectionGameList.module.scss";
 
 const SelectionGameList = () => {
-  const { selectioGames, joinSession, owner } = useSelect(); 
-
+  const { selectioGames, joinSession, owner } = useSelect();
+  const { gameBoardId, isGoGame } = useBoard()
+  
+  const checkActiveGame = useMemo(() => !!isGoGame && !!gameBoardId, [gameBoardId, isGoGame]);
+  
   const sessionsMapUpdate = useMemo((): SelectionModel[] => {
-    if (owner || joinSession) {
+    if (owner || joinSession || checkActiveGame) {
       return selectioGames;
     }
     
     return addPlayersImage(selectioGames);
 
-  }, [selectioGames, joinSession, owner]);
+  }, [selectioGames, joinSession, owner, checkActiveGame]);
 
   const handleCheckActiveGame = useMemo(
     () =>
@@ -29,6 +33,8 @@ const SelectionGameList = () => {
       },
     [owner, joinSession]
   );
+
+
 
   return (
     <ul className={styles.root}>
