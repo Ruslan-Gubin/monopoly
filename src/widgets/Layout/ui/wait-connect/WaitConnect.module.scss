@@ -1,0 +1,26 @@
+@use '@/app/styles/common/var';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(228, 228, 228);
+
+  .container {
+    width: 400px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: rgb(252, 252, 252);
+    box-shadow: var.$box-shadow;
+    .text {
+      font-size: 1.6rem;
+      color: var.$color-text-light-gray;
+      font-weight: 700;
+    }
+  }
+}
+

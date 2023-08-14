@@ -1,8 +1,10 @@
-'use client';
-import { FC, memo } from "react";
+"use client";
+import { FC, memo, useEffect } from "react";
 import Head from "next/head";
 import { HeaderContainer } from "../header-container/HeaderContainer";
 import { useRouterNavigation } from "@/shared";
+import { useConnect, useConnectAction } from "@/entities";
+import { WaitConnect } from "../wait-connect/WaitConnect";
 
 import styles from "./Layout.module.scss";
 
@@ -13,11 +15,18 @@ interface IShopLayout {
 }
 
 const LayoutF: FC<IShopLayout> = ({ children, title, keywords }) => {
-  const { pathname } = useRouterNavigation()
+  const { pathname } = useRouterNavigation();
+  const { fetchConnect } = useConnectAction();
+  const { loading, isConnect } = useConnect();
+
+  useEffect(() => {
+    if (isConnect) return;
+    fetchConnect();
+  }, []);
 
   if (!pathname) return null;
 
-  const checkGamePage = /\bgame\b/.test(pathname)
+  const checkGamePage = /\bgame\b/.test(pathname);
 
   return (
     <>
@@ -35,7 +44,18 @@ const LayoutF: FC<IShopLayout> = ({ children, title, keywords }) => {
         <header className={styles.header}>
           <HeaderContainer />
         </header>
-        <main className={checkGamePage ? `${styles.main} ${styles.game_page}` : styles.main}> {children} </main>
+        {loading ? (
+          <WaitConnect />
+        ) : (
+          <main
+            className={
+              checkGamePage ? `${styles.main} ${styles.game_page}` : styles.main
+            }
+          >
+            {" "}
+            {children}{" "}
+          </main>
+        )}
         {/* <footer className={styles.footer}> Footer</footer>  */}
       </div>
     </>

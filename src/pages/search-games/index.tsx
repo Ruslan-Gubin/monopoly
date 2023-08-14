@@ -11,6 +11,7 @@ import {
   SelectionSendMessage,
 } from "@/widgets";
 
+
 import styles from "../../app/styles/pages/SearchGame.module.scss";
 
 const SearchGame = () => {

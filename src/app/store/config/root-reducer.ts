@@ -21,6 +21,7 @@ export const rootReducer = combineReducers({
   property: entities.propertyReducer,
   auction: entities.auctionReducer,
   gameNotification: entities.gameNotificationReducer,
+  connect: entities.connectReducer,
 
   // [baseApi.reducerPath]: baseApi.reducer,
 });
