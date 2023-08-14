@@ -1,38 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## [Монополия онлайн можно посмотреть здесь](https://monopoly-chi.vercel.app).
 
-## Getting Started
+## [Frontend](src)
+ 
+<img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;TypeScript  язык программирования, который добавляет статическую типизацию к JavaScript.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+ <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;   Next.js - фреймворк для рендеринга серверной и клиентской частей приложения на базе React.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img src="https://github.com/devicons/devicon/blob/master/icons/redux/redux-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;  Redux Toolkit - инструментарий для упрощения работы с Redux.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751831/git-hub-img/visual_schema_ndg3zi.jpg" width="60" height="40">   Feature-Sliced Design - архитектурная методология для проектирования frontend-приложени.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752467/git-hub-img/1jwk9rkgalxe89uftrha_xqaajc.webp" width="60" height="40"> Styled-components - библиотека для написания CSS внутри компонентов.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## [Backend](https://github.com/Ruslan-Gubin/monopoly-backend)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+ <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;  NodeJS - серверная среда выполнения JavaScript.
 
-## Learn More
+<img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp; Express - веб-фреймворк для приложений Node.js.
 
-To learn more about Next.js, take a look at the following resources:
+<img src="https://github.com/devicons/devicon/blob/master/icons/mongodb/mongodb-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp; MongoDB - NoSQL база данных.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752822/git-hub-img/jwt-header_ighbb0.png" width="60" height="40">JWT - JSON Web Tokens для авторизации пользователей.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Описание
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Проект "Монополия онлайн" предлагает увлекательный игровой опыт среалистичной адаптивной доской, возможностью игры в реальном времени и использованием современных веб-технологий. Игроки могут наслаждаться стратегическими решениями, покупать и улучшать недвижимость, взаимодействовать с другими игроками через чат, участвовать в аукционах и соревноваться за победу.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Этот проект сочетает в себе удобство онлайн-игры с визуальным великолепием и позволяет игрокам наслаждаться классическим геймплеем "Монополии" в любое время и в любом месте. Он создает уникальную атмосферу соревнования и стратегического мышления, а также предлагает возможность взаимодействия и общения с другими игроками.
+
+Проект также демонстрирует использование передовых технологий, таких как WebSocket для реального времени, кэширование данных для оптимизации производительности и адаптивный дизайн для обеспечения оптимального отображения на разных устройствах.
+     
+## Особенности
+
+  Онлайн-мультиплеер: Игроки могут присоединяться к игре и соревноваться друг с другом в реальном времени.
+
+  Адаптивный дизайн: Игровая доска автоматически подстраивается под размеры и разрешение экрана устройства пользователя, обеспечивая оптимальное отображение на компьютерах и планшетах.
+
+  Динамическое отслеживание игровых данных: Информация о ходах игроков, изменении ценности полей и улучшениях отображается в реальном времени на игровой доске и в чате.
+
+Кэширование данных: Проект использует кэширование данных для оптимизации производительности, сокращая время запросов к базе данных и улучшая отклик игровой системы.
+
+WebSocket технология: Использование WebSocket позволяет игрокам и зрителям видеть изменения на игровой доске в режиме реального времени, обеспечивая плавную и синхронизированную игровую среду.
+
+Аукционы: Игроки могут проводить аукционы, чтобы приобрести недвижимость. Участники могут повышать ставки, и победителем становится тот, кто сделал последнюю ставку.
+
+Удаление игровой сессии: Игрок-победитель имеет возможность удалить игровую доску и закончить игру. Это очищает данные игры из кэша сервера и базы данных.
+
+Главная страница и навигация: Проект предлагает удобную навигацию, позволяя игрокам вернуться к игре, просматривать доступные игры или создавать новые сессии после удаления предыдущей игры.
+
+## В заключение
+
+Проект "Монополия онлайн" предоставляет игрокам возможность насладиться классической настольной игрой в формате онлайн, используя передовые веб-технологии и современный дизайн. Красивая адаптивная доска, реально-временная игровая среда, взаимодействие с другими игроками через чат и возможность проведения аукционов создают увлекательное и стратегическое игровое впечатление. Проект сочетает в себе удобство онлайн-игры с визуальной привлекательностью, предлагая игрокам возможность наслаждаться "Монополией" в любое время и в любом месте.
+
+## Установка
+
+- Клонируйте репозиторий.
+
+- Выполните команду npm install для установки зависимостей.
+
+- Запустите приложение локально с помощью команды npm run dev.
+
+- Откройте ваш браузер и перейдите по адресу http://localhost:3000.
+
+
+# Лицензия
+
+Монополия онлайн использует следующую лицензию: MIT License.
+
+The MIT License (MIT)
+
+Авторское право (c) 2023 Губин Руслан
+
+Настоящим гарантируется любому лицу, получившему копию этого программного обеспечения и связанных с ним файлов документации («Программное обеспечение»), разрешение на использование Программного обеспечения без ограничений, включая неограниченное право использования, копирования, изменения, слияния, публикации, распространения, сублицензирования и / или продажи копий Программного обеспечения, а также лицам, которым предоставляется это программное обеспечение, на следующих условиях:
+
+Указанное выше уведомление об авторском праве и это разрешение должно быть включено во все копии или значимые части программного обеспечения.
+
+ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ, ГАРАНТИИ КОММЕРЧЕСКОЙ ЦЕННОСТИ, ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ И НЕНАРУШЕНИЯ. НИ ПРИ КАКИХ ОБСТОЯТЕЛЬСТВАХ АВТОРЫ ИЛИ ВЛАДЕЛЬЦЫ АВТОРСКИХ ПРАВ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ ЗА ЛЮБЫЕ ИСКИ, УБЫТКИ ИЛИ ДРУГИЕ ОТВЕТСТВЕННОСТИ, ВЫТЕКАЮЩИЕ ИЗ, ИЛИ В СВЯЗИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ ИЛИ ДРУГИМИ СДЕЛКАМИ В ПРОГРАММНОМ ОБЕСПЕЧЕНИИ.
+
+2023 © Губин Руслан
