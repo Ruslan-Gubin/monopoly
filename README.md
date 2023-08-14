@@ -1,38 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[OnlineShop можно посмотреть здесь](https://online-shop-beta-seven.vercel.app).
 
-## Getting Started
+## [Frontend](next-graphql)
+ 
+<img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;TypeScript  язык программирования, который добавляет статическую типизацию к JavaScript.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+ <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;   Next.js - фреймворк для рендеринга серверной и клиентской частей приложения на базе React.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img src="https://github.com/devicons/devicon/blob/master/icons/redux/redux-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;  Redux Toolkit - инструментарий для упрощения работы с Redux.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751831/git-hub-img/visual_schema_ndg3zi.jpg" width="60" height="40">   Feature-Sliced Design - архитектурная методология для проектирования frontend-приложени.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752296/git-hub-img/38744c4059b2387f3a6ad56c8951c985_vxmvmo.jpg" width="60" height="40">  Apollo - клиент для GraphQL API.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752467/git-hub-img/1jwk9rkgalxe89uftrha_xqaajc.webp" width="60" height="40"> Styled-components - библиотека для написания CSS внутри компонентов.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## [Backend](backend/src)
 
-## Learn More
+ <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;  NodeJS - серверная среда выполнения JavaScript.
 
-To learn more about Next.js, take a look at the following resources:
+<img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp; Express - веб-фреймворк для приложений Node.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img src="https://github.com/devicons/devicon/blob/master/icons/mongodb/mongodb-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp; MongoDB - NoSQL база данных.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<img src="https://github.com/devicons/devicon/blob/master/icons/graphql/graphql-plain-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;  GraphQL - язык запросов для API и сервера.
 
-## Deploy on Vercel
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752822/git-hub-img/jwt-header_ighbb0.png" width="60" height="40">JWT - JSON Web Tokens для авторизации пользователей.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Описание
+
+
+     
+## Особенности
+
+   
+
+## Установка
+
+- Клонируйте репозиторий.
+
+- Выполните команду npm install для установки зависимостей.
+
+- Запустите приложение локально с помощью команды npm run dev.
+
+- Откройте ваш браузер и перейдите по адресу http://localhost:3000.
